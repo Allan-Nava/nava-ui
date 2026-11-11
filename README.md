@@ -361,7 +361,7 @@ gh run download <run-id> -n screenshots -D tests/__screenshots__
 To look at the documentation page locally:
 
 ```bash
-python3 -m http.server 8000
+npm run serve
 ```
 
 Rules for a change:

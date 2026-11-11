@@ -53,6 +53,9 @@ tests/__screenshots__/  baselines, generated on the CI runner
   `gh workflow run checks.yml -f update_snapshots=true`, wait, then
   `gh run download <run-id> -n screenshots -D tests/__screenshots__` (delete the folder first)
   and commit. Look at the changed images before committing them.
+- **The Playwright version is pinned twice**: `@playwright/test` in `package.json` and the
+  container image tag in `.github/workflows/checks.yml`. Change them together, then regenerate
+  the baselines.
 - **Accessibility is part of the component.** Focus visible, hover only under
   `@media (hover: hover)`, motion off under `prefers-reduced-motion`, state styled through ARIA
   attributes where one exists. Do not hide a link's only text with `display: none`.
@@ -76,7 +79,7 @@ npm run backlog             # validate BACKLOG.md and that ROADMAP.md is current
 npm run roadmap             # regenerate ROADMAP.md after editing the backlog
 npm ci && npx playwright install chromium
 npm test                    # screenshots, accessibility, theme toggle
-python3 -m http.server 8000 # look at index.html
+npm run serve               # look at index.html on http://127.0.0.1:8000/
 ```
 
 Before calling a change done: `./scripts/build.sh`, `npm run contrast`, and the `checks` workflow

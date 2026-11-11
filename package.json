@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "./scripts/build.sh",
+    "serve": "node scripts/serve.mjs 8000",
     "backlog": "npx --yes backlogsync check",
     "roadmap": "npx --yes backlogsync roadmap",
     "contrast": "node scripts/contrast.mjs",
@@ -16,6 +17,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
-    "@playwright/test": "^1.49.0"
+    "@playwright/test": "1.65.0"
   }
 }

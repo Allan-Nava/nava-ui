@@ -39,14 +39,14 @@ jobs:
   browser:
     name: screenshots and accessibility
     runs-on: ubuntu-latest
+    # The official image already holds the browser and its system libraries, so
+    # the job does not depend on the apt mirrors. The tag must be the version
+    # of @playwright/test in package.json: change the two together.
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
 
       - name: Compare with the baselines
         if: ${{ !inputs.update_snapshots }}
