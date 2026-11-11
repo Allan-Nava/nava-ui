@@ -8,6 +8,7 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "contrast": "node scripts/contrast.mjs",
+    "drift": "node scripts/site-drift.mjs",
     "test": "playwright test",
     "test:update": "playwright test --update-snapshots"
   },

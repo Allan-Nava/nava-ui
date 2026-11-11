@@ -317,6 +317,16 @@ The kit is an extraction, with three deliberate changes:
   title, the scroll-driven reveals, view transitions, the YouTube thumbnail crops, syntax
   highlighting colours, comments.
 
+### Staying in sync with the site
+
+The kit and the site share their tokens by copy, for now. `scripts/site-drift.mjs` reads the
+site's token file and reports every value that differs from the kit's, comparing lengths in
+pixels (on the site 1rem is 10 px). A weekly workflow runs it and fails on drift.
+
+```bash
+npm run drift
+```
+
 ## Development
 
 There are no dependencies. Edit `css/` and `js/`, then rebuild `dist/`:

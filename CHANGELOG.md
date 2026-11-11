@@ -4,6 +4,7 @@
 
 - Checks in CI: contrast of every text and background pair, screenshots of every example in two
   themes and two widths, automated accessibility rules, `dist/` in sync with the sources.
+- `scripts/site-drift.mjs` and a weekly workflow: fail when a token differs from the site's.
 - Fix: on phones the brand name in the nav is hidden visually instead of with `display: none`,
   so a brand link without an image keeps its accessible name.
 - Fix: the bars of a bar list start on the same line (the rows share the columns of the list).

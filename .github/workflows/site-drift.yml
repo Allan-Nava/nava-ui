@@ -1,0 +1,22 @@
+name: site drift
+
+# The kit and allan-nava.github.io share their tokens by copy. Until the site
+# reads them from the kit, this compares the two every week and fails when a
+# value differs, so the copy cannot age unnoticed.
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/site-drift.mjs
