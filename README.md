@@ -329,7 +329,10 @@ npm run drift
 
 ## Development
 
-There are no dependencies. Edit `css/` and `js/`, then rebuild `dist/`:
+How the kit is put together, and why, is in [ARCHITECTURE.md](ARCHITECTURE.md). Instructions for AI
+coding agents are in [CLAUDE.md](CLAUDE.md).
+
+The kit itself has no dependencies; the tests use Playwright. Edit `css/` and `js/`, then rebuild `dist/`:
 
 ```bash
 ./scripts/build.sh
