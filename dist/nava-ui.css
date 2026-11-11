@@ -1187,22 +1187,27 @@ a.nv-tag:hover {
 
 /* ---------------------------------------------------------------------------
    Bars — a horizontal bar list. Set the width inline: style="width: 62%".
-   The label takes its content width; the bar, which is decoration, absorbs
-   the difference.
+   The label column takes the width of the longest label; the bars absorb
+   the difference and all start on the same line.
    ------------------------------------------------------------------------ */
 
 .nv-bars {
+  display: grid;
+  grid-template-columns: minmax(5ch, max-content) minmax(0, 1fr) minmax(4ch, max-content);
+  gap: var(--nv-space-2) var(--nv-space-3);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+/* Rows share the columns of the list (subgrid): with a grid per row every
+   bar would start after its own label, and the lengths could not be compared. */
 .nv-bar {
   display: grid;
-  grid-template-columns: minmax(5ch, max-content) minmax(0, 1fr) 4ch;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
   align-items: center;
-  gap: var(--nv-space-3);
-  margin-bottom: var(--nv-space-2);
+  margin: 0;
   font-size: var(--nv-text-sm);
 }
 

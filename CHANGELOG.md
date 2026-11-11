@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Checks in CI: contrast of every text and background pair, screenshots of every example in two
+  themes and two widths, automated accessibility rules, `dist/` in sync with the sources.
+- Fix: on phones the brand name in the nav is hidden visually instead of with `display: none`,
+  so a brand link without an image keeps its accessible name.
+- Fix: the bars of a bar list start on the same line (the rows share the columns of the list).
+
 ## 0.1.0 — 2026-11-11
 
 First release: the tokens and components of allan-nava.github.io as a standalone kit.

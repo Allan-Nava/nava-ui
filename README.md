@@ -177,9 +177,9 @@ not.
 The light accent is the same hue as the dark one, much darker: the accent is used both as text and
 as a background with text on it, and a mid green holds neither side on a light page.
 
-The values are the ones in production on the site. Its token file records every text and
-background pair as checked at 6:1 or better in both themes. If you change a colour, check the
-pairs it takes part in again.
+The values are the ones in production on the site. `scripts/contrast.mjs` measures every text
+and background pair the components use, in both themes, and CI fails under 6:1 (WCAG AA asks
+4.5:1 for body text). If you change a colour, run it.
 
 ### Spacing, radius, motion, type, layout
 
@@ -325,6 +325,23 @@ There are no dependencies. Edit `css/` and `js/`, then rebuild `dist/`:
 ./scripts/build.sh
 ```
 
+Checks, the same ones CI runs on every push and pull request:
+
+```bash
+npm run contrast   # contrast of every text and background pair, both themes; no install needed
+npm ci && npx playwright install chromium
+npm test           # screenshots of every example (2 themes × 2 widths), accessibility, theme toggle
+```
+
+The screenshot baselines in `tests/__screenshots__/` are generated on the CI runner, so that
+fonts and rendering match. After a deliberate visual change, run the `checks` workflow by hand
+with "update snapshots", download the `screenshots` artifact and commit it:
+
+```bash
+gh workflow run checks.yml -f update_snapshots=true
+gh run download <run-id> -n screenshots -D tests/__screenshots__
+```
+
 To look at the documentation page locally:
 
 ```bash
@@ -337,7 +354,8 @@ Rules for a change:
    `:root[data-theme="light"]`. A colour that exists only in dark is invisible in light sooner or
    later.
 2. Components use tokens only: no literal colours, sizes from the spacing and type scales.
-3. Every new class gets a live example in `index.html` and a row in the table above.
+3. Every new class gets a live example in `index.html` (which gives it a screenshot test) and a
+   row in the table above. A new text and background pair gets a line in `scripts/contrast.mjs`.
 4. Bump `VERSION`, add an entry to `CHANGELOG.md`, rebuild, tag `vX.Y.Z`: the CDN URL is the tag.
 
 ## License and credits
