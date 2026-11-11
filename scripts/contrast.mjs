@@ -79,6 +79,17 @@ const PAIRS = [
   ['--nv-fg', '--nv-overlay-soft', '--nv-bg'],
 ];
 
+// Edges and marks of controls: WCAG 1.4.11 asks 3:1 for the parts needed to
+// identify a control. [mark or edge, what it sits on].
+const UI_MIN = 3;
+const UI_PAIRS = [
+  ['--nv-border-control', '--nv-bg'],
+  ['--nv-border-control', '--nv-surface'],
+  ['--nv-accent', '--nv-bg'],
+  ['--nv-accent', '--nv-surface'],
+  ['--nv-on-accent', '--nv-accent'],
+];
+
 const dark = block(':root {');
 const light = block(':root[data-theme="light"]');
 const lightMedia = block(':root:not([data-theme="dark"])');
@@ -110,10 +121,16 @@ for (const [theme, tokens] of [['dark', dark], ['light', light]]) {
     if (!ok) failed = true;
     console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${value.toFixed(1).padStart(5)}:1  ${text} on ${layers.join(' over ')}`);
   }
+  for (const [mark, under] of UI_PAIRS) {
+    const value = ratio(parse(tokens[mark]), parse(tokens[under]));
+    const ok = value >= UI_MIN;
+    if (!ok) failed = true;
+    console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${value.toFixed(1).padStart(5)}:1  ${mark} against ${under} (control, min ${UI_MIN}:1)`);
+  }
 }
 
 if (failed) {
-  console.error(`\nSome pairs are under ${MIN}:1, or the palettes are out of sync.`);
+  console.error(`\nSome pairs are under their minimum (${MIN}:1 for text, ${UI_MIN}:1 for controls), or the palettes are out of sync.`);
   process.exit(1);
 }
-console.log(`\nAll pairs are at ${MIN}:1 or better in both themes.`);
+console.log(`\nAll text pairs are at ${MIN}:1 or better and all control pairs at ${UI_MIN}:1 or better, in both themes.`);

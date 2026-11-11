@@ -25,6 +25,7 @@
   --nv-surface-hover: #171a1f;
   --nv-border: rgba(255, 255, 255, 0.09);
   --nv-border-strong: rgba(255, 255, 255, 0.18);
+  --nv-border-control: #6e737b; /* edge of a form control: 3:1 or better on bg and surface */
   --nv-row-hover: rgba(255, 255, 255, 0.035);
 
   /* text */
@@ -132,6 +133,7 @@
     --nv-surface-hover: #eef1f3;
     --nv-border: rgba(0, 0, 0, 0.11);
     --nv-border-strong: rgba(0, 0, 0, 0.22);
+    --nv-border-control: #7d848e;
     --nv-row-hover: rgba(0, 0, 0, 0.03);
     --nv-fg: #1a1e23;
     --nv-fg-strong: #05070a;
@@ -167,6 +169,7 @@
   --nv-surface-hover: #eef1f3;
   --nv-border: rgba(0, 0, 0, 0.11);
   --nv-border-strong: rgba(0, 0, 0, 0.22);
+  --nv-border-control: #7d848e;
   --nv-row-hover: rgba(0, 0, 0, 0.03);
   --nv-fg: #1a1e23;
   --nv-fg-strong: #05070a;
@@ -1005,8 +1008,28 @@ a.nv-bar__label:hover {
 }
 
 /* ---------------------------------------------------------------------------
-   Form field
+   Forms
+   .nv-field      one label, one control, one hint
+   .nv-input      text input; pill by default, .nv-input--box for forms
+   .nv-textarea, .nv-select
+   .nv-checkbox, .nv-radio, .nv-switch   on the <input>, inside a .nv-choice label
+   .nv-fieldset   a group of choices with a legend
+
+   The edge of every control is --nv-border-control, which reaches 3:1 against
+   the page and the surface: on a control the edge is what says "you can type
+   or click here", so it cannot be a hairline.
    ------------------------------------------------------------------------ */
+
+.nv-field {
+  display: grid;
+  gap: var(--nv-space-2);
+  margin-bottom: var(--nv-space-5);
+}
+
+.nv-field > .nv-label,
+.nv-field > .nv-hint {
+  margin: 0;
+}
 
 .nv-label {
   display: block;
@@ -1017,31 +1040,251 @@ a.nv-bar__label:hover {
   color: var(--nv-fg-muted);
 }
 
-.nv-input {
+.nv-input,
+.nv-textarea,
+.nv-select {
   width: 100%;
   padding: var(--nv-space-3) var(--nv-space-4);
   font-family: inherit;
-  font-size: var(--nv-text-lg);
+  font-size: var(--nv-text-base);
+  line-height: 1.4;
   color: var(--nv-fg-strong);
-  background: var(--nv-surface);
-  border: 1px solid var(--nv-border-strong);
+  background-color: var(--nv-surface);
+  border: 1px solid var(--nv-border-control);
+  border-radius: var(--nv-radius-md);
+  transition: border-color var(--nv-dur) var(--nv-ease), box-shadow var(--nv-dur) var(--nv-ease);
+}
+
+/* The original shape: a large pill, right for a single search field */
+.nv-input {
+  font-size: var(--nv-text-lg);
   border-radius: var(--nv-radius-pill);
-  transition: border-color var(--nv-dur) var(--nv-ease);
 }
 
-.nv-input::placeholder {
+/* In a form with several fields: body size, same corners as the other controls */
+.nv-input--box {
+  font-size: var(--nv-text-base);
+  border-radius: var(--nv-radius-md);
+}
+
+.nv-input::placeholder,
+.nv-textarea::placeholder {
   color: var(--nv-fg-muted);
+  opacity: 1;
 }
 
-.nv-input:focus {
+/* Focus is the edge in the accent colour plus a soft ring: a change of colour
+   on a 1px line alone is easy to miss. */
+.nv-input:focus,
+.nv-textarea:focus,
+.nv-select:focus {
   outline: none;
   border-color: var(--nv-accent);
+  box-shadow: 0 0 0 3px var(--nv-accent-soft);
+}
+
+.nv-textarea {
+  display: block;
+  min-height: 7.5rem;
+  line-height: var(--nv-leading);
+  resize: vertical;
+}
+
+/* The arrow is two gradients in currentColor, so it follows the theme without
+   an image per theme. */
+.nv-select {
+  padding-right: calc(var(--nv-space-4) * 2 + 0.75rem);
+  appearance: none;
+  color: var(--nv-fg-strong);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right calc(var(--nv-space-4) + 0.375rem) center, right var(--nv-space-4) center;
+  background-size: 0.375rem 0.375rem;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.nv-input:disabled,
+.nv-textarea:disabled,
+.nv-select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .nv-hint {
   margin: var(--nv-space-3) 0 0;
   font-size: var(--nv-text-xs);
   color: var(--nv-fg-muted);
+}
+
+/* Groups of choices */
+
+.nv-fieldset {
+  min-width: 0;
+  margin: 0 0 var(--nv-space-5);
+  padding: 0;
+  border: 0;
+}
+
+.nv-legend {
+  margin-bottom: var(--nv-space-3);
+  padding: 0;
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+/* A label that wraps the control and its text: the whole row is the target */
+.nv-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nv-space-3);
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: var(--nv-space-3);
+  font-size: var(--nv-text-base);
+  line-height: 1.4;
+  color: var(--nv-fg);
+  cursor: pointer;
+}
+
+.nv-choice:last-child {
+  margin-bottom: 0;
+}
+
+.nv-checkbox,
+.nv-radio,
+.nv-switch {
+  flex: 0 0 auto;
+  position: relative;
+  /* centred on the first line of the text beside it */
+  margin: 0.1em 0 0;
+  appearance: none;
+  background: var(--nv-surface);
+  border: 1.5px solid var(--nv-border-control);
+  cursor: pointer;
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-checkbox,
+.nv-radio {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.nv-checkbox {
+  border-radius: var(--nv-radius-sm);
+}
+
+.nv-radio {
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-checkbox::before,
+.nv-radio::before,
+.nv-switch::before {
+  content: "";
+  position: absolute;
+}
+
+/* The tick: a rectangle clipped to a check mark */
+.nv-checkbox::before {
+  inset: 1px;
+  background: var(--nv-on-accent);
+  clip-path: polygon(14% 52%, 0 68%, 40% 100%, 100% 24%, 84% 10%, 38% 66%);
+  transform: scale(0);
+  transition: transform var(--nv-dur-fast) var(--nv-ease);
+}
+
+.nv-radio::before {
+  inset: 3px;
+  background: var(--nv-on-accent);
+  border-radius: inherit;
+  transform: scale(0);
+  transition: transform var(--nv-dur-fast) var(--nv-ease);
+}
+
+.nv-checkbox:checked,
+.nv-radio:checked,
+.nv-switch:checked {
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-checkbox:checked::before,
+.nv-radio:checked::before {
+  transform: scale(1);
+}
+
+/* A checkbox that is neither on nor off: set el.indeterminate from script */
+.nv-checkbox:indeterminate {
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-checkbox:indeterminate::before {
+  inset: 45% 20%;
+  clip-path: none;
+  transform: none;
+}
+
+/* Switch: a checkbox with role="switch", for a setting that applies at once */
+.nv-switch {
+  width: 2.25rem;
+  height: 1.25rem;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-switch::before {
+  top: 2px;
+  left: 2px;
+  width: calc(1.25rem - 7px);
+  height: calc(1.25rem - 7px);
+  background: var(--nv-border-control);
+  border-radius: inherit;
+  transition: transform var(--nv-dur) var(--nv-ease-out), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-switch:checked::before {
+  background: var(--nv-on-accent);
+  transform: translateX(1rem);
+}
+
+.nv-checkbox:focus-visible,
+.nv-radio:focus-visible,
+.nv-switch:focus-visible {
+  outline: 2px solid var(--nv-accent);
+  outline-offset: 2px;
+}
+
+.nv-checkbox:disabled,
+.nv-radio:disabled,
+.nv-switch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nv-choice:has(:disabled) {
+  color: var(--nv-fg-muted);
+  cursor: not-allowed;
+}
+
+/* In forced colours the drawn marks disappear: give the controls back to the system */
+@media (forced-colors: active) {
+  .nv-checkbox,
+  .nv-radio,
+  .nv-switch,
+  .nv-select {
+    appearance: auto;
+    background: none;
+  }
+
+  .nv-checkbox::before,
+  .nv-radio::before,
+  .nv-switch::before {
+    display: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1225,6 +1468,12 @@ a.nv-bar__label:hover {
   .nv-button:hover,
   .nv-button:active {
     transform: none;
+    transition-duration: 0.001ms;
+  }
+
+  .nv-checkbox::before,
+  .nv-radio::before,
+  .nv-switch::before {
     transition-duration: 0.001ms;
   }
 }

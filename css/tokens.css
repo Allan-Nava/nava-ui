@@ -24,6 +24,7 @@
   --nv-surface-hover: #171a1f;
   --nv-border: rgba(255, 255, 255, 0.09);
   --nv-border-strong: rgba(255, 255, 255, 0.18);
+  --nv-border-control: #6e737b; /* edge of a form control: 3:1 or better on bg and surface */
   --nv-row-hover: rgba(255, 255, 255, 0.035);
 
   /* text */
@@ -131,6 +132,7 @@
     --nv-surface-hover: #eef1f3;
     --nv-border: rgba(0, 0, 0, 0.11);
     --nv-border-strong: rgba(0, 0, 0, 0.22);
+    --nv-border-control: #7d848e;
     --nv-row-hover: rgba(0, 0, 0, 0.03);
     --nv-fg: #1a1e23;
     --nv-fg-strong: #05070a;
@@ -166,6 +168,7 @@
   --nv-surface-hover: #eef1f3;
   --nv-border: rgba(0, 0, 0, 0.11);
   --nv-border-strong: rgba(0, 0, 0, 0.22);
+  --nv-border-control: #7d848e;
   --nv-row-hover: rgba(0, 0, 0, 0.03);
   --nv-fg: #1a1e23;
   --nv-fg-strong: #05070a;

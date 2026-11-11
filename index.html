@@ -303,6 +303,43 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       <p class="nv-hint">Press <kbd>/</kbd> to focus, <kbd>Esc</kbd> to clear.</p>
     </div>
 
+    <h3>Form controls</h3>
+    <p>For a form with several fields: <code>nv-field</code> ties a label, a control and a hint together, and <code>nv-input--box</code> gives the input the same corners as the other controls. Checkbox, radio and switch are classes on the native <code>&lt;input&gt;</code>, wrapped in a <code>nv-choice</code> label so the text is part of the target. A switch is a checkbox with <code>role="switch"</code>: use it for a setting that applies at once, a checkbox for something sent with the form.</p>
+    <div class="doc-demo" data-demo>
+      <form action="#">
+        <div class="nv-field">
+          <label class="nv-label" for="demo-name">Project name</label>
+          <input class="nv-input nv-input--box" id="demo-name" type="text" value="nava-ui" aria-describedby="demo-name-hint">
+          <p class="nv-hint" id="demo-name-hint">Lower case, no spaces.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="demo-lang">Language</label>
+          <select class="nv-select" id="demo-lang">
+            <option>Go</option>
+            <option>Java</option>
+            <option>TypeScript</option>
+          </select>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="demo-notes">Notes</label>
+          <textarea class="nv-textarea" id="demo-notes" placeholder="What it does, in two lines"></textarea>
+        </div>
+        <fieldset class="nv-fieldset">
+          <legend class="nv-legend">Checks to run</legend>
+          <label class="nv-choice"><input class="nv-checkbox" type="checkbox" checked> Contrast</label>
+          <label class="nv-choice"><input class="nv-checkbox" type="checkbox"> Screenshots</label>
+          <label class="nv-choice"><input class="nv-checkbox" type="checkbox" disabled> Not available yet</label>
+        </fieldset>
+        <fieldset class="nv-fieldset">
+          <legend class="nv-legend">Visibility</legend>
+          <label class="nv-choice"><input class="nv-radio" type="radio" name="demo-visibility" checked> Public</label>
+          <label class="nv-choice"><input class="nv-radio" type="radio" name="demo-visibility"> Private</label>
+        </fieldset>
+        <label class="nv-choice"><input class="nv-switch" type="checkbox" role="switch" checked> Follow the system theme</label>
+        <label class="nv-choice"><input class="nv-switch" type="checkbox" role="switch"> Send a weekly summary</label>
+      </form>
+    </div>
+
     <h3>Pagination</h3>
     <p>On the first or last page keep the arrow in the markup with <code>aria-disabled="true"</code>: it is hidden but still takes its space, so the page number stays centred.</p>
     <div class="doc-demo" data-demo>

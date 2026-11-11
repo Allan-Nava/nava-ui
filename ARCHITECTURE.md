@@ -88,7 +88,7 @@ itself. Two things make it more than a manual:
 
 | Check | Where | What it protects |
 |---|---|---|
-| Contrast | `scripts/contrast.mjs` | every text and background pair is 6:1 or better in both themes; the two light palettes are identical |
+| Contrast | `scripts/contrast.mjs` | every text and background pair is 6:1 or better in both themes, and every control edge or mark 3:1 or better; the two light palettes are identical |
 | Build in sync | `checks.yml`, `git diff dist/` | `dist/` matches `css/` and `js/` |
 | Screenshots | `tests/visual.spec.mjs` | each example, in 2 themes × 2 widths, matches its baseline |
 | No sideways overflow | `tests/visual.spec.mjs` | the page never scrolls horizontally |

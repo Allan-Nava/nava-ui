@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Form controls: `nv-field`, `nv-input--box`, `nv-textarea`, `nv-select`, `nv-checkbox`,
+  `nv-radio`, `nv-switch`, `nv-choice`, `nv-fieldset` and `nv-legend`.
+- New token `--nv-border-control`, the edge of form controls, at 3:1 or better on the page and
+  on a surface in both themes; the contrast script now checks control edges and marks at 3:1.
+- Changed: `nv-input` uses `--nv-border-control` instead of `--nv-border-strong`, so its edge
+  is easier to see, and its focus adds a soft ring to the accent-coloured edge.
+
 ## 0.2.0 — 2026-11-11
 
 The quality gate: nothing changes in the kit without a check noticing.

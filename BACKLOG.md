@@ -79,9 +79,11 @@ The kit has the shape of a portfolio: cards, an opening, a footer. An applicatio
 feedback and overlays. Each item ships with a live example, its screenshots and the
 accessibility rules green.
 
-- [ ] **NV-15 — Form controls**: select, textarea, checkbox, radio and switch on the same
+- [x] **NV-15 — Form controls**: select, textarea, checkbox, radio and switch on the same
   tokens as `nv-input`, with a field wrapper that ties label, control and hint together; a
-  rectangular input variant next to the pill. <!-- nv: prio=high size=L labels=components,a11y -->
+  rectangular input variant next to the pill. Done with a new token, `--nv-border-control`,
+  because the edge of a control has to reach 3:1 and the hairline borders do not; the contrast
+  script checks it. <!-- nv: prio=high size=L labels=components,a11y ver=main -->
 - [ ] **NV-16 — Validation states**: error and success on every control, with the message
   linked through `aria-describedby` and `aria-invalid`, never by colour alone; needs danger
   and success colours in both themes, with their pairs in the contrast script. <!-- nv: prio=high size=M labels=components,tokens,a11y -->

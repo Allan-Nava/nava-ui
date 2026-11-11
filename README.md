@@ -159,7 +159,8 @@ not.
 | `--nv-surface` | `#101215` | `#ffffff` | cards, inputs, buttons |
 | `--nv-surface-hover` | `#171a1f` | `#eef1f3` | hovered surface |
 | `--nv-border` | white 9% | black 11% | hairlines |
-| `--nv-border-strong` | white 18% | black 22% | borders of controls |
+| `--nv-border-strong` | white 18% | black 22% | borders of buttons and chips |
+| `--nv-border-control` | `#6e737b` | `#7d848e` | the edge of form controls: 3:1 or better on the page and on a surface |
 | `--nv-fg` | `#eae4e4` | `#1a1e23` | body text |
 | `--nv-fg-strong` | `#ffffff` | `#05070a` | titles, emphasis |
 | `--nv-fg-muted` | `#a9a9b0` | `#515a65` | secondary text |
@@ -179,7 +180,7 @@ as a background with text on it, and a mid green holds neither side on a light p
 
 The values are the ones in production on the site. `scripts/contrast.mjs` measures every text
 and background pair the components use, in both themes, and CI fails under 6:1 (WCAG AA asks
-4.5:1 for body text). If you change a colour, run it.
+4.5:1 for body text). The edges and marks of form controls are checked at 3:1. If you change a colour, run it.
 
 ### Spacing, radius, motion, type, layout
 
@@ -219,7 +220,10 @@ under "Show the HTML".
 | Section head | `nv-section`, `nv-section-head`, `__title`, `__link` | title, small link, hairline |
 | Stats | `nv-stats`, `nv-stat`, `__value`, `__label` | use a `<dl>` |
 | Bars | `nv-bars`, `nv-bar`, `__label`, `__track`, `__fill`, `__value` | width as an inline style |
-| Form field | `nv-label`, `nv-input`, `nv-hint` | `<kbd>` is styled by the base layer |
+| Form field | `nv-field`, `nv-label`, `nv-input`, `nv-input--box`, `nv-hint` | a pill for a single search field; `--box` in a form with several fields; `<kbd>` is styled by the base layer |
+| Textarea, select | `nv-textarea`, `nv-select` | the select's arrow is drawn in `currentColor`, so it follows the theme |
+| Checkbox, radio, switch | `nv-checkbox`, `nv-radio`, `nv-switch`, `nv-choice` | classes on the native `<input>`, inside a `nv-choice` label; a switch is a checkbox with `role="switch"` |
+| Group of choices | `nv-fieldset`, `nv-legend` | a `<fieldset>` with its `<legend>` |
 | Pagination | `nv-pagination`, `__btn`, `__page` | hide a missing arrow with `aria-disabled="true"` |
 | Panel | `nv-panel`, `__title`, `__text` | a centred call to action |
 | Footer | `nv-footer`, `__cols`, `__title`, `__name`, `__text`, `__list`, `__link`, `__bottom` | three columns, two on tablets, one on phones |
