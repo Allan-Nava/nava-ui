@@ -1,0 +1,1218 @@
+/*! nava-ui v0.1.0 | Apache-2.0 | https://github.com/Allan-Nava/nava-ui */
+/*
+ * nava-ui — design tokens
+ *
+ * The single source of truth for colour, spacing, radius, motion and type.
+ * Every component reads these custom properties and nothing else, so
+ * re-theming means overriding tokens, never editing components.
+ *
+ * Two themes, same names:
+ *   1. :root                                 dark, the default
+ *   2. @media (prefers-color-scheme: light)  light, when the system asks for it,
+ *      on :root:not([data-theme="dark"]) so an explicit "dark" choice wins
+ *   3. :root[data-theme="light" | "dark"]    the user's explicit choice wins
+ *
+ * A colour added to one theme must be added to the other: a token defined
+ * only for dark does not change in light and sooner or later is invisible.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --nv-bg: #050505;
+  --nv-surface: #101215;
+  --nv-surface-hover: #171a1f;
+  --nv-border: rgba(255, 255, 255, 0.09);
+  --nv-border-strong: rgba(255, 255, 255, 0.18);
+  --nv-row-hover: rgba(255, 255, 255, 0.035);
+
+  /* text */
+  --nv-fg: #eae4e4;
+  --nv-fg-strong: #ffffff;
+  --nv-fg-muted: #a9a9b0;
+
+  /* accent */
+  --nv-accent: #10cf53;
+  --nv-accent-hover: #01ff5a;
+  --nv-accent-soft: rgba(16, 207, 83, 0.12);
+  --nv-accent-border: rgba(16, 207, 83, 0.35);
+  --nv-accent-text: #7be8a6; /* text on --nv-accent-soft */
+  --nv-on-accent: #04170c;   /* text on --nv-accent */
+
+  /* glass and overlays: white lightens on dark, black darkens on light */
+  --nv-glass: rgba(12, 13, 15, 0.72);
+  --nv-glass-strong: rgba(12, 13, 15, 0.82);
+  --nv-overlay-soft: rgba(255, 255, 255, 0.03);
+  --nv-hover-overlay: rgba(255, 255, 255, 0.06);
+  --nv-inset-line: rgba(255, 255, 255, 0.04);
+
+  /* thumbnail tile: our own background under third-party images, plus a veil
+     that takes the glare off white logos in the dark theme */
+  --nv-thumb-bg: #0b0d10;
+  --nv-thumb-veil: rgba(5, 6, 8, 0.22);
+
+  /* elevation */
+  --nv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --nv-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --nv-shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+  /* code */
+  --nv-code-bg: #0f1216;
+  --nv-code-fg: #e6edf3;
+  --nv-code-border: rgba(255, 255, 255, 0.1);
+
+  /* theme toggle: the button shows the theme it switches TO */
+  --nv-icon-sun: block;
+  --nv-icon-moon: none;
+
+  /* ---- theme-independent tokens ------------------------------------- */
+
+  /* spacing (1rem = 16px) */
+  --nv-space-1: 0.25rem;
+  --nv-space-2: 0.5rem;
+  --nv-space-3: 0.75rem;
+  --nv-space-4: 1rem;
+  --nv-space-5: 1.5rem;
+  --nv-space-6: 2rem;
+  --nv-space-7: 3rem;
+  --nv-space-8: 4rem;
+  --nv-space-9: 6rem;
+
+  /* radius */
+  --nv-radius-sm: 4px;
+  --nv-radius-md: 8px;
+  --nv-radius-lg: 14px;
+  --nv-radius-pill: 999px;
+
+  /* motion */
+  --nv-dur-fast: 120ms;
+  --nv-dur: 200ms;
+  --nv-dur-slow: 360ms;
+  --nv-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --nv-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* type */
+  --nv-font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nv-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --nv-text-xs: 0.75rem;
+  --nv-text-sm: 0.875rem;
+  --nv-text-base: clamp(1rem, 0.25vw + 0.96875rem, 1.09375rem);
+  --nv-text-lg: clamp(1.125rem, 0.4vw + 1.0625rem, 1.25rem);
+  --nv-text-xl: clamp(1.25rem, 0.8vw + 1.125rem, 1.5rem);
+  --nv-text-2xl: clamp(1.5rem, 1.2vw + 1.3125rem, 1.875rem);
+  --nv-text-3xl: clamp(1.75rem, 2.2vw + 1.375rem, 2.375rem);
+  --nv-text-4xl: clamp(2.125rem, 3.4vw + 1.5625rem, 3.125rem);
+
+  --nv-leading-tight: 1.15;
+  --nv-leading-snug: 1.35;
+  --nv-leading: 1.7;
+  --nv-tracking-tight: -0.02em;
+  --nv-tracking-wide: 0.08em;
+
+  /* layout */
+  --nv-measure: 68ch;        /* line length for running text */
+  --nv-width-normal: 640px;  /* reading pages */
+  --nv-width-large: 880px;
+  --nv-width-wide: 1120px;   /* listings and grids */
+  --nv-nav-height: 68px;     /* for scroll-margin-top under the floating nav */
+}
+
+/* Light palette. Declared three times on purpose: CSS has no mixins, and the
+   three selectors are what makes "system preference, unless the user chose"
+   work without JavaScript. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --nv-bg: #f6f7f8;
+    --nv-surface: #ffffff;
+    --nv-surface-hover: #eef1f3;
+    --nv-border: rgba(0, 0, 0, 0.11);
+    --nv-border-strong: rgba(0, 0, 0, 0.22);
+    --nv-row-hover: rgba(0, 0, 0, 0.03);
+    --nv-fg: #1a1e23;
+    --nv-fg-strong: #05070a;
+    --nv-fg-muted: #515a65;
+    --nv-accent: #086830;
+    --nv-accent-hover: #085e2c;
+    --nv-accent-soft: rgba(8, 104, 48, 0.1);
+    --nv-accent-border: rgba(8, 104, 48, 0.3);
+    --nv-accent-text: #075527;
+    --nv-on-accent: #ffffff;
+    --nv-glass: rgba(255, 255, 255, 0.78);
+    --nv-glass-strong: rgba(255, 255, 255, 0.88);
+    --nv-overlay-soft: rgba(0, 0, 0, 0.035);
+    --nv-hover-overlay: rgba(0, 0, 0, 0.055);
+    --nv-inset-line: rgba(0, 0, 0, 0.04);
+    --nv-thumb-bg: #eef1f4;
+    --nv-thumb-veil: rgba(255, 255, 255, 0);
+    --nv-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.08);
+    --nv-shadow-md: 0 10px 30px rgba(16, 24, 40, 0.12);
+    --nv-shadow-nav: 0 10px 30px rgba(16, 24, 40, 0.16);
+    --nv-code-bg: #f2f4f6;
+    --nv-code-fg: #1f2429;
+    --nv-code-border: rgba(0, 0, 0, 0.1);
+    --nv-icon-sun: none;
+    --nv-icon-moon: block;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --nv-bg: #f6f7f8;
+  --nv-surface: #ffffff;
+  --nv-surface-hover: #eef1f3;
+  --nv-border: rgba(0, 0, 0, 0.11);
+  --nv-border-strong: rgba(0, 0, 0, 0.22);
+  --nv-row-hover: rgba(0, 0, 0, 0.03);
+  --nv-fg: #1a1e23;
+  --nv-fg-strong: #05070a;
+  --nv-fg-muted: #515a65;
+  --nv-accent: #086830;
+  --nv-accent-hover: #085e2c;
+  --nv-accent-soft: rgba(8, 104, 48, 0.1);
+  --nv-accent-border: rgba(8, 104, 48, 0.3);
+  --nv-accent-text: #075527;
+  --nv-on-accent: #ffffff;
+  --nv-glass: rgba(255, 255, 255, 0.78);
+  --nv-glass-strong: rgba(255, 255, 255, 0.88);
+  --nv-overlay-soft: rgba(0, 0, 0, 0.035);
+  --nv-hover-overlay: rgba(0, 0, 0, 0.055);
+  --nv-inset-line: rgba(0, 0, 0, 0.04);
+  --nv-thumb-bg: #eef1f4;
+  --nv-thumb-veil: rgba(255, 255, 255, 0);
+  --nv-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.08);
+  --nv-shadow-md: 0 10px 30px rgba(16, 24, 40, 0.12);
+  --nv-shadow-nav: 0 10px 30px rgba(16, 24, 40, 0.16);
+  --nv-code-bg: #f2f4f6;
+  --nv-code-fg: #1f2429;
+  --nv-code-border: rgba(0, 0, 0, 0.1);
+  --nv-icon-sun: none;
+  --nv-icon-moon: block;
+}
+/*
+ * nava-ui — components
+ *
+ * Every class is prefixed `nv-` and reads only the tokens in tokens.css.
+ * Naming: .nv-block, .nv-block__part, .nv-block--variant, .is-state.
+ */
+
+/* ---------------------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------------------ */
+
+.nv-wrap {
+  width: 92%;
+  max-width: var(--nv-width-normal);
+  margin-inline: auto;
+}
+
+.nv-wrap--large {
+  max-width: var(--nv-width-large);
+}
+
+/* Listings and grids: the 68ch rule is for running text, not for a grid */
+.nv-wrap--wide {
+  max-width: var(--nv-width-wide);
+}
+
+@media (max-width: 1050px) {
+  .nv-wrap {
+    width: 88%;
+  }
+}
+
+.nv-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: var(--nv-space-2) var(--nv-space-4);
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-radius: 0 0 var(--nv-radius-sm) 0;
+}
+
+.nv-skip-link:focus {
+  left: 0;
+  color: var(--nv-on-accent);
+}
+
+.nv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Nav — a floating glass island, centred and stuck to the top.
+   The sticky strip spans the full width but lets clicks through; only the
+   pill is visible. No JS menu: on phones the island widens and links scroll.
+   ------------------------------------------------------------------------ */
+
+.nv-nav {
+  position: sticky;
+  top: var(--nv-space-3);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.nv-nav__inner {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  max-width: min(94vw, var(--nv-width-large));
+  padding: 5px;
+  background: var(--nv-glass);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  box-shadow: 0 1px 0 var(--nv-inset-line) inset;
+}
+
+.nv-nav__brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  padding: 0 var(--nv-space-2) 0 3px;
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-tight);
+  text-decoration: none;
+  color: var(--nv-fg-strong);
+}
+
+.nv-nav__brand:hover {
+  color: var(--nv-fg-strong);
+}
+
+.nv-nav__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--nv-radius-pill);
+  border: 1px solid var(--nv-border-strong);
+  transition: border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-nav__brand:hover .nv-nav__avatar {
+  border-color: var(--nv-accent);
+}
+
+.nv-nav__links {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 0 var(--nv-space-2);
+  list-style: none;
+  border-left: 1px solid var(--nv-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nv-nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.nv-nav__links > li {
+  margin: 0;
+  line-height: 1;
+}
+
+.nv-nav__link {
+  display: inline-block;
+  padding: 7px 13px;
+  font-size: var(--nv-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--nv-fg-muted);
+  border-radius: var(--nv-radius-pill);
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-nav__link:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+}
+
+.nv-nav__link.is-active,
+.nv-nav__link[aria-current="page"] {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+}
+
+/* Icon buttons at the tail of the island (search, theme toggle). They do not
+   scroll with the links: flex 0 0 auto, or the links would squash them. */
+.nv-nav__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  appearance: none;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-nav__icon:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+  border-color: var(--nv-border);
+}
+
+.nv-nav__icon svg {
+  width: 17px;
+  height: 17px;
+  pointer-events: none;
+}
+
+/* The toggle shows the theme it switches to; `display` comes from the tokens */
+.nv-icon-sun {
+  display: var(--nv-icon-sun);
+}
+
+.nv-icon-moon {
+  display: var(--nv-icon-moon);
+}
+
+@media (max-width: 560px) {
+  .nv-nav__inner {
+    width: 94vw;
+    gap: var(--nv-space-1);
+  }
+
+  .nv-nav__name {
+    display: none;
+  }
+
+  .nv-nav__links {
+    padding-left: var(--nv-space-1);
+  }
+
+  .nv-nav__link {
+    padding: 7px 11px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------------ */
+
+.nv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-3);
+}
+
+.nv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  padding: var(--nv-space-3) var(--nv-space-5);
+  font-family: inherit;
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease),
+    transform var(--nv-dur) var(--nv-ease-out);
+}
+
+/* Colour is restated on every state: a global `a:hover` would otherwise tint
+   the label, and on a filled button that means invisible text. */
+.nv-button:hover,
+.nv-button:focus-visible {
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+  transform: translateY(-1px);
+}
+
+.nv-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.nv-button--primary {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-button--primary:hover,
+.nv-button--primary:focus-visible {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent-hover);
+  border-color: var(--nv-accent-hover);
+}
+
+.nv-button[disabled],
+.nv-button[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Chips — three roles, three looks
+   .nv-tag            a label on content (accent tint)
+   .nv-chip           a link to a topic (neutral surface)
+   .nv-chip--filter   a toggle in a filter bar (use on <button>)
+   ------------------------------------------------------------------------ */
+
+.nv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  text-decoration: none;
+  color: var(--nv-accent-text);
+  background: var(--nv-accent-soft);
+  border: 1px solid var(--nv-accent-border);
+  border-radius: var(--nv-radius-pill);
+  transition: background var(--nv-dur) var(--nv-ease), color var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+a.nv-tag:hover {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  padding: 6px 13px;
+  font-family: inherit;
+  font-size: var(--nv-text-sm);
+  line-height: 1.4;
+  text-decoration: none;
+  color: var(--nv-fg);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-chip:hover {
+  color: var(--nv-accent);
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-chip__count {
+  font-size: var(--nv-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-muted);
+}
+
+.nv-chip--filter {
+  padding: 5px 12px;
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.03em;
+  color: var(--nv-fg-muted);
+  cursor: pointer;
+}
+
+.nv-chip--filter:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface);
+  border-color: var(--nv-border-strong);
+}
+
+.nv-chip--filter.is-active,
+.nv-chip--filter[aria-pressed="true"] {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-chip--filter.is-active .nv-chip__count,
+.nv-chip--filter[aria-pressed="true"] .nv-chip__count {
+  color: var(--nv-on-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Cards — a horizontal card: optional thumbnail, title, excerpt, meta.
+   .nv-list is the grid; .nv-list--two goes to two columns from 860px.
+   It stops at two on purpose: at three the horizontal card is ~355px wide,
+   titles wrap to three lines and rows leave holes.
+   ------------------------------------------------------------------------ */
+
+.nv-list {
+  display: grid;
+  /* minmax(0, 1fr), not 1fr: 1fr means minmax(auto, 1fr), and that `auto` is
+     the card's min-content, which overflows on a long unbroken word */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--nv-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 860px) {
+  .nv-list--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.nv-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease),
+    transform var(--nv-dur) var(--nv-ease-out);
+}
+
+/* Hover only for real pointers: on touch it sticks after the tap and the
+   card looks selected at random. */
+@media (hover: hover) {
+  .nv-card:hover {
+    background: var(--nv-surface-hover);
+    border-color: var(--nv-accent-border);
+    transform: translateY(-2px);
+  }
+
+  .nv-card:hover .nv-card__title {
+    color: var(--nv-accent);
+  }
+}
+
+/* Tap feedback: on mobile it is the only state the user sees */
+.nv-card:active {
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-card__link {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--nv-space-4);
+  padding: var(--nv-space-4);
+  text-decoration: none;
+  color: inherit;
+  border-radius: calc(var(--nv-radius-lg) - 1px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nv-card__link:hover {
+  color: inherit;
+}
+
+.nv-card__thumb {
+  flex: 0 0 116px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--nv-radius-md);
+  background: var(--nv-bg);
+}
+
+.nv-card__thumb > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.nv-card__thumb--square {
+  flex-basis: 92px;
+  aspect-ratio: 1 / 1;
+}
+
+/* Third-party images (logos on white, dark screenshots, transparent PNGs):
+   normalise the container, not the files. `contain` keeps the image whole,
+   the tile gives a background of ours, the veil takes the glare off. */
+.nv-card__thumb--contain {
+  position: relative;
+  background: var(--nv-thumb-bg);
+  box-shadow: inset 0 0 0 1px var(--nv-inset-line);
+}
+
+.nv-card__thumb--contain > img {
+  object-fit: contain;
+  padding: var(--nv-space-2);
+}
+
+.nv-card__thumb--contain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--nv-thumb-veil);
+  pointer-events: none;
+}
+
+.nv-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-2);
+  min-width: 0;
+}
+
+.nv-card__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 600;
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+  overflow-wrap: anywhere;
+  transition: color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  font-size: var(--nv-text-sm);
+  line-height: 1.5;
+  color: var(--nv-fg-muted);
+}
+
+.nv-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nv-space-1) var(--nv-space-2);
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-card__meta-tag {
+  color: var(--nv-accent-text);
+}
+
+@media (max-width: 560px) {
+  .nv-list {
+    gap: var(--nv-space-2);
+  }
+
+  .nv-card__link {
+    gap: var(--nv-space-3);
+    padding: var(--nv-space-3);
+  }
+
+  .nv-card__thumb {
+    flex-basis: clamp(100px, 30vw, 132px);
+  }
+
+  .nv-card__body {
+    gap: var(--nv-space-1);
+  }
+
+  .nv-card__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: var(--nv-text-base);
+  }
+}
+
+/* Generated placeholder: a monogram on a gradient, for cards without an image.
+   Pick the palette with .nv-ph-0 … .nv-ph-5 (hash the title, modulo 6). */
+.nv-ph {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--nv-ph-a, #0b3d2e), var(--nv-ph-b, #10cf53));
+}
+
+.nv-ph > span {
+  font-size: clamp(0.875rem, 2.2vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.nv-ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.16), transparent 55%);
+}
+
+.nv-ph-0 { --nv-ph-a: #0b3d2e; --nv-ph-b: #10cf53; }
+.nv-ph-1 { --nv-ph-a: #0b2f3d; --nv-ph-b: #1e88a8; }
+.nv-ph-2 { --nv-ph-a: #221b3d; --nv-ph-b: #6b4fd8; }
+.nv-ph-3 { --nv-ph-a: #3d1b2b; --nv-ph-b: #c2456e; }
+.nv-ph-4 { --nv-ph-a: #3d2f0b; --nv-ph-b: #c99213; }
+.nv-ph-5 { --nv-ph-a: #12303d; --nv-ph-b: #2fa8a0; }
+
+/* Spotlight: a soft glow that follows the pointer. nava-ui.js writes the
+   coordinates on --nv-mx / --nv-my for cards inside [data-nv-spotlight]. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  [data-nv-spotlight] .nv-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--nv-dur) var(--nv-ease);
+    background: radial-gradient(
+      220px circle at var(--nv-mx, 50%) var(--nv-my, 50%),
+      var(--nv-accent-soft),
+      transparent 70%
+    );
+  }
+
+  [data-nv-spotlight] .nv-card:hover::after {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Lede — the big opening of a page
+   ------------------------------------------------------------------------ */
+
+.nv-lede {
+  margin: var(--nv-space-9) 0 var(--nv-space-8);
+}
+
+.nv-lede__kicker {
+  margin: 0 0 var(--nv-space-4);
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-lede__title {
+  margin: 0 0 var(--nv-space-5);
+  font-size: clamp(2rem, 6.5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  color: var(--nv-fg-strong);
+  text-wrap: balance;
+}
+
+/* Highlighted words: accent colour and a thin underline. No italics: the
+   variable font file has the weight axis only. */
+.nv-em {
+  color: var(--nv-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+  text-decoration-color: var(--nv-accent-border);
+}
+
+.nv-lede__sub {
+  max-width: 52ch;
+  margin: 0 0 var(--nv-space-6);
+  font-size: var(--nv-text-lg);
+  line-height: 1.5;
+  color: var(--nv-fg-muted);
+}
+
+@media (max-width: 560px) {
+  .nv-lede {
+    margin: var(--nv-space-7) 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Section head — a title on the left, a small link on the right, a hairline
+   ------------------------------------------------------------------------ */
+
+.nv-section {
+  margin: var(--nv-space-8) 0 0;
+}
+
+.nv-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nv-space-4);
+  margin-bottom: var(--nv-space-4);
+  padding-bottom: var(--nv-space-3);
+  border-bottom: 1px solid var(--nv-border);
+}
+
+.nv-section-head__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 650;
+  letter-spacing: var(--nv-tracking-tight);
+  color: var(--nv-fg-strong);
+}
+
+.nv-section-head__link {
+  flex: 0 0 auto;
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--nv-fg-muted);
+  transition: color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-section-head__link:hover {
+  color: var(--nv-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Stats — big numbers with a small label. Use a <dl>: the <dt> (label) comes
+   first in the markup, the number is still drawn on top.
+   ------------------------------------------------------------------------ */
+
+.nv-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-6);
+  margin: 0;
+}
+
+.nv-stat {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.nv-stat__value {
+  margin: 0;
+  font-size: var(--nv-text-xl);
+  font-weight: 800;
+  letter-spacing: var(--nv-tracking-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-strong);
+}
+
+.nv-stat__label {
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Bars — a horizontal bar list. Set the width inline: style="width: 62%".
+   The label takes its content width; the bar, which is decoration, absorbs
+   the difference.
+   ------------------------------------------------------------------------ */
+
+.nv-bars {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-bar {
+  display: grid;
+  grid-template-columns: minmax(5ch, max-content) minmax(0, 1fr) 4ch;
+  align-items: center;
+  gap: var(--nv-space-3);
+  margin-bottom: var(--nv-space-2);
+  font-size: var(--nv-text-sm);
+}
+
+.nv-bar__label {
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--nv-fg-muted);
+}
+
+a.nv-bar__label:hover {
+  color: var(--nv-accent);
+}
+
+.nv-bar__track {
+  height: 10px;
+  overflow: hidden;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-bar__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--nv-accent-border), var(--nv-accent));
+  border-radius: inherit;
+}
+
+.nv-bar__value {
+  font-size: var(--nv-text-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--nv-fg-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Form field
+   ------------------------------------------------------------------------ */
+
+.nv-label {
+  display: block;
+  margin-bottom: var(--nv-space-2);
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-input {
+  width: 100%;
+  padding: var(--nv-space-3) var(--nv-space-4);
+  font-family: inherit;
+  font-size: var(--nv-text-lg);
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+  transition: border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-input::placeholder {
+  color: var(--nv-fg-muted);
+}
+
+.nv-input:focus {
+  outline: none;
+  border-color: var(--nv-accent);
+}
+
+.nv-hint {
+  margin: var(--nv-space-3) 0 0;
+  font-size: var(--nv-text-xs);
+  color: var(--nv-fg-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Pagination
+   ------------------------------------------------------------------------ */
+
+.nv-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nv-space-3);
+  margin: var(--nv-space-7) auto 0;
+  /* safety net: inside a multi-column grid it would take one cell only */
+  grid-column: 1 / -1;
+}
+
+.nv-pagination__page {
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: var(--nv-text-lg);
+  line-height: 1;
+  text-decoration: none;
+  color: var(--nv-fg);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease),
+    color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-pagination__btn:hover {
+  color: var(--nv-accent);
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+}
+
+/* Keeps the page number centred when one arrow is missing */
+.nv-pagination__btn[aria-disabled="true"] {
+  visibility: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+   Panel — a centred call to action
+   ------------------------------------------------------------------------ */
+
+.nv-panel {
+  margin: var(--nv-space-9) 0 0;
+  padding: var(--nv-space-7) var(--nv-space-6);
+  text-align: center;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+}
+
+.nv-panel__title {
+  margin: 0 0 var(--nv-space-3);
+  font-size: var(--nv-text-2xl);
+  font-weight: 800;
+  letter-spacing: var(--nv-tracking-tight);
+  color: var(--nv-fg-strong);
+}
+
+.nv-panel__text {
+  max-width: 46ch;
+  margin: 0 auto var(--nv-space-5);
+  color: var(--nv-fg-muted);
+}
+
+.nv-panel .nv-actions {
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Footer — columns (about, site, elsewhere) and a bottom line
+   ------------------------------------------------------------------------ */
+
+.nv-footer {
+  margin: var(--nv-space-9) 0 0;
+  padding: var(--nv-space-7) 0 var(--nv-space-6);
+  font-size: var(--nv-text-sm);
+  color: var(--nv-fg-muted);
+  border-top: 1px solid var(--nv-border);
+}
+
+.nv-footer__cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--nv-space-6);
+}
+
+.nv-footer__title {
+  margin: 0 0 var(--nv-space-3);
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-footer__name {
+  margin: 0 0 var(--nv-space-2);
+  font-weight: 600;
+  color: var(--nv-fg-strong);
+}
+
+.nv-footer__text {
+  max-width: 34ch;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.nv-footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-footer__list > li {
+  margin-bottom: var(--nv-space-2);
+  line-height: 1.4;
+}
+
+.nv-footer__link {
+  color: var(--nv-fg);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-footer__link:hover {
+  color: var(--nv-accent);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--nv-space-2);
+  margin-top: var(--nv-space-7);
+  padding-top: var(--nv-space-4);
+  font-size: var(--nv-text-xs);
+  border-top: 1px solid var(--nv-border);
+}
+
+.nv-footer__bottom p {
+  margin: 0;
+}
+
+@media (max-width: 780px) {
+  .nv-footer__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nv-space-5);
+  }
+}
+
+@media (max-width: 560px) {
+  .nv-footer__cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion: no lift, no press
+   ------------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .nv-card,
+  .nv-card:hover,
+  .nv-button,
+  .nv-button:hover,
+  .nv-button:active {
+    transform: none;
+    transition-duration: 0.001ms;
+  }
+}

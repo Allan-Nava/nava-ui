@@ -1,0 +1,11 @@
+nava-ui
+Copyright 2026 Allan Nava
+
+This product includes design tokens and component styles extracted from
+https://github.com/Allan-Nava/Allan-Nava.github.io (Apache License 2.0),
+a site that started from the Indigo Jekyll theme by Sérgio Kopplin
+(https://github.com/sergiokopplin/indigo, MIT License).
+
+fonts/inter-latin-wght-normal.woff2 is a Latin subset of Inter Variable,
+Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter),
+licensed under the SIL Open Font License, Version 1.1. See fonts/OFL.txt.

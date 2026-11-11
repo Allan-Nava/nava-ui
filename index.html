@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>nava-ui — a small dark-first UI kit</title>
+<meta name="description" content="Design tokens and components extracted from allan-nava.github.io. Plain CSS, no build step, dark and light themes.">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('nv-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" href="dist/nava-ui.css">
+<style>
+/* Styles of this documentation page only. Not part of the kit. */
+.doc-demo {
+  margin: 0 0 var(--nv-space-3);
+  padding: var(--nv-space-5);
+  background: var(--nv-overlay-soft);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+}
+.doc-demo > :first-child { margin-top: 0; }
+.doc-demo > :last-child { margin-bottom: 0; }
+.doc-demo .nv-lede, .doc-demo .nv-panel, .doc-demo .nv-footer, .doc-demo .nv-section, .doc-demo .nv-pagination { margin-top: 0; }
+.doc-demo .nv-lede { margin-bottom: 0; }
+.doc-demo .nv-nav { position: static; }
+.doc-source > summary {
+  width: fit-content;
+  padding: 4px 2px;
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+  cursor: pointer;
+}
+.doc-source { margin-bottom: var(--nv-space-6); }
+.doc-source pre { margin-top: var(--nv-space-2); }
+.doc-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--nv-space-3);
+  margin: 0 0 var(--nv-space-5);
+  padding: 0;
+  list-style: none;
+}
+.doc-swatches > li { margin: 0; font-size: var(--nv-text-xs); color: var(--nv-fg-muted); }
+.doc-swatch {
+  display: block;
+  height: 56px;
+  margin-bottom: var(--nv-space-2);
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-md);
+}
+.doc-swatches code { padding: 0; background: none; border: 0; color: var(--nv-fg); }
+.doc-scale { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--nv-space-4); margin-bottom: var(--nv-space-5); }
+.doc-scale > div { font-size: var(--nv-text-xs); color: var(--nv-fg-muted); text-align: center; }
+.doc-scale i { display: block; height: 24px; margin: 0 auto var(--nv-space-2); background: var(--nv-accent); border-radius: 2px; }
+.doc-radius { display: block; width: 72px; height: 48px; margin: 0 auto var(--nv-space-2); background: var(--nv-surface); border: 1px solid var(--nv-border-strong); }
+.doc-type > p { margin: 0 0 var(--nv-space-2); color: var(--nv-fg-strong); line-height: 1.2; }
+.doc-type small { font-size: var(--nv-text-xs); color: var(--nv-fg-muted); font-weight: 400; }
+main > section { margin-top: var(--nv-space-8); }
+main > section > h2 { color: var(--nv-fg-strong); }
+main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7); }
+.doc-table { overflow-x: auto; }
+</style>
+</head>
+<body>
+<a class="nv-skip-link" href="#main">Skip to content</a>
+
+<header class="nv-nav">
+  <div class="nv-nav__inner">
+    <a class="nv-nav__brand" href="#top">
+      <svg class="nv-nav__avatar" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" fill="#0b3d2e"/><text x="15" y="20" text-anchor="middle" font-size="13" font-weight="800" fill="#10cf53" font-family="sans-serif">nv</text></svg>
+      <span class="nv-nav__name">nava-ui</span>
+    </a>
+    <ul class="nv-nav__links">
+      <li><a class="nv-nav__link" href="#start">Start</a></li>
+      <li><a class="nv-nav__link" href="#tokens">Tokens</a></li>
+      <li><a class="nv-nav__link" href="#components">Components</a></li>
+      <li><a class="nv-nav__link" href="#theming">Theming</a></li>
+      <li><a class="nv-nav__link" href="https://github.com/Allan-Nava/nava-ui">GitHub</a></li>
+    </ul>
+    <button class="nv-nav__icon" type="button" data-nv-theme-toggle>
+      <svg class="nv-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="nv-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="nv-wrap nv-wrap--large" id="main">
+
+  <div class="nv-lede" id="top">
+    <p class="nv-lede__kicker">nava-ui · v0.1.0</p>
+    <h1 class="nv-lede__title">A small, <span class="nv-em">dark-first</span> UI kit in plain CSS.</h1>
+    <p class="nv-lede__sub">The design tokens and components of <a href="https://allan-nava.github.io">allan-nava.github.io</a>, extracted so that other projects can look like they belong together. No build step, no framework, two themes.</p>
+    <div class="nv-actions">
+      <a class="nv-button nv-button--primary" href="#start">Get started</a>
+      <a class="nv-button" href="https://github.com/Allan-Nava/nava-ui">Source on GitHub</a>
+    </div>
+  </div>
+
+  <section id="start">
+    <h2>Get started</h2>
+    <p>One stylesheet, and optionally one script for the theme toggle and the card spotlight.</p>
+<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.1.0/dist/nava-ui.css"&gt;
+&lt;script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.1.0/dist/nava-ui.js"&gt;&lt;/script&gt;</code></pre>
+    <p>Then write HTML with the <code>nv-</code> classes shown below. Every example on this page is live, and the source under it is read from the example itself, so the two cannot drift apart.</p>
+    <div class="doc-table">
+    <table>
+      <thead><tr><th>File</th><th>What it contains</th><th>Use it when</th></tr></thead>
+      <tbody>
+        <tr><td><code>dist/nava-ui.css</code></td><td>tokens, base and components</td><td>nava-ui styles the whole page</td></tr>
+        <tr><td><code>dist/nava-ui.components.css</code></td><td>tokens and components</td><td>the page already has its own typography</td></tr>
+        <tr><td><code>css/tokens.css</code></td><td>the custom properties only</td><td>you write your own components on these values</td></tr>
+        <tr><td><code>dist/nava-ui.js</code></td><td>theme toggle, card spotlight</td><td>optional: the CSS works without it</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="tokens">
+    <h2>Tokens</h2>
+    <p>Components read custom properties and nothing else. Switch the theme with the button in the nav: the swatches change, the names do not.</p>
+
+    <h3>Colour</h3>
+    <ul class="doc-swatches">
+      <li><span class="doc-swatch" style="background: var(--nv-bg)"></span><code>--nv-bg</code><br>page background</li>
+      <li><span class="doc-swatch" style="background: var(--nv-surface)"></span><code>--nv-surface</code><br>cards, inputs, buttons</li>
+      <li><span class="doc-swatch" style="background: var(--nv-surface-hover)"></span><code>--nv-surface-hover</code><br>hovered surface</li>
+      <li><span class="doc-swatch" style="background: var(--nv-fg)"></span><code>--nv-fg</code><br>body text</li>
+      <li><span class="doc-swatch" style="background: var(--nv-fg-strong)"></span><code>--nv-fg-strong</code><br>titles, emphasis</li>
+      <li><span class="doc-swatch" style="background: var(--nv-fg-muted)"></span><code>--nv-fg-muted</code><br>secondary text</li>
+      <li><span class="doc-swatch" style="background: var(--nv-accent)"></span><code>--nv-accent</code><br>links, primary actions</li>
+      <li><span class="doc-swatch" style="background: var(--nv-accent-hover)"></span><code>--nv-accent-hover</code><br>hovered accent</li>
+      <li><span class="doc-swatch" style="background: var(--nv-accent-soft)"></span><code>--nv-accent-soft</code><br>tag and code background</li>
+      <li><span class="doc-swatch" style="background: var(--nv-accent-text)"></span><code>--nv-accent-text</code><br>text on accent-soft</li>
+      <li><span class="doc-swatch" style="background: var(--nv-on-accent)"></span><code>--nv-on-accent</code><br>text on accent</li>
+      <li><span class="doc-swatch" style="background: var(--nv-border-strong)"></span><code>--nv-border-strong</code><br>borders (and <code>--nv-border</code>)</li>
+    </ul>
+
+    <h3>Type</h3>
+    <div class="doc-demo doc-type">
+      <p style="font-size: var(--nv-text-4xl); font-weight: 800; letter-spacing: -0.04em">Display <small>--nv-text-4xl</small></p>
+      <p style="font-size: var(--nv-text-3xl); font-weight: 700">Heading one <small>--nv-text-3xl</small></p>
+      <p style="font-size: var(--nv-text-2xl); font-weight: 650">Heading two <small>--nv-text-2xl</small></p>
+      <p style="font-size: var(--nv-text-xl); font-weight: 600">Heading three <small>--nv-text-xl</small></p>
+      <p style="font-size: var(--nv-text-lg)">Lead paragraph <small>--nv-text-lg</small></p>
+      <p style="font-size: var(--nv-text-base)">Body text <small>--nv-text-base</small></p>
+      <p style="font-size: var(--nv-text-sm)">Small text <small>--nv-text-sm</small></p>
+      <p style="font-size: var(--nv-text-xs); letter-spacing: var(--nv-tracking-wide); text-transform: uppercase">Label <small style="text-transform: none; letter-spacing: 0">--nv-text-xs</small></p>
+    </div>
+    <p>The font is Inter Variable, self-hosted (48 KB, Latin subset) with a system fallback. Sizes from <code>base</code> up are fluid: they grow with the viewport between two bounds.</p>
+
+    <h3>Spacing and radius</h3>
+    <div class="doc-scale">
+      <div><i style="width: var(--nv-space-1)"></i>1 · 4px</div>
+      <div><i style="width: var(--nv-space-2)"></i>2 · 8px</div>
+      <div><i style="width: var(--nv-space-3)"></i>3 · 12px</div>
+      <div><i style="width: var(--nv-space-4)"></i>4 · 16px</div>
+      <div><i style="width: var(--nv-space-5)"></i>5 · 24px</div>
+      <div><i style="width: var(--nv-space-6)"></i>6 · 32px</div>
+      <div><i style="width: var(--nv-space-7)"></i>7 · 48px</div>
+      <div><i style="width: var(--nv-space-8)"></i>8 · 64px</div>
+      <div><i style="width: var(--nv-space-9)"></i>9 · 96px</div>
+    </div>
+    <div class="doc-scale">
+      <div><span class="doc-radius" style="border-radius: var(--nv-radius-sm)"></span>sm · 4px</div>
+      <div><span class="doc-radius" style="border-radius: var(--nv-radius-md)"></span>md · 8px</div>
+      <div><span class="doc-radius" style="border-radius: var(--nv-radius-lg)"></span>lg · 14px</div>
+      <div><span class="doc-radius" style="border-radius: var(--nv-radius-pill)"></span>pill</div>
+    </div>
+    <p>Use <code>sm</code> for inline code and focus rings, <code>md</code> for images and code blocks, <code>lg</code> for cards and panels, <code>pill</code> for everything you can click that is not a card.</p>
+  </section>
+
+  <section id="components">
+    <h2>Components</h2>
+
+    <h3>Buttons</h3>
+    <p>One primary action per view. A link that looks like a button is an <code>&lt;a&gt;</code>; something that acts on the page is a <code>&lt;button&gt;</code>.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-actions">
+        <a class="nv-button nv-button--primary" href="#">Primary</a>
+        <a class="nv-button" href="#">Secondary</a>
+        <button class="nv-button" type="button" disabled>Disabled</button>
+      </div>
+    </div>
+
+    <h3>Chips</h3>
+    <p>Three roles: <code>nv-tag</code> labels content, <code>nv-chip</code> links to a topic, <code>nv-chip--filter</code> is a toggle (a <code>&lt;button&gt;</code> with <code>aria-pressed</code>).</p>
+    <div class="doc-demo" data-demo>
+      <ul class="nv-chips">
+        <li><a class="nv-tag" href="#">golang</a></li>
+        <li><a class="nv-tag" href="#">keycloak</a></li>
+        <li><span class="nv-tag">static tag</span></li>
+      </ul>
+      <br>
+      <ul class="nv-chips">
+        <li><a class="nv-chip" href="#">Backend <span class="nv-chip__count">42</span></a></li>
+        <li><a class="nv-chip" href="#">Infrastructure <span class="nv-chip__count">17</span></a></li>
+      </ul>
+      <br>
+      <div class="nv-chips" role="group" aria-label="Filter by language">
+        <button class="nv-chip nv-chip--filter" type="button" aria-pressed="true">All <span class="nv-chip__count">64</span></button>
+        <button class="nv-chip nv-chip--filter" type="button" aria-pressed="false">Go <span class="nv-chip__count">21</span></button>
+        <button class="nv-chip nv-chip--filter" type="button" aria-pressed="false">Java <span class="nv-chip__count">9</span></button>
+      </div>
+    </div>
+
+    <h3>Cards</h3>
+    <p>A horizontal card: thumbnail, title, two-line excerpt, meta. <code>nv-list--two</code> gives two columns from 860px. Without an image use the generated placeholder, <code>nv-ph nv-ph-0</code> to <code>nv-ph-5</code>. Add <code>data-nv-spotlight</code> to the list for the glow that follows the pointer.</p>
+    <div class="doc-demo" data-demo>
+      <ul class="nv-list nv-list--two" data-nv-spotlight>
+        <li class="nv-card">
+          <a class="nv-card__link" href="#">
+            <div class="nv-card__thumb nv-ph nv-ph-0"><span>GO</span></div>
+            <div class="nv-card__body">
+              <h4 class="nv-card__title">Go-DDD-Scaffold</h4>
+              <p class="nv-card__excerpt">A starting point for Go services laid out by domain, with wiring generated at build time.</p>
+              <div class="nv-card__meta"><span>2026</span><span class="nv-card__meta-tag">#golang</span></div>
+            </div>
+          </a>
+        </li>
+        <li class="nv-card">
+          <a class="nv-card__link" href="#">
+            <div class="nv-card__thumb nv-ph nv-ph-2"><span>KC</span></div>
+            <div class="nv-card__body">
+              <h4 class="nv-card__title">keycloak-apple-identity-provider</h4>
+              <p class="nv-card__excerpt">Sign in with Apple as a Keycloak identity provider. A long single-word title wraps instead of overflowing.</p>
+              <div class="nv-card__meta"><span>2025</span><span class="nv-card__meta-tag">#java</span></div>
+            </div>
+          </a>
+        </li>
+        <li class="nv-card">
+          <a class="nv-card__link" href="#">
+            <div class="nv-card__thumb nv-card__thumb--square nv-ph nv-ph-4"><span>SQ</span></div>
+            <div class="nv-card__body">
+              <h4 class="nv-card__title">Square thumbnail</h4>
+              <p class="nv-card__excerpt">For vertical sources, where a 16:9 box would show a thin slice.</p>
+            </div>
+          </a>
+        </li>
+        <li class="nv-card">
+          <a class="nv-card__link" href="#">
+            <div class="nv-card__body">
+              <h4 class="nv-card__title">No thumbnail</h4>
+              <p class="nv-card__excerpt">The card stays compact when there is nothing to show.</p>
+              <div class="nv-card__meta"><span>Note</span></div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <h3>Lede</h3>
+    <p>The opening of a page: a kicker, a very large title with one or two highlighted words, a short paragraph.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-lede">
+        <p class="nv-lede__kicker">Software engineer · Milan</p>
+        <h1 class="nv-lede__title">I build <span class="nv-em">live video</span> platforms that stay up.</h1>
+        <p class="nv-lede__sub">Backend in Go, infrastructure on three data centres, and the parts in between.</p>
+      </div>
+    </div>
+
+    <h3>Section head</h3>
+    <div class="doc-demo" data-demo>
+      <section class="nv-section">
+        <div class="nv-section-head">
+          <h2 class="nv-section-head__title">Latest projects</h2>
+          <a class="nv-section-head__link" href="#">All projects →</a>
+        </div>
+        <p>The content of the section goes here.</p>
+      </section>
+    </div>
+
+    <h3>Stats</h3>
+    <p>A <code>&lt;dl&gt;</code>: the label comes first in the markup, the number is drawn on top.</p>
+    <div class="doc-demo" data-demo>
+      <dl class="nv-stats">
+        <div class="nv-stat"><dt class="nv-stat__label">Projects</dt><dd class="nv-stat__value">64</dd></div>
+        <div class="nv-stat"><dt class="nv-stat__label">Posts</dt><dd class="nv-stat__value">212</dd></div>
+        <div class="nv-stat"><dt class="nv-stat__label">Years</dt><dd class="nv-stat__value">11</dd></div>
+      </dl>
+    </div>
+
+    <h3>Bars</h3>
+    <p>A horizontal bar list. The width is an inline style; the number is always written next to the bar, so the bar is never the only carrier of the value.</p>
+    <div class="doc-demo" data-demo>
+      <ul class="nv-bars">
+        <li class="nv-bar"><a class="nv-bar__label" href="#">#golang</a><span class="nv-bar__track"><span class="nv-bar__fill" style="width: 100%"></span></span><span class="nv-bar__value">21</span></li>
+        <li class="nv-bar"><a class="nv-bar__label" href="#">#javascript</a><span class="nv-bar__track"><span class="nv-bar__fill" style="width: 62%"></span></span><span class="nv-bar__value">13</span></li>
+        <li class="nv-bar"><a class="nv-bar__label" href="#">#java</a><span class="nv-bar__track"><span class="nv-bar__fill" style="width: 43%"></span></span><span class="nv-bar__value">9</span></li>
+      </ul>
+    </div>
+
+    <h3>Form field</h3>
+    <div class="doc-demo" data-demo>
+      <label class="nv-label" for="demo-search">Search</label>
+      <input class="nv-input" id="demo-search" type="search" placeholder="Type a title or a tag">
+      <p class="nv-hint">Press <kbd>/</kbd> to focus, <kbd>Esc</kbd> to clear.</p>
+    </div>
+
+    <h3>Pagination</h3>
+    <p>On the first or last page keep the arrow in the markup with <code>aria-disabled="true"</code>: it is hidden but still takes its space, so the page number stays centred.</p>
+    <div class="doc-demo" data-demo>
+      <nav class="nv-pagination" aria-label="Pages">
+        <a class="nv-pagination__btn" href="#" aria-label="Previous page">←</a>
+        <span class="nv-pagination__page">Page 2 of 9</span>
+        <a class="nv-pagination__btn" href="#" aria-label="Next page">→</a>
+      </nav>
+    </div>
+
+    <h3>Panel</h3>
+    <div class="doc-demo" data-demo>
+      <div class="nv-panel">
+        <h2 class="nv-panel__title">Want to work together?</h2>
+        <p class="nv-panel__text">A centred block to close a page with one clear action.</p>
+        <div class="nv-actions"><a class="nv-button nv-button--primary" href="#">Get in touch</a></div>
+      </div>
+    </div>
+
+    <h3>Nav</h3>
+    <p>A floating glass island, sticky at the top; the nav of this page is the same component. Mark the current page with <code>aria-current="page"</code>. On phones the name is hidden and the links scroll sideways: there is no menu to open.</p>
+    <div class="doc-demo" data-demo>
+      <header class="nv-nav">
+        <div class="nv-nav__inner">
+          <a class="nv-nav__brand" href="#"><span class="nv-nav__name">Brand</span></a>
+          <ul class="nv-nav__links">
+            <li><a class="nv-nav__link" href="#" aria-current="page">Home</a></li>
+            <li><a class="nv-nav__link" href="#">Blog</a></li>
+            <li><a class="nv-nav__link" href="#">Projects</a></li>
+          </ul>
+        </div>
+      </header>
+    </div>
+
+    <h3>Footer</h3>
+    <div class="doc-demo" data-demo>
+      <footer class="nv-footer">
+        <div class="nv-footer__cols">
+          <div>
+            <p class="nv-footer__name">Your name</p>
+            <p class="nv-footer__text">One or two lines about who you are and what this site is.</p>
+          </div>
+          <div>
+            <h2 class="nv-footer__title">Site</h2>
+            <ul class="nv-footer__list">
+              <li><a class="nv-footer__link" href="#">Blog</a></li>
+              <li><a class="nv-footer__link" href="#">Projects</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="nv-footer__title">Elsewhere</h2>
+            <ul class="nv-footer__list">
+              <li><a class="nv-footer__link" href="#">GitHub</a></li>
+              <li><a class="nv-footer__link" href="#">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="nv-footer__bottom"><p>© 2026 Your name</p><p>Built with nava-ui</p></div>
+      </footer>
+    </div>
+
+    <h3>Prose</h3>
+    <p>With <code>base.css</code> loaded, plain elements are styled too: headings, links, quotes, inline code, code blocks, tables, rules.</p>
+    <div class="doc-demo" data-demo>
+      <blockquote><p>A quote has an accent rule on the left and a faint background.</p></blockquote>
+      <p>Inline <code>code</code> sits on the accent tint; <strong>strong text</strong> is brighter than body text; <a href="#">links</a> are underlined.</p>
+      <table>
+        <thead><tr><th>Token</th><th>Value</th></tr></thead>
+        <tbody><tr><td>--nv-radius-lg</td><td>14px</td></tr><tr><td>--nv-dur</td><td>200ms</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="theming">
+    <h2>Theming</h2>
+    <p>Dark is the default. Light applies when the system asks for it, and an explicit choice on <code>&lt;html data-theme="light"&gt;</code> or <code>data-theme="dark"</code> wins over both. To remember the choice without a flash on load, put this in <code>&lt;head&gt;</code>, before the stylesheet:</p>
+<pre><code>&lt;script&gt;
+(function () {
+  try {
+    var t = localStorage.getItem('nv-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+&lt;/script&gt;</code></pre>
+    <p>To make the kit yours, override tokens after the stylesheet. Changing the accent takes six values per theme, because the accent is used both as text and as a background:</p>
+<pre><code>:root {
+  --nv-accent: #4c8dff;
+  --nv-accent-hover: #74a7ff;
+  --nv-accent-soft: rgba(76, 141, 255, 0.12);
+  --nv-accent-border: rgba(76, 141, 255, 0.35);
+  --nv-accent-text: #a9c8ff;  /* text on accent-soft */
+  --nv-on-accent: #04101f;    /* text on accent */
+}</code></pre>
+    <p>Check the contrast of each pair you change, in both themes. The full list of tokens and the rules for adding a component are in the <a href="https://github.com/Allan-Nava/nava-ui#readme">README</a>.</p>
+  </section>
+
+  <footer class="nv-footer">
+    <div class="nv-footer__bottom">
+      <p>nava-ui · Apache-2.0 · by <a href="https://allan-nava.github.io">Allan Nava</a></p>
+      <p><a href="https://github.com/Allan-Nava/nava-ui">GitHub</a></p>
+    </div>
+  </footer>
+</main>
+
+<script defer src="dist/nava-ui.js"></script>
+<script>
+/* Docs only: print the source of each live example under it, read from the DOM. */
+(function () {
+  function dedent(html) {
+    var lines = html.replace(/^\n+|\s+$/g, '').split('\n');
+    var indent = Math.min.apply(null, lines.filter(function (l) { return l.trim(); }).map(function (l) { return l.match(/^ */)[0].length; }));
+    return lines.map(function (l) { return l.slice(indent); }).join('\n');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-demo]'), function (demo) {
+    var details = document.createElement('details');
+    details.className = 'doc-source';
+    var summary = document.createElement('summary');
+    summary.textContent = 'Show the HTML';
+    var pre = document.createElement('pre');
+    var code = document.createElement('code');
+    code.textContent = dedent(demo.innerHTML);
+    pre.appendChild(code);
+    details.appendChild(summary);
+    details.appendChild(pre);
+    demo.insertAdjacentElement('afterend', details);
+  });
+  /* Docs only: make the filter chips of the example toggle. */
+  document.addEventListener('click', function (event) {
+    var chip = event.target.closest('.nv-chip--filter');
+    if (!chip) return;
+    Array.prototype.forEach.call(chip.parentNode.children, function (other) {
+      other.setAttribute('aria-pressed', other === chip ? 'true' : 'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>

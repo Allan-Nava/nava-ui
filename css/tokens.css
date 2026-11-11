@@ -1,0 +1,194 @@
+/*
+ * nava-ui — design tokens
+ *
+ * The single source of truth for colour, spacing, radius, motion and type.
+ * Every component reads these custom properties and nothing else, so
+ * re-theming means overriding tokens, never editing components.
+ *
+ * Two themes, same names:
+ *   1. :root                                 dark, the default
+ *   2. @media (prefers-color-scheme: light)  light, when the system asks for it,
+ *      on :root:not([data-theme="dark"]) so an explicit "dark" choice wins
+ *   3. :root[data-theme="light" | "dark"]    the user's explicit choice wins
+ *
+ * A colour added to one theme must be added to the other: a token defined
+ * only for dark does not change in light and sooner or later is invisible.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --nv-bg: #050505;
+  --nv-surface: #101215;
+  --nv-surface-hover: #171a1f;
+  --nv-border: rgba(255, 255, 255, 0.09);
+  --nv-border-strong: rgba(255, 255, 255, 0.18);
+  --nv-row-hover: rgba(255, 255, 255, 0.035);
+
+  /* text */
+  --nv-fg: #eae4e4;
+  --nv-fg-strong: #ffffff;
+  --nv-fg-muted: #a9a9b0;
+
+  /* accent */
+  --nv-accent: #10cf53;
+  --nv-accent-hover: #01ff5a;
+  --nv-accent-soft: rgba(16, 207, 83, 0.12);
+  --nv-accent-border: rgba(16, 207, 83, 0.35);
+  --nv-accent-text: #7be8a6; /* text on --nv-accent-soft */
+  --nv-on-accent: #04170c;   /* text on --nv-accent */
+
+  /* glass and overlays: white lightens on dark, black darkens on light */
+  --nv-glass: rgba(12, 13, 15, 0.72);
+  --nv-glass-strong: rgba(12, 13, 15, 0.82);
+  --nv-overlay-soft: rgba(255, 255, 255, 0.03);
+  --nv-hover-overlay: rgba(255, 255, 255, 0.06);
+  --nv-inset-line: rgba(255, 255, 255, 0.04);
+
+  /* thumbnail tile: our own background under third-party images, plus a veil
+     that takes the glare off white logos in the dark theme */
+  --nv-thumb-bg: #0b0d10;
+  --nv-thumb-veil: rgba(5, 6, 8, 0.22);
+
+  /* elevation */
+  --nv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --nv-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --nv-shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+  /* code */
+  --nv-code-bg: #0f1216;
+  --nv-code-fg: #e6edf3;
+  --nv-code-border: rgba(255, 255, 255, 0.1);
+
+  /* theme toggle: the button shows the theme it switches TO */
+  --nv-icon-sun: block;
+  --nv-icon-moon: none;
+
+  /* ---- theme-independent tokens ------------------------------------- */
+
+  /* spacing (1rem = 16px) */
+  --nv-space-1: 0.25rem;
+  --nv-space-2: 0.5rem;
+  --nv-space-3: 0.75rem;
+  --nv-space-4: 1rem;
+  --nv-space-5: 1.5rem;
+  --nv-space-6: 2rem;
+  --nv-space-7: 3rem;
+  --nv-space-8: 4rem;
+  --nv-space-9: 6rem;
+
+  /* radius */
+  --nv-radius-sm: 4px;
+  --nv-radius-md: 8px;
+  --nv-radius-lg: 14px;
+  --nv-radius-pill: 999px;
+
+  /* motion */
+  --nv-dur-fast: 120ms;
+  --nv-dur: 200ms;
+  --nv-dur-slow: 360ms;
+  --nv-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --nv-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* type */
+  --nv-font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nv-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --nv-text-xs: 0.75rem;
+  --nv-text-sm: 0.875rem;
+  --nv-text-base: clamp(1rem, 0.25vw + 0.96875rem, 1.09375rem);
+  --nv-text-lg: clamp(1.125rem, 0.4vw + 1.0625rem, 1.25rem);
+  --nv-text-xl: clamp(1.25rem, 0.8vw + 1.125rem, 1.5rem);
+  --nv-text-2xl: clamp(1.5rem, 1.2vw + 1.3125rem, 1.875rem);
+  --nv-text-3xl: clamp(1.75rem, 2.2vw + 1.375rem, 2.375rem);
+  --nv-text-4xl: clamp(2.125rem, 3.4vw + 1.5625rem, 3.125rem);
+
+  --nv-leading-tight: 1.15;
+  --nv-leading-snug: 1.35;
+  --nv-leading: 1.7;
+  --nv-tracking-tight: -0.02em;
+  --nv-tracking-wide: 0.08em;
+
+  /* layout */
+  --nv-measure: 68ch;        /* line length for running text */
+  --nv-width-normal: 640px;  /* reading pages */
+  --nv-width-large: 880px;
+  --nv-width-wide: 1120px;   /* listings and grids */
+  --nv-nav-height: 68px;     /* for scroll-margin-top under the floating nav */
+}
+
+/* Light palette. Declared three times on purpose: CSS has no mixins, and the
+   three selectors are what makes "system preference, unless the user chose"
+   work without JavaScript. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --nv-bg: #f6f7f8;
+    --nv-surface: #ffffff;
+    --nv-surface-hover: #eef1f3;
+    --nv-border: rgba(0, 0, 0, 0.11);
+    --nv-border-strong: rgba(0, 0, 0, 0.22);
+    --nv-row-hover: rgba(0, 0, 0, 0.03);
+    --nv-fg: #1a1e23;
+    --nv-fg-strong: #05070a;
+    --nv-fg-muted: #515a65;
+    --nv-accent: #086830;
+    --nv-accent-hover: #085e2c;
+    --nv-accent-soft: rgba(8, 104, 48, 0.1);
+    --nv-accent-border: rgba(8, 104, 48, 0.3);
+    --nv-accent-text: #075527;
+    --nv-on-accent: #ffffff;
+    --nv-glass: rgba(255, 255, 255, 0.78);
+    --nv-glass-strong: rgba(255, 255, 255, 0.88);
+    --nv-overlay-soft: rgba(0, 0, 0, 0.035);
+    --nv-hover-overlay: rgba(0, 0, 0, 0.055);
+    --nv-inset-line: rgba(0, 0, 0, 0.04);
+    --nv-thumb-bg: #eef1f4;
+    --nv-thumb-veil: rgba(255, 255, 255, 0);
+    --nv-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.08);
+    --nv-shadow-md: 0 10px 30px rgba(16, 24, 40, 0.12);
+    --nv-shadow-nav: 0 10px 30px rgba(16, 24, 40, 0.16);
+    --nv-code-bg: #f2f4f6;
+    --nv-code-fg: #1f2429;
+    --nv-code-border: rgba(0, 0, 0, 0.1);
+    --nv-icon-sun: none;
+    --nv-icon-moon: block;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --nv-bg: #f6f7f8;
+  --nv-surface: #ffffff;
+  --nv-surface-hover: #eef1f3;
+  --nv-border: rgba(0, 0, 0, 0.11);
+  --nv-border-strong: rgba(0, 0, 0, 0.22);
+  --nv-row-hover: rgba(0, 0, 0, 0.03);
+  --nv-fg: #1a1e23;
+  --nv-fg-strong: #05070a;
+  --nv-fg-muted: #515a65;
+  --nv-accent: #086830;
+  --nv-accent-hover: #085e2c;
+  --nv-accent-soft: rgba(8, 104, 48, 0.1);
+  --nv-accent-border: rgba(8, 104, 48, 0.3);
+  --nv-accent-text: #075527;
+  --nv-on-accent: #ffffff;
+  --nv-glass: rgba(255, 255, 255, 0.78);
+  --nv-glass-strong: rgba(255, 255, 255, 0.88);
+  --nv-overlay-soft: rgba(0, 0, 0, 0.035);
+  --nv-hover-overlay: rgba(0, 0, 0, 0.055);
+  --nv-inset-line: rgba(0, 0, 0, 0.04);
+  --nv-thumb-bg: #eef1f4;
+  --nv-thumb-veil: rgba(255, 255, 255, 0);
+  --nv-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.08);
+  --nv-shadow-md: 0 10px 30px rgba(16, 24, 40, 0.12);
+  --nv-shadow-nav: 0 10px 30px rgba(16, 24, 40, 0.16);
+  --nv-code-bg: #f2f4f6;
+  --nv-code-fg: #1f2429;
+  --nv-code-border: rgba(0, 0, 0, 0.1);
+  --nv-icon-sun: none;
+  --nv-icon-moon: block;
+}
