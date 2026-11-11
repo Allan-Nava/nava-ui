@@ -332,6 +332,9 @@ npm run drift
 How the kit is put together, and why, is in [ARCHITECTURE.md](ARCHITECTURE.md). Instructions for AI
 coding agents are in [CLAUDE.md](CLAUDE.md).
 
+Planned work is in [BACKLOG.md](BACKLOG.md); the GitHub issues and milestones are generated from
+it.
+
 The kit itself has no dependencies; the tests use Playwright. Edit `css/` and `js/`, then rebuild `dist/`:
 
 ```bash

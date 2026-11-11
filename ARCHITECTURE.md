@@ -115,7 +115,7 @@ The kit was extracted from [allan-nava.github.io](https://github.com/Allan-Nava/
 | Source format | Sass partials, built by Jekyll | plain CSS |
 
 The weekly drift check is the guard until the site consumes the kit's tokens directly, which is
-tracked in the repository's milestones.
+tracked in [BACKLOG.md](BACKLOG.md) as NV-12 and NV-13.
 
 ## Decisions
 

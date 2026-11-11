@@ -7,6 +7,8 @@
   "type": "module",
   "scripts": {
     "build": "./scripts/build.sh",
+    "backlog": "npx --yes backlogsync check",
+    "roadmap": "npx --yes backlogsync roadmap",
     "contrast": "node scripts/contrast.mjs",
     "drift": "node scripts/site-drift.mjs",
     "test": "playwright test",

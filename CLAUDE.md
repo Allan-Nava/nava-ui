@@ -27,6 +27,7 @@ js/nava-ui.js         optional: theme toggle, card spotlight
 dist/                 built by scripts/build.sh, committed (the CDN serves it from the tag)
 fonts/                Inter Variable, Latin subset, with its licence
 index.html            documentation page and test fixture
+BACKLOG.md            planned work, the source of truth; ROADMAP.md is generated from it
 scripts/build.sh      concatenates css/ and js/ into dist/
 scripts/contrast.mjs  contrast of every pair, both themes
 scripts/site-drift.mjs  compares tokens with the site's
@@ -57,6 +58,11 @@ tests/__screenshots__/  baselines, generated on the CI runner
   attributes where one exists. Do not hide a link's only text with `display: none`.
 - **Keep the docs true.** A changed fact is changed everywhere it is stated: README,
   ARCHITECTURE.md, CHANGELOG.md, `index.html`, this file.
+- **Planned work goes in `BACKLOG.md`** (ids `NV-n`, never reused). `ROADMAP.md` is generated
+  by `npx backlogsync roadmap` and never edited by hand; the GitHub issues and milestones
+  follow the backlog on push to `main`, one way. Do not create or edit backlog issues on
+  GitHub: change the file. A finished item is ticked and gets `ver=main` (or the version) in
+  the same commit as the work.
 - **The site is a separate repository** with its own rules (it is never pushed by an agent).
   Do not change it from here.
 
@@ -66,6 +72,8 @@ tests/__screenshots__/  baselines, generated on the CI runner
 ./scripts/build.sh          # rebuild dist/
 npm run contrast            # contrast check, no install needed
 npm run drift               # compare tokens with the live site
+npm run backlog             # validate BACKLOG.md and that ROADMAP.md is current
+npm run roadmap             # regenerate ROADMAP.md after editing the backlog
 npm ci && npx playwright install chromium
 npm test                    # screenshots, accessibility, theme toggle
 python3 -m http.server 8000 # look at index.html

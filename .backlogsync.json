@@ -1,0 +1,14 @@
+{
+  "prefix": "NV",
+  "meta": "nv",
+  "name": "nava-ui",
+  "labels": {
+    "tokens": ["0e8a16", "Custom properties: colour, spacing, type, motion"],
+    "components": ["1d76db", "The nv- classes"],
+    "a11y": ["5319e7", "Accessibility"],
+    "ci": ["fbca04", "Checks, workflows, releases"],
+    "dist": ["d93f0b", "Build output, packaging, CDN"],
+    "site": ["c2e0c6", "Work shared with allan-nava.github.io"],
+    "docs": ["0075ca", "README, documentation page, agent files"]
+  }
+}

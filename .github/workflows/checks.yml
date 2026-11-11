@@ -25,6 +25,12 @@ jobs:
           node-version: 22
       - name: Contrast of every text and background pair, both themes
         run: node scripts/contrast.mjs
+      # Starts checking as soon as ROADMAP.md exists (generate it with `npx backlogsync roadmap`).
+      - name: Backlog is valid and ROADMAP.md is up to date
+        if: ${{ hashFiles('ROADMAP.md') != '' }}
+        uses: Allan-Nava/backlogsync@backlogsync--v0.1.1
+        with:
+          command: check
       - name: dist/ is in sync with css/ and js/
         run: |
           ./scripts/build.sh
