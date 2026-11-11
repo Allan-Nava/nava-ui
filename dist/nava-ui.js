@@ -1,4 +1,4 @@
-/*! nava-ui v0.1.0 | Apache-2.0 | https://github.com/Allan-Nava/nava-ui */
+/*! nava-ui v0.2.0 | Apache-2.0 | https://github.com/Allan-Nava/nava-ui */
 /*
  * nava-ui — optional behaviour. The CSS works without this file.
  *

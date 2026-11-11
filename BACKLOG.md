@@ -27,28 +27,28 @@ main.
   the HTML of every component, read from the DOM; a README with install, quick start, token
   and component tables, theming. <!-- nv: prio=high size=M labels=docs ver=0.1.0 -->
 
-## v0.2.0 — Quality gate <!-- ms: phase=now -->
+## v0.2.0 — Quality gate <!-- ms: phase=shipped -->
 
 Nothing changes in the kit without a check noticing.
 
 - [x] **NV-6 — Contrast of every pair in CI**: `scripts/contrast.mjs` reads `css/tokens.css`
   and measures the WCAG ratio of every text and background pair the components use, in both
   themes, compositing translucent backgrounds; fails under 6:1, and when the two copies of the
-  light palette differ. First run: 19 pairs pass, the lowest at 6.1:1. <!-- nv: prio=high size=S labels=a11y,ci ver=main -->
+  light palette differ. First run: 19 pairs pass, the lowest at 6.1:1. <!-- nv: prio=high size=S labels=a11y,ci ver=0.2.0 -->
 - [x] **NV-7 — Screenshots of every example**: Playwright screenshots each `data-demo` element
   of the documentation page in two themes and two widths (60 baselines, generated on the CI
   runner), plus a test that the page never scrolls sideways. Found and fixed: the bars of the
-  bar list did not start on the same line. <!-- nv: prio=high size=M labels=ci,components ver=main -->
+  bar list did not start on the same line. <!-- nv: prio=high size=M labels=ci,components ver=0.2.0 -->
 - [x] **NV-8 — Automated accessibility rules**: axe on the documentation page in the four
   projects, and a test of the theme toggle. Found and fixed: the brand name hidden with
-  `display: none` on phones, and scrolling code blocks without keyboard access. <!-- nv: prio=high size=S labels=a11y,ci ver=main -->
+  `display: none` on phones, and scrolling code blocks without keyboard access. <!-- nv: prio=high size=S labels=a11y,ci ver=0.2.0 -->
 - [x] **NV-9 — dist/ in sync with the sources**: CI rebuilds `dist/` and fails when it differs
-  from what is committed, because the CDN serves it from the tag. <!-- nv: prio=med size=S labels=ci,dist ver=main -->
+  from what is committed, because the CDN serves it from the tag. <!-- nv: prio=med size=S labels=ci,dist ver=0.2.0 -->
 - [x] **NV-10 — ARCHITECTURE.md and CLAUDE.md**: how the kit is put together and why, and the
-  working rules for coding agents. <!-- nv: prio=med size=S labels=docs ver=main -->
-- [ ] **NV-27 — Release 0.2.0**: the fixes found by the checks are on `main` but the CDN URL
-  points at `v0.1.0`. Move the changelog entries, bump `VERSION`, `package.json` and the URLs
-  in README and `index.html`, rebuild, tag `v0.2.0`. <!-- nv: prio=high size=S labels=dist -->
+  working rules for coding agents. <!-- nv: prio=med size=S labels=docs ver=0.2.0 -->
+- [x] **NV-27 — Release 0.2.0**: the fixes found by the checks were on `main` while the CDN
+  URL pointed at the first tag. Changelog entries moved under 0.2.0, `VERSION`, `package.json`
+  and the URLs in README and `index.html` bumped, `dist/` rebuilt, tag `v0.2.0`. <!-- nv: prio=high size=S labels=dist ver=0.2.0 -->
 
 ## v0.3.0 — One source of truth with the site <!-- ms: phase=next -->
 
@@ -57,7 +57,7 @@ kit, so the copy cannot age. To start once the kit is stable.
 
 - [x] **NV-11 — Detect drift from the site**: `scripts/site-drift.mjs` reads the site's
   `_sass/base/tokens.scss` and compares every shared token, lengths in pixels; a weekly
-  workflow fails on drift. First run: none; 18 tokens exist in the site only. <!-- nv: prio=high size=S labels=site,ci ver=main -->
+  workflow fails on drift. First run: none; 18 tokens exist in the site only. <!-- nv: prio=high size=S labels=site,ci ver=0.2.0 -->
 - [ ] **NV-12 — Token file in the site's dialect**: `scripts/export-site.mjs` writes
   `dist/tokens.site.scss` from `css/tokens.css` with the site's names (`--color-bg`,
   `--space-4`, `--width-listing`), lengths in its 10 px rem, and the palettes as the two Sass
