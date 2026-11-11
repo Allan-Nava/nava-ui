@@ -14,6 +14,10 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('every example matches its baseline', async ({ page }) => {
+  // The page's own nav is sticky: on an example taller than the viewport it
+  // would be drawn over the top of the screenshot.
+  await page.addStyleTag({ content: 'body > .nv-nav { visibility: hidden; }' });
+
   const demos = page.locator('[data-demo]');
   const count = await demos.count();
   expect(count).toBeGreaterThan(0);
