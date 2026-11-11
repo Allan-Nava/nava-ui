@@ -106,10 +106,10 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
   <section id="start">
     <h2>Get started</h2>
     <p>One stylesheet, and optionally one script for the theme toggle and the card spotlight.</p>
-<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.1.0/dist/nava-ui.css"&gt;
+<pre tabindex="0"><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.1.0/dist/nava-ui.css"&gt;
 &lt;script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.1.0/dist/nava-ui.js"&gt;&lt;/script&gt;</code></pre>
     <p>Then write HTML with the <code>nv-</code> classes shown below. Every example on this page is live, and the source under it is read from the example itself, so the two cannot drift apart.</p>
-    <div class="doc-table">
+    <div class="doc-table" tabindex="0" role="region" aria-label="Files of the kit">
     <table>
       <thead><tr><th>File</th><th>What it contains</th><th>Use it when</th></tr></thead>
       <tbody>
@@ -379,7 +379,7 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
   <section id="theming">
     <h2>Theming</h2>
     <p>Dark is the default. Light applies when the system asks for it, and an explicit choice on <code>&lt;html data-theme="light"&gt;</code> or <code>data-theme="dark"</code> wins over both. To remember the choice without a flash on load, put this in <code>&lt;head&gt;</code>, before the stylesheet:</p>
-<pre><code>&lt;script&gt;
+<pre tabindex="0"><code>&lt;script&gt;
 (function () {
   try {
     var t = localStorage.getItem('nv-theme');
@@ -388,7 +388,7 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
 })();
 &lt;/script&gt;</code></pre>
     <p>To make the kit yours, override tokens after the stylesheet. Changing the accent takes six values per theme, because the accent is used both as text and as a background:</p>
-<pre><code>:root {
+<pre tabindex="0"><code>:root {
   --nv-accent: #4c8dff;
   --nv-accent-hover: #74a7ff;
   --nv-accent-soft: rgba(76, 141, 255, 0.12);
@@ -422,6 +422,7 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
     var summary = document.createElement('summary');
     summary.textContent = 'Show the HTML';
     var pre = document.createElement('pre');
+    pre.tabIndex = 0;
     var code = document.createElement('code');
     code.textContent = dedent(demo.innerHTML);
     pre.appendChild(code);

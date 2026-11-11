@@ -404,8 +404,15 @@
     gap: var(--nv-space-1);
   }
 
+  /* Hidden from sight, not from assistive technology: with `display: none`
+     a brand link without an image would lose its accessible name. */
   .nv-nav__name {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .nv-nav__links {

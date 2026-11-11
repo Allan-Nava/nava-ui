@@ -299,6 +299,8 @@ the tokens show the one for the theme the button switches to. Both icons are in
   state, so a card does not stay highlighted after a tap.
 - The nav has no menu to open: on small screens the links scroll sideways, and it works without
   JavaScript.
+- A block that scrolls sideways (a wide `<pre>`, a table in a scrolling wrapper) needs
+  `tabindex="0"`, or keyboard users cannot scroll it.
 - What the kit cannot do for you: mark the current page (`aria-current="page"`), give filter chips
   `aria-pressed`, give icon-only buttons a label, and write `alt` text.
 

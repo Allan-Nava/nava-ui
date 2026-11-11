@@ -51,7 +51,7 @@ jobs:
         run: npx playwright test --update-snapshots
 
       - name: Upload the new baselines
-        if: ${{ inputs.update_snapshots }}
+        if: ${{ always() && inputs.update_snapshots }}
         uses: actions/upload-artifact@v4
         with:
           name: screenshots
