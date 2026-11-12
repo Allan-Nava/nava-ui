@@ -54,6 +54,9 @@ test('a toast is announced, can be dismissed, and goes away by itself', async ({
   await toast.getByRole('button', { name: 'Dismiss' }).click();
   await expect(toast).toHaveCount(0);
 
+  // The pointer is still where the Dismiss button was, and a toast under the
+  // pointer keeps its timer stopped: move it away first.
+  await page.mouse.move(0, 0);
   await page.evaluate(() => window.navaUI.toast('Gone soon.', { timeout: 300 }));
   await expect(region.locator('.nv-toast')).toHaveCount(1);
   await expect(region.locator('.nv-toast')).toHaveCount(0);
