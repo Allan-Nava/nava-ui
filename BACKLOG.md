@@ -89,9 +89,10 @@ accessibility rules green.
   and success colours in both themes, with their pairs in the contrast script. Done: the CSS
   styles `aria-invalid` itself, valid is the class `is-valid`, danger is a new colour and
   success an alias of the accent. <!-- nv: prio=high size=M labels=components,tokens,a11y ver=main -->
-- [ ] **NV-17 — Alerts and toasts**: an inline alert in four tones (info, success, warning,
+- [x] **NV-17 — Alerts and toasts**: an inline alert in four tones (info, success, warning,
   danger) with an icon slot, and a toast region with `role="status"`; the stacking and the
-  timeout in the optional script. <!-- nv: prio=med size=M labels=components,a11y -->
+  timeout in the optional script. Done with `navaUI.toast()`, a `data-nv-dismiss` button, and
+  info and warning colours in both themes. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
 - [ ] **NV-18 — Empty and loading states**: an empty-state block (title, text, one action),
   a skeleton that respects `prefers-reduced-motion`, and a spinner for buttons. <!-- nv: prio=med size=S labels=components -->
 - [ ] **NV-19 — Dialog**: styles for the native `<dialog>` and its backdrop on the glass

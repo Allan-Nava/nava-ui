@@ -4,7 +4,7 @@ A small, dark-first UI kit in plain CSS: the design tokens and components of
 [allan-nava.github.io](https://allan-nava.github.io), extracted so that other projects can share
 the same look.
 
-- **No build step, no framework.** One stylesheet, one optional script of about 2 KB.
+- **No build step, no framework.** One stylesheet, one optional script of about 6 KB.
 - **Two themes.** Dark by default, light when the system asks for it, and an explicit choice that
   wins over both.
 - **Token-driven.** Components read CSS custom properties and nothing else: to re-theme, override
@@ -172,6 +172,8 @@ not.
 | `--nv-on-accent` | `#04170c` | `#ffffff` | text on `accent` |
 | `--nv-danger` | `#ff8a80` | `#a3121a` | error text and the edge of an invalid control |
 | `--nv-danger-soft`, `--nv-danger-border` | red 14%, 45% | red 8%, 35% | background and border of a danger surface |
+| `--nv-info`, `-soft`, `-border` | `#79c0ff` | `#0b4fa2` | the info tone of alerts and toasts |
+| `--nv-warning`, `-soft`, `-border` | `#f2c14e` | `#7a4a00` | the warning tone |
 | `--nv-success`, `-soft`, `-border`, `-text` | the accent | the accent | aliases of the accent tokens: the kit's green already means "go" |
 | `--nv-glass` | near-black 72% | white 78% | the nav island |
 | `--nv-code-bg`, `--nv-code-fg`, `--nv-code-border` | | | code blocks |
@@ -227,6 +229,8 @@ under "Show the HTML".
 | Textarea, select | `nv-textarea`, `nv-select` | the select's arrow is drawn in `currentColor`, so it follows the theme |
 | Checkbox, radio, switch | `nv-checkbox`, `nv-radio`, `nv-switch`, `nv-choice` | classes on the native `<input>`, inside a `nv-choice` label; a switch is a checkbox with `role="switch"` |
 | Group of choices | `nv-fieldset`, `nv-legend` | a `<fieldset>` with its `<legend>` |
+| Alert | `nv-alert`, `nv-alert--success`, `--warning`, `--danger`, `nv-alert__icon`, `__body`, `__title`, `__text`, `__close` | info by default; a different mark per tone in `__icon`; `role="alert"` only for what needs attention now |
+| Toast | `nv-toasts`, `nv-toast`, `nv-toast--success`, `--warning`, `--danger` | the parts of an alert on an opaque surface; `nv-toasts` is the live region, created by the script |
 | Validation | `aria-invalid="true"`, `is-valid`, `nv-error`, `nv-valid` | invalid is the ARIA attribute on the control, with the message linked by `aria-describedby`; valid is a class |
 | Pagination | `nv-pagination`, `__btn`, `__page` | hide a missing arrow with `aria-disabled="true"` |
 | Panel | `nv-panel`, `__title`, `__text` | a centred call to action |
@@ -284,12 +288,16 @@ To use a different font, set `--nv-font-sans` and load your font yourself.
 |---|---|---|
 | Theme toggle | `data-nv-theme-toggle` on a button | switches `data-theme` on `<html>`, stores the choice in `localStorage` under `nv-theme`, keeps the button's `aria-label` in sync |
 | Card spotlight | `data-nv-spotlight` on a container of cards | writes the pointer position on `--nv-mx` and `--nv-my`; off for touch and for reduced motion |
+| Dismiss | `data-nv-dismiss` on a button inside an alert or a toast | removes that alert or toast |
+| Toasts | `navaUI.toast(message, options)` | adds a toast to the live region (an empty `nv-toasts` element the script adds to the page when it loads) and removes it after `timeout` ms; the timer stops while the pointer or the focus is on it |
 
 From your own code:
 
 ```js
 navaUI.theme();            // "dark" or "light": the theme in effect now
 navaUI.setTheme('light');  // set and remember
+navaUI.toast('Saved.');    // an info toast, gone after 5 seconds
+navaUI.toast('Could not save.', { tone: 'danger', title: 'Error', timeout: 0 }); // stays until dismissed
 document.addEventListener('nv:theme', function (event) {
   console.log(event.detail.theme);
 });

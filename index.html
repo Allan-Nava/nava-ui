@@ -368,6 +368,58 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </form>
     </div>
 
+    <h3>Alerts</h3>
+    <p>A message in the page, in four tones. The tone is never told by colour alone: each has its own mark and a title that says what happened. Add <code>role="alert"</code> only to a message that appears after an action and needs attention now. A button with <code>data-nv-dismiss</code> removes the alert it is in.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-alert">
+        <span class="nv-alert__icon" aria-hidden="true">i</span>
+        <div class="nv-alert__body">
+          <p class="nv-alert__title">A new version is available</p>
+          <p class="nv-alert__text">Version 0.3.0 adds form controls. The default tone is info.</p>
+        </div>
+      </div>
+      <div class="nv-alert nv-alert--success">
+        <span class="nv-alert__icon" aria-hidden="true">✓</span>
+        <div class="nv-alert__body">
+          <p class="nv-alert__title">Project created</p>
+        </div>
+        <button class="nv-alert__close" type="button" data-nv-dismiss aria-label="Dismiss">×</button>
+      </div>
+      <div class="nv-alert nv-alert--warning">
+        <span class="nv-alert__icon" aria-hidden="true">!</span>
+        <div class="nv-alert__body">
+          <p class="nv-alert__title">The certificate expires in 7 days</p>
+          <p class="nv-alert__text">Renew it before 19 November to keep the site reachable.</p>
+        </div>
+      </div>
+      <div class="nv-alert nv-alert--danger">
+        <span class="nv-alert__icon" aria-hidden="true">×</span>
+        <div class="nv-alert__body">
+          <p class="nv-alert__title">The deploy failed</p>
+          <p class="nv-alert__text">The health check did not answer in 30 seconds. The previous version is still running.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Toasts</h3>
+    <p>A short message over the page that goes away by itself. Call <code>navaUI.toast(message, { tone, title, timeout })</code>: the script creates the live region, so screen readers announce the message, and stops the timer while the pointer or the focus is on the toast. A toast is for something the person can afford to miss; anything they must act on belongs in an alert.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-actions">
+        <button class="nv-button" type="button" data-doc-toast="info">Show a toast</button>
+        <button class="nv-button" type="button" data-doc-toast="success">Success</button>
+        <button class="nv-button" type="button" data-doc-toast="danger">Error</button>
+      </div>
+      <br>
+      <div class="nv-toast nv-toast--success">
+        <span class="nv-alert__icon" aria-hidden="true">✓</span>
+        <div class="nv-alert__body">
+          <p class="nv-alert__title">Saved</p>
+          <p class="nv-alert__text">This one is written in the page, to show the markup the script produces.</p>
+        </div>
+        <button class="nv-alert__close" type="button" data-nv-dismiss aria-label="Dismiss">×</button>
+      </div>
+    </div>
+
     <h3>Pagination</h3>
     <p>On the first or last page keep the arrow in the markup with <code>aria-disabled="true"</code>: it is hidden but still takes its space, so the page number stays centred.</p>
     <div class="doc-demo" data-demo>
@@ -494,6 +546,18 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
     details.appendChild(summary);
     details.appendChild(pre);
     demo.insertAdjacentElement('afterend', details);
+  });
+  /* Docs only: the buttons of the toast example. */
+  var TOASTS = {
+    info: ['The preview is ready.', { title: 'Build finished' }],
+    success: ['Your changes are live.', { tone: 'success', title: 'Published' }],
+    danger: ['Check the connection and try again.', { tone: 'danger', title: 'Could not save' }]
+  };
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('[data-doc-toast]');
+    if (!button || !window.navaUI) return;
+    var args = TOASTS[button.getAttribute('data-doc-toast')];
+    window.navaUI.toast(args[0], args[1]);
   });
   /* Docs only: make the filter chips of the example toggle. */
   document.addEventListener('click', function (event) {

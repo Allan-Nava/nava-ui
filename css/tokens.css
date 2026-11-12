@@ -45,6 +45,14 @@
   --nv-danger-soft: rgba(248, 81, 73, 0.14);
   --nv-danger-border: rgba(248, 81, 73, 0.45);
 
+  /* info and warning: the other two tones of a message */
+  --nv-info: #79c0ff;
+  --nv-info-soft: rgba(56, 139, 253, 0.14);
+  --nv-info-border: rgba(56, 139, 253, 0.45);
+  --nv-warning: #f2c14e;
+  --nv-warning-soft: rgba(210, 153, 34, 0.14);
+  --nv-warning-border: rgba(210, 153, 34, 0.45);
+
   /* glass and overlays: white lightens on dark, black darkens on light */
   --nv-glass: rgba(12, 13, 15, 0.72);
   --nv-glass-strong: rgba(12, 13, 15, 0.82);
@@ -158,6 +166,12 @@
     --nv-danger: #a3121a;
     --nv-danger-soft: rgba(163, 18, 26, 0.08);
     --nv-danger-border: rgba(163, 18, 26, 0.35);
+    --nv-info: #0b4fa2;
+    --nv-info-soft: rgba(11, 79, 162, 0.08);
+    --nv-info-border: rgba(11, 79, 162, 0.35);
+    --nv-warning: #7a4a00;
+    --nv-warning-soft: rgba(154, 103, 0, 0.1);
+    --nv-warning-border: rgba(154, 103, 0, 0.4);
     --nv-glass: rgba(255, 255, 255, 0.78);
     --nv-glass-strong: rgba(255, 255, 255, 0.88);
     --nv-overlay-soft: rgba(0, 0, 0, 0.035);
@@ -197,6 +211,12 @@
   --nv-danger: #a3121a;
   --nv-danger-soft: rgba(163, 18, 26, 0.08);
   --nv-danger-border: rgba(163, 18, 26, 0.35);
+  --nv-info: #0b4fa2;
+  --nv-info-soft: rgba(11, 79, 162, 0.08);
+  --nv-info-border: rgba(11, 79, 162, 0.35);
+  --nv-warning: #7a4a00;
+  --nv-warning-soft: rgba(154, 103, 0, 0.1);
+  --nv-warning-border: rgba(154, 103, 0, 0.4);
   --nv-glass: rgba(255, 255, 255, 0.78);
   --nv-glass-strong: rgba(255, 255, 255, 0.88);
   --nv-overlay-soft: rgba(0, 0, 0, 0.035);

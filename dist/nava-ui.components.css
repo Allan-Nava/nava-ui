@@ -46,6 +46,14 @@
   --nv-danger-soft: rgba(248, 81, 73, 0.14);
   --nv-danger-border: rgba(248, 81, 73, 0.45);
 
+  /* info and warning: the other two tones of a message */
+  --nv-info: #79c0ff;
+  --nv-info-soft: rgba(56, 139, 253, 0.14);
+  --nv-info-border: rgba(56, 139, 253, 0.45);
+  --nv-warning: #f2c14e;
+  --nv-warning-soft: rgba(210, 153, 34, 0.14);
+  --nv-warning-border: rgba(210, 153, 34, 0.45);
+
   /* glass and overlays: white lightens on dark, black darkens on light */
   --nv-glass: rgba(12, 13, 15, 0.72);
   --nv-glass-strong: rgba(12, 13, 15, 0.82);
@@ -159,6 +167,12 @@
     --nv-danger: #a3121a;
     --nv-danger-soft: rgba(163, 18, 26, 0.08);
     --nv-danger-border: rgba(163, 18, 26, 0.35);
+    --nv-info: #0b4fa2;
+    --nv-info-soft: rgba(11, 79, 162, 0.08);
+    --nv-info-border: rgba(11, 79, 162, 0.35);
+    --nv-warning: #7a4a00;
+    --nv-warning-soft: rgba(154, 103, 0, 0.1);
+    --nv-warning-border: rgba(154, 103, 0, 0.4);
     --nv-glass: rgba(255, 255, 255, 0.78);
     --nv-glass-strong: rgba(255, 255, 255, 0.88);
     --nv-overlay-soft: rgba(0, 0, 0, 0.035);
@@ -198,6 +212,12 @@
   --nv-danger: #a3121a;
   --nv-danger-soft: rgba(163, 18, 26, 0.08);
   --nv-danger-border: rgba(163, 18, 26, 0.35);
+  --nv-info: #0b4fa2;
+  --nv-info-soft: rgba(11, 79, 162, 0.08);
+  --nv-info-border: rgba(11, 79, 162, 0.35);
+  --nv-warning: #7a4a00;
+  --nv-warning-soft: rgba(154, 103, 0, 0.1);
+  --nv-warning-border: rgba(154, 103, 0, 0.4);
   --nv-glass: rgba(255, 255, 255, 0.78);
   --nv-glass-strong: rgba(255, 255, 255, 0.88);
   --nv-overlay-soft: rgba(0, 0, 0, 0.035);
@@ -1386,6 +1406,168 @@ a.nv-bar__label:hover {
   .nv-radio::before,
   .nv-switch::before {
     display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Alert — a message in the page, in four tones.
+   The tone sets three custom properties; the parts read them. A tone is never
+   told by colour alone: put a different mark in .nv-alert__icon for each
+   (i, a tick, !, a cross) and say the thing in the title.
+   Use role="alert" only for something that needs attention now; a message
+   that was in the page from the start needs no role.
+   ------------------------------------------------------------------------ */
+
+.nv-alert,
+.nv-toast {
+  --nv-tone: var(--nv-info);
+  --nv-tone-soft: var(--nv-info-soft);
+  --nv-tone-border: var(--nv-info-border);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nv-space-3);
+  padding: var(--nv-space-3) var(--nv-space-4);
+  font-size: var(--nv-text-sm);
+  line-height: 1.5;
+  color: var(--nv-fg);
+  border: 1px solid var(--nv-tone-border);
+  border-radius: var(--nv-radius-md);
+}
+
+.nv-alert {
+  margin: 0 0 var(--nv-space-4);
+  background: var(--nv-tone-soft);
+}
+
+.nv-alert--success,
+.nv-toast--success {
+  --nv-tone: var(--nv-success-text);
+  --nv-tone-soft: var(--nv-success-soft);
+  --nv-tone-border: var(--nv-success-border);
+}
+
+.nv-alert--warning,
+.nv-toast--warning {
+  --nv-tone: var(--nv-warning);
+  --nv-tone-soft: var(--nv-warning-soft);
+  --nv-tone-border: var(--nv-warning-border);
+}
+
+.nv-alert--danger,
+.nv-toast--danger {
+  --nv-tone: var(--nv-danger);
+  --nv-tone-soft: var(--nv-danger-soft);
+  --nv-tone-border: var(--nv-danger-border);
+}
+
+.nv-alert__icon {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.05rem;
+  font-size: var(--nv-text-xs);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--nv-tone);
+  border: 1.5px solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-alert__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.nv-alert__body > :last-child {
+  margin-bottom: 0;
+}
+
+.nv-alert__title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--nv-fg-strong);
+}
+
+.nv-alert__text {
+  margin: 0;
+}
+
+.nv-alert__close {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: -0.1rem calc(var(--nv-space-2) * -1) 0 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--nv-text-lg);
+  line-height: 1;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-alert__close:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+}
+
+/* ---------------------------------------------------------------------------
+   Toast — a short message that appears over the page and goes away.
+   .nv-toasts is the live region: keep one in the page (or let nava-ui.js
+   create it) so that screen readers announce what is added to it.
+   A toast has the parts of an alert on an opaque surface with a shadow.
+   ------------------------------------------------------------------------ */
+
+.nv-toasts {
+  position: fixed;
+  right: var(--nv-space-4);
+  bottom: var(--nv-space-4);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-2);
+  width: min(24rem, calc(100vw - var(--nv-space-4) * 2));
+  pointer-events: none;
+}
+
+.nv-toast {
+  pointer-events: auto;
+  background: var(--nv-surface);
+  box-shadow: var(--nv-shadow-md);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nv-toast {
+    animation: nv-toast-in var(--nv-dur-slow) var(--nv-ease-out);
+  }
+
+  .nv-toast.is-leaving {
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity var(--nv-dur) var(--nv-ease), transform var(--nv-dur) var(--nv-ease);
+  }
+}
+
+@keyframes nv-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .nv-toasts {
+    right: var(--nv-space-3);
+    left: var(--nv-space-3);
+    bottom: var(--nv-space-3);
+    width: auto;
   }
 }
 

@@ -4,7 +4,7 @@
 
 > This page is **generated** from [BACKLOG.md](BACKLOG.md), the single source of truth for planned work. Regenerate it with `npx backlogsync roadmap` after editing the backlog — CI fails when the two disagree.
 
-**34 items · 14 shipped · 20 open · 7 milestones.**
+**34 items · 15 shipped · 19 open · 7 milestones.**
 
 ## At a glance
 
@@ -13,7 +13,7 @@
 | **v0.1.0 — The site's look, extracted** | shipped | `##########` 100% | 0 | 5 |
 | **v0.2.0 — Quality gate** | shipped | `##########` 100% | 0 | 6 |
 | **v0.3.0 — One source of truth with the site** | next | `###.......` 25% | 3 | 1 |
-| **v0.4.0 — Components for applications** | next | `###.......` 25% | 6 | 2 |
+| **v0.4.0 — Components for applications** | next | `####......` 38% | 5 | 3 |
 | **v0.5.0 — Distribution** | later | `..........` 0% | 4 | 0 |
 | **v0.6.0 — Tokens from one file** | later | `..........` 0% | 2 | 0 |
 | **v0.7.0 — Documentation and examples** | later | `..........` 0% | 5 | 0 |
@@ -46,7 +46,7 @@
 
 - [x] **NV-15** — Form controls · high · L · components, a11y · `main`
 - [x] **NV-16** — Validation states · high · M · components, tokens, a11y · `main`
-- [ ] **NV-17** — Alerts and toasts · med · M · components, a11y
+- [x] **NV-17** — Alerts and toasts · med · M · components, a11y · `main`
 - [ ] **NV-18** — Empty and loading states · med · S · components
 - [ ] **NV-19** — Dialog · med · M · components, a11y
 - [ ] **NV-20** — Tabs · med · M · components, a11y

@@ -64,12 +64,19 @@ Consequences:
 
 ## JavaScript
 
-`js/nava-ui.js` is one IIFE with no dependencies, and optional. It does two things:
+`js/nava-ui.js` is one IIFE with no dependencies, and optional. It does four things:
 
 - **Theme toggle.** Sets `data-theme` on `<html>`, stores the choice in `localStorage` under
   `nv-theme`, fires `nv:theme`, keeps the button's `aria-label` current.
 - **Card spotlight.** One `pointermove` listener per `[data-nv-spotlight]` container writes
   `--nv-mx` and `--nv-my` on the hovered card; the glow itself is CSS.
+- **Dismiss.** One delegated click listener: a `[data-nv-dismiss]` button removes the alert or
+  toast it is in.
+- **Toasts.** `navaUI.toast()` builds the toast with `createElement` and `textContent`, never
+  HTML strings, and appends it to `.nv-toasts`, a `role="status"` live region created when the
+  script loads and kept, because a region added together with its first message is often not
+  announced. A danger
+  toast gets `role="alert"`. The timer stops while the pointer or the focus is on the toast.
 
 The part that must run before first paint (reading the stored theme) is not in this file: it is
 a few lines pasted in `<head>`, because a deferred script would let the wrong theme flash.
