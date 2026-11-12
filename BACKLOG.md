@@ -84,9 +84,11 @@ accessibility rules green.
   rectangular input variant next to the pill. Done with a new token, `--nv-border-control`,
   because the edge of a control has to reach 3:1 and the hairline borders do not; the contrast
   script checks it. <!-- nv: prio=high size=L labels=components,a11y ver=main -->
-- [ ] **NV-16 — Validation states**: error and success on every control, with the message
+- [x] **NV-16 — Validation states**: error and success on every control, with the message
   linked through `aria-describedby` and `aria-invalid`, never by colour alone; needs danger
-  and success colours in both themes, with their pairs in the contrast script. <!-- nv: prio=high size=M labels=components,tokens,a11y -->
+  and success colours in both themes, with their pairs in the contrast script. Done: the CSS
+  styles `aria-invalid` itself, valid is the class `is-valid`, danger is a new colour and
+  success an alias of the accent. <!-- nv: prio=high size=M labels=components,tokens,a11y ver=main -->
 - [ ] **NV-17 — Alerts and toasts**: an inline alert in four tones (info, success, warning,
   danger) with an icon slot, and a toast region with `role="status"`; the stacking and the
   timeout in the optional script. <!-- nv: prio=med size=M labels=components,a11y -->

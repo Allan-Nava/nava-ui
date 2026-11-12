@@ -6,6 +6,10 @@
   `nv-radio`, `nv-switch`, `nv-choice`, `nv-fieldset` and `nv-legend`.
 - New token `--nv-border-control`, the edge of form controls, at 3:1 or better on the page and
   on a surface in both themes; the contrast script now checks control edges and marks at 3:1.
+- Validation states: `aria-invalid="true"` on any control, the class `is-valid`, and the
+  messages `nv-error` and `nv-valid`.
+- New tokens `--nv-danger`, `--nv-danger-soft` and `--nv-danger-border` in both themes, checked
+  by the contrast script; `--nv-success` and its variants as aliases of the accent.
 - Changed: `nv-input` uses `--nv-border-control` instead of `--nv-border-strong`, so its edge
   is easier to see, and its focus adds a soft ring to the accent-coloured edge.
 

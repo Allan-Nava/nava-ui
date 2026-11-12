@@ -41,6 +41,11 @@
   --nv-accent-text: #7be8a6; /* text on --nv-accent-soft */
   --nv-on-accent: #04170c;   /* text on --nv-accent */
 
+  /* danger: errors and destructive actions */
+  --nv-danger: #ff8a80;
+  --nv-danger-soft: rgba(248, 81, 73, 0.14);
+  --nv-danger-border: rgba(248, 81, 73, 0.45);
+
   /* glass and overlays: white lightens on dark, black darkens on light */
   --nv-glass: rgba(12, 13, 15, 0.72);
   --nv-glass-strong: rgba(12, 13, 15, 0.82);
@@ -68,6 +73,13 @@
   --nv-icon-moon: none;
 
   /* ---- theme-independent tokens ------------------------------------- */
+
+  /* success is the accent: the kit's green already means "go". The names
+     exist so a component says what it means, and a re-theme can split them. */
+  --nv-success: var(--nv-accent);
+  --nv-success-soft: var(--nv-accent-soft);
+  --nv-success-border: var(--nv-accent-border);
+  --nv-success-text: var(--nv-accent-text);
 
   /* spacing (1rem = 16px) */
   --nv-space-1: 0.25rem;
@@ -144,6 +156,9 @@
     --nv-accent-border: rgba(8, 104, 48, 0.3);
     --nv-accent-text: #075527;
     --nv-on-accent: #ffffff;
+    --nv-danger: #a3121a;
+    --nv-danger-soft: rgba(163, 18, 26, 0.08);
+    --nv-danger-border: rgba(163, 18, 26, 0.35);
     --nv-glass: rgba(255, 255, 255, 0.78);
     --nv-glass-strong: rgba(255, 255, 255, 0.88);
     --nv-overlay-soft: rgba(0, 0, 0, 0.035);
@@ -180,6 +195,9 @@
   --nv-accent-border: rgba(8, 104, 48, 0.3);
   --nv-accent-text: #075527;
   --nv-on-accent: #ffffff;
+  --nv-danger: #a3121a;
+  --nv-danger-soft: rgba(163, 18, 26, 0.08);
+  --nv-danger-border: rgba(163, 18, 26, 0.35);
   --nv-glass: rgba(255, 255, 255, 0.78);
   --nv-glass-strong: rgba(255, 255, 255, 0.88);
   --nv-overlay-soft: rgba(0, 0, 0, 0.035);
@@ -1354,6 +1372,90 @@ a.nv-bar__label:hover {
   margin: var(--nv-space-3) 0 0;
   font-size: var(--nv-text-xs);
   color: var(--nv-fg-muted);
+}
+
+/* Validation
+   Invalid is an ARIA state, not a class: aria-invalid="true" on the control,
+   and the message linked with aria-describedby. Valid has no ARIA state, so
+   it is the class .is-valid. Neither is told by colour alone: the edge gets
+   thicker, and the message carries a mark and says what is wrong. */
+
+.nv-input[aria-invalid="true"],
+.nv-textarea[aria-invalid="true"],
+.nv-select[aria-invalid="true"] {
+  border-color: var(--nv-danger);
+  box-shadow: inset 0 0 0 1px var(--nv-danger);
+}
+
+.nv-input[aria-invalid="true"]:focus,
+.nv-textarea[aria-invalid="true"]:focus,
+.nv-select[aria-invalid="true"]:focus {
+  border-color: var(--nv-danger);
+  box-shadow: inset 0 0 0 1px var(--nv-danger), 0 0 0 3px var(--nv-danger-soft);
+}
+
+.nv-input.is-valid,
+.nv-textarea.is-valid,
+.nv-select.is-valid {
+  border-color: var(--nv-success);
+  box-shadow: inset 0 0 0 1px var(--nv-success);
+}
+
+.nv-checkbox[aria-invalid="true"],
+.nv-radio[aria-invalid="true"],
+.nv-switch[aria-invalid="true"] {
+  border-color: var(--nv-danger);
+  border-width: 2px;
+}
+
+.nv-error,
+.nv-valid {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nv-space-2);
+  margin: var(--nv-space-2) 0 0;
+  font-size: var(--nv-text-sm);
+  line-height: 1.4;
+}
+
+.nv-field > .nv-error,
+.nv-field > .nv-valid {
+  margin: 0;
+}
+
+.nv-error {
+  color: var(--nv-danger);
+}
+
+.nv-valid {
+  color: var(--nv-success-text);
+}
+
+/* The mark before the message. The second `content` gives it an empty text
+   alternative where that syntax is supported, so it is not read aloud. */
+.nv-error::before,
+.nv-valid::before {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.15em;
+  margin-top: 0.1em;
+  font-size: 0.85em;
+  font-weight: 800;
+  line-height: 1;
+  border: 1.5px solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-error::before {
+  content: "!";
+  content: "!" / "";
+}
+
+.nv-valid::before {
+  content: "\2713";
+  content: "\2713" / "";
 }
 
 /* Groups of choices */

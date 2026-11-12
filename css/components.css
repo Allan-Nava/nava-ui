@@ -919,6 +919,90 @@ a.nv-bar__label:hover {
   color: var(--nv-fg-muted);
 }
 
+/* Validation
+   Invalid is an ARIA state, not a class: aria-invalid="true" on the control,
+   and the message linked with aria-describedby. Valid has no ARIA state, so
+   it is the class .is-valid. Neither is told by colour alone: the edge gets
+   thicker, and the message carries a mark and says what is wrong. */
+
+.nv-input[aria-invalid="true"],
+.nv-textarea[aria-invalid="true"],
+.nv-select[aria-invalid="true"] {
+  border-color: var(--nv-danger);
+  box-shadow: inset 0 0 0 1px var(--nv-danger);
+}
+
+.nv-input[aria-invalid="true"]:focus,
+.nv-textarea[aria-invalid="true"]:focus,
+.nv-select[aria-invalid="true"]:focus {
+  border-color: var(--nv-danger);
+  box-shadow: inset 0 0 0 1px var(--nv-danger), 0 0 0 3px var(--nv-danger-soft);
+}
+
+.nv-input.is-valid,
+.nv-textarea.is-valid,
+.nv-select.is-valid {
+  border-color: var(--nv-success);
+  box-shadow: inset 0 0 0 1px var(--nv-success);
+}
+
+.nv-checkbox[aria-invalid="true"],
+.nv-radio[aria-invalid="true"],
+.nv-switch[aria-invalid="true"] {
+  border-color: var(--nv-danger);
+  border-width: 2px;
+}
+
+.nv-error,
+.nv-valid {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nv-space-2);
+  margin: var(--nv-space-2) 0 0;
+  font-size: var(--nv-text-sm);
+  line-height: 1.4;
+}
+
+.nv-field > .nv-error,
+.nv-field > .nv-valid {
+  margin: 0;
+}
+
+.nv-error {
+  color: var(--nv-danger);
+}
+
+.nv-valid {
+  color: var(--nv-success-text);
+}
+
+/* The mark before the message. The second `content` gives it an empty text
+   alternative where that syntax is supported, so it is not read aloud. */
+.nv-error::before,
+.nv-valid::before {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.15em;
+  margin-top: 0.1em;
+  font-size: 0.85em;
+  font-weight: 800;
+  line-height: 1;
+  border: 1.5px solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-error::before {
+  content: "!";
+  content: "!" / "";
+}
+
+.nv-valid::before {
+  content: "\2713";
+  content: "\2713" / "";
+}
+
 /* Groups of choices */
 
 .nv-fieldset {

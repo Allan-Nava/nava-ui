@@ -170,6 +170,9 @@ not.
 | `--nv-accent-border` | accent 35% | accent 30% | border of tags, hovered cards |
 | `--nv-accent-text` | `#7be8a6` | `#075527` | text on `accent-soft` |
 | `--nv-on-accent` | `#04170c` | `#ffffff` | text on `accent` |
+| `--nv-danger` | `#ff8a80` | `#a3121a` | error text and the edge of an invalid control |
+| `--nv-danger-soft`, `--nv-danger-border` | red 14%, 45% | red 8%, 35% | background and border of a danger surface |
+| `--nv-success`, `-soft`, `-border`, `-text` | the accent | the accent | aliases of the accent tokens: the kit's green already means "go" |
 | `--nv-glass` | near-black 72% | white 78% | the nav island |
 | `--nv-code-bg`, `--nv-code-fg`, `--nv-code-border` | | | code blocks |
 | `--nv-thumb-bg`, `--nv-thumb-veil` | | | the tile behind third-party images |
@@ -224,6 +227,7 @@ under "Show the HTML".
 | Textarea, select | `nv-textarea`, `nv-select` | the select's arrow is drawn in `currentColor`, so it follows the theme |
 | Checkbox, radio, switch | `nv-checkbox`, `nv-radio`, `nv-switch`, `nv-choice` | classes on the native `<input>`, inside a `nv-choice` label; a switch is a checkbox with `role="switch"` |
 | Group of choices | `nv-fieldset`, `nv-legend` | a `<fieldset>` with its `<legend>` |
+| Validation | `aria-invalid="true"`, `is-valid`, `nv-error`, `nv-valid` | invalid is the ARIA attribute on the control, with the message linked by `aria-describedby`; valid is a class |
 | Pagination | `nv-pagination`, `__btn`, `__page` | hide a missing arrow with `aria-disabled="true"` |
 | Panel | `nv-panel`, `__title`, `__text` | a centred call to action |
 | Footer | `nv-footer`, `__cols`, `__title`, `__name`, `__text`, `__list`, `__link`, `__bottom` | three columns, two on tablets, one on phones |
@@ -305,6 +309,9 @@ the tokens show the one for the theme the button switches to. Both icons are in
   JavaScript.
 - A block that scrolls sideways (a wide `<pre>`, a table in a scrolling wrapper) needs
   `tabindex="0"`, or keyboard users cannot scroll it.
+- Validation is never told by colour alone: an invalid control gets a thicker edge, and its
+  message a mark and the words. The kit styles `aria-invalid`; setting it, and writing a message
+  that says what to do, is the author's part.
 - What the kit cannot do for you: mark the current page (`aria-current="page"`), give filter chips
   `aria-pressed`, give icon-only buttons a label, and write `alt` text.
 

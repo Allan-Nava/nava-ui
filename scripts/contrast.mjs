@@ -74,6 +74,9 @@ const PAIRS = [
   ['--nv-on-accent', '--nv-accent'],
   ['--nv-on-accent', '--nv-accent-hover'],
   ['--nv-code-fg', '--nv-code-bg'],
+  ['--nv-danger', '--nv-bg'],
+  ['--nv-danger', '--nv-surface'],
+  ['--nv-danger', '--nv-danger-soft', '--nv-surface'],
   ['--nv-fg-muted', '--nv-glass', '--nv-bg'],
   ['--nv-fg-strong', '--nv-hover-overlay', '--nv-glass', '--nv-bg'],
   ['--nv-fg', '--nv-overlay-soft', '--nv-bg'],
@@ -88,6 +91,8 @@ const UI_PAIRS = [
   ['--nv-accent', '--nv-bg'],
   ['--nv-accent', '--nv-surface'],
   ['--nv-on-accent', '--nv-accent'],
+  ['--nv-danger', '--nv-bg'],
+  ['--nv-danger', '--nv-surface'],
 ];
 
 const dark = block(':root {');

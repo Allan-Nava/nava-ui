@@ -340,6 +340,34 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </form>
     </div>
 
+    <h3>Validation</h3>
+    <p>An invalid control has <code>aria-invalid="true"</code>, and its message is linked with <code>aria-describedby</code>: the CSS styles the attribute, so what a screen reader announces and what the eye sees cannot disagree. A valid control has the class <code>is-valid</code>. Neither is told by colour alone: the edge gets thicker and the message has a mark and says what to do.</p>
+    <div class="doc-demo" data-demo>
+      <form action="#" novalidate>
+        <div class="nv-field">
+          <label class="nv-label" for="demo-email">Email</label>
+          <input class="nv-input nv-input--box" id="demo-email" type="email" value="allan@example" aria-invalid="true" aria-describedby="demo-email-error">
+          <p class="nv-error" id="demo-email-error">Add the part after the dot, for example .com.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="demo-slug">Address</label>
+          <input class="nv-input nv-input--box is-valid" id="demo-slug" type="text" value="nava-ui" aria-describedby="demo-slug-ok">
+          <p class="nv-valid" id="demo-slug-ok">This address is free.</p>
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="demo-plan">Plan</label>
+          <select class="nv-select" id="demo-plan" aria-invalid="true" aria-describedby="demo-plan-error">
+            <option value="">Choose a plan</option>
+            <option>Free</option>
+            <option>Team</option>
+          </select>
+          <p class="nv-error" id="demo-plan-error">Choose a plan to continue.</p>
+        </div>
+        <label class="nv-choice"><input class="nv-checkbox" type="checkbox" aria-invalid="true" aria-describedby="demo-terms-error"> I accept the terms</label>
+        <p class="nv-error" id="demo-terms-error">Accept the terms to create the project.</p>
+      </form>
+    </div>
+
     <h3>Pagination</h3>
     <p>On the first or last page keep the arrow in the markup with <code>aria-disabled="true"</code>: it is hidden but still takes its space, so the page number stays centred.</p>
     <div class="doc-demo" data-demo>

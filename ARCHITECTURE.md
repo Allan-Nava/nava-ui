@@ -55,7 +55,7 @@ Consequences:
 - Custom properties: `--nv-<group>-<name>` (`--nv-space-4`, `--nv-accent-soft`).
 - Classes: `nv-block`, `nv-block__part`, `nv-block--variant`. States set by script: `is-active`.
   Where an ARIA attribute already says it (`aria-current="page"`, `aria-pressed="true"`,
-  `aria-disabled="true"`), the CSS styles the attribute, so the accessible state and the look
+  `aria-disabled="true"`, `aria-invalid="true"`), the CSS styles the attribute, so the accessible state and the look
   cannot disagree.
 - JavaScript hooks are data attributes (`data-nv-theme-toggle`, `data-nv-spotlight`), never
   classes: styling and behaviour can change independently.

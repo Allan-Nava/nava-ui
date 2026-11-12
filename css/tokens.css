@@ -40,6 +40,11 @@
   --nv-accent-text: #7be8a6; /* text on --nv-accent-soft */
   --nv-on-accent: #04170c;   /* text on --nv-accent */
 
+  /* danger: errors and destructive actions */
+  --nv-danger: #ff8a80;
+  --nv-danger-soft: rgba(248, 81, 73, 0.14);
+  --nv-danger-border: rgba(248, 81, 73, 0.45);
+
   /* glass and overlays: white lightens on dark, black darkens on light */
   --nv-glass: rgba(12, 13, 15, 0.72);
   --nv-glass-strong: rgba(12, 13, 15, 0.82);
@@ -67,6 +72,13 @@
   --nv-icon-moon: none;
 
   /* ---- theme-independent tokens ------------------------------------- */
+
+  /* success is the accent: the kit's green already means "go". The names
+     exist so a component says what it means, and a re-theme can split them. */
+  --nv-success: var(--nv-accent);
+  --nv-success-soft: var(--nv-accent-soft);
+  --nv-success-border: var(--nv-accent-border);
+  --nv-success-text: var(--nv-accent-text);
 
   /* spacing (1rem = 16px) */
   --nv-space-1: 0.25rem;
@@ -143,6 +155,9 @@
     --nv-accent-border: rgba(8, 104, 48, 0.3);
     --nv-accent-text: #075527;
     --nv-on-accent: #ffffff;
+    --nv-danger: #a3121a;
+    --nv-danger-soft: rgba(163, 18, 26, 0.08);
+    --nv-danger-border: rgba(163, 18, 26, 0.35);
     --nv-glass: rgba(255, 255, 255, 0.78);
     --nv-glass-strong: rgba(255, 255, 255, 0.88);
     --nv-overlay-soft: rgba(0, 0, 0, 0.035);
@@ -179,6 +194,9 @@
   --nv-accent-border: rgba(8, 104, 48, 0.3);
   --nv-accent-text: #075527;
   --nv-on-accent: #ffffff;
+  --nv-danger: #a3121a;
+  --nv-danger-soft: rgba(163, 18, 26, 0.08);
+  --nv-danger-border: rgba(163, 18, 26, 0.35);
   --nv-glass: rgba(255, 255, 255, 0.78);
   --nv-glass-strong: rgba(255, 255, 255, 0.88);
   --nv-overlay-soft: rgba(0, 0, 0, 0.035);
