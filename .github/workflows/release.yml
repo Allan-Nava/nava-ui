@@ -1,0 +1,116 @@
+name: release
+
+# A pushed tag vX.Y.Z is a release. This checks that the files at the tag agree
+# with it, builds dist/ and compares it with what is committed, then creates
+# the GitHub release with the changelog section as notes and the dist/ files
+# attached. The CDN serves the tag already: the release is the page people
+# read, and the place the files can be downloaded from.
+#
+# Run it by hand with an existing tag to create or refresh that tag's release.
+# The tooling comes from the commit the workflow runs on; the files checked
+# come from the tag, so an old tag can be released with today's checks.
+#
+# npm: the second job runs only when package.json is not private, which is
+# NV-23's switch. It needs the NPM_TOKEN secret, an automation token of the
+# npm account that owns the package.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag to create or refresh the release for, such as v0.2.0
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+      publish: ${{ steps.check.outputs.publish }}
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - name: Tooling
+        uses: actions/checkout@v4
+        with:
+          path: tools
+      - name: The tagged files
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          path: tagged
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: The tag, VERSION, package.json, the CDN URLs and the changelog agree
+        id: check
+        run: node tools/scripts/release-check.mjs "$TAG" --dir tagged --notes release-notes.md
+
+      - name: dist/ at the tag is what its sources build
+        working-directory: tagged
+        run: |
+          ./scripts/build.sh
+          git diff --exit-code -- dist/
+
+      - name: Create or refresh the GitHub release
+        working-directory: tagged
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.check.outputs.version }}
+        run: |
+          set -euo pipefail
+          # Only the highest version is "latest": releasing an old tag by hand
+          # must not move the badge back.
+          HIGHEST="$(git tag -l 'v*' --sort=-v:refname | head -1)"
+          LATEST=false
+          [ "$TAG" = "$HIGHEST" ] && LATEST=true
+          FILES="dist/nava-ui.css dist/nava-ui.components.css dist/nava-ui.js"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title "nava-ui $VERSION" --notes-file ../release-notes.md --latest="$LATEST"
+            gh release upload "$TAG" $FILES --clobber
+          else
+            gh release create "$TAG" $FILES --verify-tag --title "nava-ui $VERSION" \
+              --notes-file ../release-notes.md --latest="$LATEST"
+          fi
+          echo "Release: $(gh release view "$TAG" --json url --jq .url)" >> "$GITHUB_STEP_SUMMARY"
+
+  npm:
+    needs: release
+    if: needs.release.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: Publish, unless this version is already on npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          VERSION: ${{ needs.release.outputs.version }}
+        run: |
+          NAME="$(node -p "require('./package.json').name")"
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "$NAME@$VERSION is already on npm"
+            exit 0
+          fi
+          npm publish --provenance --access public

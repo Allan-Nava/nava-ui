@@ -1,0 +1,22 @@
+name: release drift
+
+# A bumped VERSION publishes nothing until its tag is pushed. This fails when
+# VERSION has had no matching vX.Y.Z tag for two hours, on every push to main
+# and once a day, so a release left half done is noticed. The check itself is
+# the reusable workflow of backlogsync, shared with the other repositories.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift:
+    uses: Allan-Nava/backlogsync/.github/workflows/release-drift.yml@backlogsync--v0.1.1
+    with:
+      version-file: VERSION
+      tag-prefix: v

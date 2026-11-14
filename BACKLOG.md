@@ -111,16 +111,20 @@ are stable.
 
 - [ ] **NV-23 — npm package**: publish `nava-ui` with `dist/`, `css/` and `fonts/`, an
   `exports` map for the stylesheets and the script, and install instructions next to the CDN
-  ones. <!-- nv: prio=high size=M labels=dist -->
+  ones. The release workflow already has the npm job (NV-26): it runs once `package.json`
+  drops `"private": true`, with an `NPM_TOKEN` secret. <!-- nv: prio=high size=M labels=dist -->
 - [ ] **NV-24 — Minified build**: `dist/nava-ui.min.css` and `.min.js` with their sizes in the
   README; decide between a zero-dependency minifier script and a dev dependency, keeping the
   build reproducible in CI. <!-- nv: prio=med size=S labels=dist -->
 - [ ] **NV-25 — Cascade layers**: wrap tokens, base and components in `@layer nv.tokens,
   nv.base, nv.components`, so any rule of the host page wins without fighting specificity;
   document the consequence for unlayered resets. <!-- nv: prio=med size=M labels=components,dist -->
-- [ ] **NV-26 — Release automation**: on a `v*` tag, check that the tag matches `VERSION`,
+- [x] **NV-26 — Release automation**: on a `v*` tag, check that the tag matches `VERSION`,
   create the GitHub release from the changelog section, and publish to npm; add the
-  release-drift check so a bumped version without a tag is noticed. <!-- nv: prio=med size=M labels=ci,dist -->
+  release-drift check so a bumped version without a tag is noticed. Done: `release.yml` with
+  `scripts/release-check.mjs`, which also checks `package.json`, the CDN URLs and `dist/`;
+  `release-drift.yml` on the backlogsync reusable workflow. The npm job is wired and waits for
+  NV-23. <!-- nv: prio=med size=M labels=ci,dist ver=main -->
 
 ## v0.6.0 — Tokens from one file <!-- ms: phase=later -->
 

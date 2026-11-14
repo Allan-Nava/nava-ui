@@ -391,7 +391,10 @@ Rules for a change:
 2. Components use tokens only: no literal colours, sizes from the spacing and type scales.
 3. Every new class gets a live example in `index.html` (which gives it a screenshot test) and a
    row in the table above. A new text and background pair gets a line in `scripts/contrast.mjs`.
-4. Bump `VERSION`, add an entry to `CHANGELOG.md`, rebuild, tag `vX.Y.Z`: the CDN URL is the tag.
+4. Bump `VERSION`, `package.json` and the CDN URLs, move the changelog entries under the new
+   version, rebuild, run `node scripts/release-check.mjs vX.Y.Z`, then tag `vX.Y.Z` and push the
+   tag: the release workflow creates the GitHub release from the changelog. The CDN URL is the
+   tag.
 
 ## License and credits
 

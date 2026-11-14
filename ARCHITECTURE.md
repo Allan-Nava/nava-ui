@@ -101,6 +101,8 @@ itself. Two things make it more than a manual:
 | No sideways overflow | `tests/visual.spec.mjs` | the page never scrolls horizontally |
 | Accessibility | `tests/a11y.spec.mjs` | axe rules on the whole page; the toggle switches and remembers |
 | Drift from the site | `scripts/site-drift.mjs`, weekly | tokens shared with allan-nava.github.io have the same values |
+| Release agrees with its tag | `scripts/release-check.mjs`, on every `v*` tag | `VERSION`, `package.json`, the CDN URLs and a non-empty changelog section all name the tag; `dist/` at the tag is what its sources build |
+| Version without a tag | `release-drift.yml`, on push and daily | a bumped `VERSION` gets its tag within two hours |
 
 Baselines are generated on the CI runner (`workflow_dispatch` with "update snapshots"), then
 downloaded and committed. Rendering differs between machines, so baselines made locally would

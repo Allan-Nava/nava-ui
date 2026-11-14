@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Release automation: pushing a `vX.Y.Z` tag checks that `VERSION`, `package.json`, the CDN
+  URLs and the changelog agree with it (`scripts/release-check.mjs`), and creates the GitHub
+  release with the changelog section and the `dist/` files; a daily check fails when a bumped
+  `VERSION` has no tag.
 - Form controls: `nv-field`, `nv-input--box`, `nv-textarea`, `nv-select`, `nv-checkbox`,
   `nv-radio`, `nv-switch`, `nv-choice`, `nv-fieldset` and `nv-legend`.
 - New token `--nv-border-control`, the edge of form controls, at 3:1 or better on the page and

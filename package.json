@@ -12,6 +12,7 @@
     "roadmap": "npx --yes backlogsync roadmap",
     "contrast": "node scripts/contrast.mjs",
     "drift": "node scripts/site-drift.mjs",
+    "release-check": "node scripts/release-check.mjs",
     "test": "playwright test",
     "test:update": "playwright test --update-snapshots"
   },

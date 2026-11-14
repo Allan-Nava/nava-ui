@@ -88,12 +88,22 @@ say so and rely on CI.
 
 ## Releases
 
-1. Move the "Unreleased" entries of `CHANGELOG.md` under the new version and date.
+1. Move the "Unreleased" entries of `CHANGELOG.md` under a `## X.Y.Z — YYYY-MM-DD` heading.
 2. Update `VERSION`, the `version` in `package.json`, and the version in the CDN URLs of
    `README.md` and `index.html`.
-3. `./scripts/build.sh`, commit, tag `vX.Y.Z`, push the commit and the tag.
+3. `./scripts/build.sh`, then `node scripts/release-check.mjs vX.Y.Z`: it fails if any of the
+   above disagrees with the tag.
+4. Commit, tag `vX.Y.Z`, push the commit and the tag.
+
+Pushing the tag runs `.github/workflows/release.yml`: the same check on the tagged files,
+`dist/` rebuilt and compared, then the GitHub release with the changelog section as notes and
+the `dist/` files attached. Run it by hand with a `tag` input to create or refresh the release
+of an existing tag. Its npm job runs only once `package.json` is not private (NV-23) and needs
+the `NPM_TOKEN` secret.
 
 The CDN URL contains the tag, so a release is not visible to users until the tag is pushed.
+`release-drift.yml` fails when `VERSION` has had no matching tag for two hours, on push and
+daily.
 
 ## Git
 
