@@ -949,7 +949,8 @@ a.nv-tag:hover {
                           into the page at a few per cent, faint in both themes
      .nv-banner__line     an accent stroke along a ridge; give it pathLength="1"
                           so it can draw itself
-     .nv-banner__sep      a separator dot in the kicker, the lede or the meta
+     .nv-banner__sep      a separator dot in the kicker, the lede or the meta;
+                          keep a space on each side, so the line can wrap
    Motion, only without prefers-reduced-motion: the line draws itself on load,
    the glow breathes, and where scroll-driven animation exists the ridges
    drift at three speeds as the banner leaves the viewport. Without it the
@@ -1028,7 +1029,10 @@ a.nv-tag:hover {
   vector-effect: non-scaling-stroke;
 }
 
+/* min-width: 0, or the grid item takes the width of its longest line and
+   pushes the text out of the banner on a phone. */
 .nv-banner__body {
+  min-width: 0;
   max-width: 62.5rem;
 }
 
@@ -1079,7 +1083,7 @@ a.nv-tag:hover {
 }
 
 .nv-banner__lede .nv-banner__sep {
-  margin: 0 var(--nv-space-2);
+  margin: 0 var(--nv-space-1);
   color: var(--nv-accent);
 }
 

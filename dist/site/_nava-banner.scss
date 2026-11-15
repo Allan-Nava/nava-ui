@@ -73,6 +73,7 @@
 }
 
 .nv-banner__body {
+  min-width: 0;
   max-width: 100rem;
 }
 
@@ -123,7 +124,7 @@
 }
 
 .nv-banner__lede .nv-banner__sep {
-  margin: 0 var(--nv-space-2);
+  margin: 0 var(--nv-space-1);
   color: var(--nv-accent);
 }
 
