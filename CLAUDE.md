@@ -24,7 +24,8 @@ css/tokens.css        custom properties: the only place where values are decided
 css/base.css          element defaults (optional layer)
 css/components.css    every .nv- class
 js/nava-ui.js         optional: theme toggle, card spotlight
-dist/                 built by scripts/build.sh, committed (the CDN serves it from the tag)
+dist/                 built by scripts/build.sh, committed (the CDN serves it from the tag);
+                      tokens.site.scss is the tokens in the site's dialect (scripts/export-site.mjs)
 fonts/                Inter Variable, Latin subset, with its licence
 index.html            documentation page and test fixture
 assets/               logo.svg (the mark), social-preview.html and the .png rendered from it

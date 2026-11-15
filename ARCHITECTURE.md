@@ -125,8 +125,22 @@ The kit was extracted from [allan-nava.github.io](https://github.com/Allan-Nava/
 | Card selector | `.projects > .list > .item > .url` | `.nv-card > .nv-card__link` |
 | Source format | Sass partials, built by Jekyll | plain CSS |
 
-The weekly drift check is the guard until the site consumes the kit's tokens directly, which is
-tracked in [BACKLOG.md](BACKLOG.md) as NV-12 and NV-13.
+`scripts/export-site.mjs` writes the kit's tokens in the site's dialect, `dist/tokens.site.scss`
+(built with the rest of `dist/`, so CI fails when it is stale):
+
+- **Names:** a token that changes with the theme becomes `--color-*` (shadows and the toggle's
+  icons keep `--shadow-*` and `--icon-*`), so does an alias of one, such as `--nv-success`;
+  the others drop the prefix; `--nv-width-wide` becomes `--width-listing`.
+- **Lengths:** every `rem` is multiplied by 1.6, fluid sizes included.
+- **Shape:** mixins, because the site applies each palette in three places: `palette-dark`,
+  `palette-light`, `scale` for the theme-independent tokens, and `nv-aliases`, which points
+  every `--nv-*` name at the site's, so the kit's components can run on the site (NV-37).
+- **What stays in the site:** the 17 syntax-highlighting colours and `--color-inset-line-strong`,
+  which no kit component uses. The site keeps them in its own mixins.
+
+`--check <file or URL>` compares the export with a `tokens.scss` of the site, and the weekly
+drift workflow runs it against the live file: on 2026-11-15 every one of the site's tokens came
+out with the same value. Switching the site over is NV-13.
 
 ## Decisions
 

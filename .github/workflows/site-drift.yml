@@ -19,4 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node scripts/site-drift.mjs
+      - name: Shared tokens have the same values
+        run: node scripts/site-drift.mjs
+      # Stricter: every token the site declares, fluid type sizes and fonts included, must
+      # come out of the export with the same value.
+      - name: The export reproduces the site's tokens
+        run: node scripts/export-site.mjs --check https://raw.githubusercontent.com/Allan-Nava/Allan-Nava.github.io/master/_sass/base/tokens.scss

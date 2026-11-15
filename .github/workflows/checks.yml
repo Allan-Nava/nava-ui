@@ -35,6 +35,9 @@ jobs:
         run: |
           ./scripts/build.sh
           git diff --exit-code -- dist/
+      - run: npm ci
+      - name: The site's token file compiles with Sass
+        run: npx sass --no-source-map --load-path=dist --silence-deprecation=import tests/site-tokens.scss > /dev/null
 
   browser:
     name: screenshots and accessibility

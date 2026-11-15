@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
-    "@playwright/test": "1.65.0"
+    "@playwright/test": "1.65.0",
+    "sass": "^1.108.2"
   }
 }

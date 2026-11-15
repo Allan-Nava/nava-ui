@@ -1,0 +1,24 @@
+// Compiles dist/tokens.site.scss the way allan-nava.github.io includes it, so an export the
+// site's Sass could not build fails here first. Run by the "contrast and build" CI job:
+//   npx sass --no-source-map --load-path=dist --silence-deprecation=import tests/site-tokens.scss
+@import "tokens.site";
+
+:root {
+	@include palette-dark;
+	@include scale;
+	@include nv-aliases;
+}
+
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme="dark"]) {
+		@include palette-light;
+	}
+}
+
+:root[data-theme="light"] {
+	@include palette-light;
+}
+
+:root[data-theme="dark"] {
+	@include palette-dark;
+}

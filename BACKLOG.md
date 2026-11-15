@@ -58,12 +58,14 @@ kit, so the copy cannot age. To start once the kit is stable.
 - [x] **NV-11 — Detect drift from the site**: `scripts/site-drift.mjs` reads the site's
   `_sass/base/tokens.scss` and compares every shared token, lengths in pixels; a weekly
   workflow fails on drift. First run: none; 18 tokens exist in the site only. <!-- nv: prio=high size=S labels=site,ci ver=0.2.0 -->
-- [ ] **NV-12 — Token file in the site's dialect**: `scripts/export-site.mjs` writes
+- [x] **NV-12 — Token file in the site's dialect**: `scripts/export-site.mjs` writes
   `dist/tokens.site.scss` from `css/tokens.css` with the site's names (`--color-bg`,
   `--space-4`, `--width-listing`), lengths in its 10 px rem, and the palettes as the two Sass
   mixins it already includes. Done when the drift script reports nothing on the generated
   file and the site-only tokens (syntax highlighting, `--color-inset-line-strong`) have a
-  decided home. <!-- nv: prio=high size=M labels=site,tokens -->
+  decided home. Done: the export reproduces every token of the site's current file with the
+  same value (`--check`, also run weekly against the live file); it also emits `nv-aliases`
+  for NV-37; the 18 site-only tokens stay in the site, in its own mixins. <!-- nv: prio=high size=M labels=site,tokens ver=main -->
 - [ ] **NV-13 — The site reads its tokens from the kit**: vendor the generated file into the
   site as `_sass/base/tokens.scss` with a sync script pinned to a kit tag, and a check in the
   site's CI that fails when the vendored file differs from the pin. The change is in the

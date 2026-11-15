@@ -23,5 +23,8 @@ mkdir -p dist
   cat js/nava-ui.js
 } > dist/nava-ui.js
 
+# The tokens in the dialect of allan-nava.github.io (Sass mixins, 10 px rem).
+node scripts/export-site.mjs
+
 echo "dist/ built for v${version}"
 wc -c dist/*
