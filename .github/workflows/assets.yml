@@ -4,6 +4,12 @@ name: assets
 # Playwright image as the tests, and uploads them as the "assets" artifact. Download it and
 # commit the files: gh run download <run-id> -n assets -D assets
 on:
+  # On any branch, when a source changes: the artifact is ready before the change is merged.
+  push:
+    paths:
+      - assets/*.html
+      - assets/logo.svg
+      - scripts/render-assets.mjs
   workflow_dispatch:
 
 permissions:
