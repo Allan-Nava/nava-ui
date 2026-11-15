@@ -89,7 +89,9 @@ itself. Two things make it more than a manual:
 - An element with `data-demo` is a live example. A script prints its HTML under it, read from
   the DOM, so the code shown is the code running.
 - `tests/visual.spec.mjs` screenshots every `data-demo` element, named after the `<h3>` above
-  it. Adding an example adds a test.
+  it. Adding an example adds a test. Each example is screenshotted
+  alone, with the rest of the page hidden, so adding an example does not move the others by a
+  fraction of a pixel and change baselines nobody touched.
 
 ## Checks
 
