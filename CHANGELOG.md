@@ -3,7 +3,7 @@
 ## Unreleased
 
 - Badges (`nv-badge`) in a neutral and three toned variants, with an optional dot.
-- Marked pills and legends (`nv-pill`, `nv-mark`, `nv-legend`): a kind told by the shape of the
+- Marked pills and legends (`nv-pill`, `nv-mark`, `nv-pills--legend`): a kind told by the shape of the
   mark, the pill's border and words, never by colour alone; first built for the site's
   `/stack/` page.
 - Release automation: pushing a `vX.Y.Z` tag checks that `VERSION`, `package.json`, the CDN

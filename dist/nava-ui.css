@@ -986,12 +986,13 @@ a.nv-tag:hover {
   margin: 0;
 }
 
-/* The legend is a list of pills at the small size, above what it explains */
-.nv-legend {
+/* The legend is a list of pills at the small size, above what it explains.
+   Not .nv-legend: that is the <legend> of a fieldset. */
+.nv-pills--legend {
   margin-bottom: var(--nv-space-4);
 }
 
-.nv-legend .nv-pill {
+.nv-pills--legend .nv-pill {
   font-size: var(--nv-text-xs);
 }
 

@@ -218,7 +218,7 @@ under "Show the HTML".
 | Chip | `nv-chip`, `nv-chip__count`, `nv-chips` | a link to a topic, with an optional count |
 | Filter chip | `nv-chip nv-chip--filter` | a `<button>` with `aria-pressed`, or `.is-active` |
 | Badge | `nv-badge`, `nv-badge--accent`, `--warning`, `--danger`, `--dot` | a short status label; the words carry the state, never a dot alone |
-| Marked pill | `nv-pill`, `nv-pill--accent`, `--dashed`, `nv-mark`, `nv-mark--dot`, `--diamond`, `nv-pills`, `nv-legend` | for items that each have a kind: shape of the mark, border of the pill and words; marks are borders, so they show in forced colours |
+| Marked pill | `nv-pill`, `nv-pill--accent`, `--dashed`, `nv-mark`, `nv-mark--dot`, `--diamond`, `nv-pills`, `nv-pills--legend` | for items that each have a kind: shape of the mark, border of the pill and words; marks are borders, so they show in forced colours |
 | Card list | `nv-list`, `nv-list--two` | one column; two from 860 px |
 | Card | `nv-card`, `nv-card__link`, `__thumb`, `__body`, `__title`, `__excerpt`, `__meta`, `__meta-tag` | the whole card is one link |
 | Thumbnail variants | `nv-card__thumb--square`, `nv-card__thumb--contain` | square for vertical sources; `contain` on a tile for logos and screenshots you do not control |
