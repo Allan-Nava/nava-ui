@@ -2,6 +2,9 @@
 // site's Sass could not build fails here first. Run by the "contrast and build" CI job:
 //   npx sass --no-source-map --load-path=dist --silence-deprecation=import tests/site-tokens.scss
 @import "tokens.site";
+@import "site/nava-bento";
+@import "site/nava-marks-pills-and-legends";
+@import "site/nava-badge";
 
 :root {
 	@include palette-dark;

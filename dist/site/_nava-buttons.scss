@@ -1,0 +1,59 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Buttons") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-3);
+}
+
+.nv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  padding: var(--nv-space-3) var(--nv-space-5);
+  font-family: inherit;
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease),
+    transform var(--nv-dur) var(--nv-ease-out);
+}
+
+.nv-button:hover,
+.nv-button:focus-visible {
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+  transform: translateY(-1px);
+}
+
+.nv-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.nv-button--primary {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-button--primary:hover,
+.nv-button--primary:focus-visible {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent-hover);
+  border-color: var(--nv-accent-hover);
+}
+
+.nv-button[disabled],
+.nv-button[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}

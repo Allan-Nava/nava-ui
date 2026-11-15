@@ -138,6 +138,13 @@ The kit was extracted from [allan-nava.github.io](https://github.com/Allan-Nava/
 - **What stays in the site:** the 17 syntax-highlighting colours and `--color-inset-line-strong`,
   which no kit component uses. The site keeps them in its own mixins.
 
+The same script writes `dist/site/_nava-<section>.scss`, one partial per section of
+`css/components.css` (the section is a header comment: a line of dashes, then the title), with
+every `rem` × 1.6 and the block comments removed, because the site inlines its CSS in every
+page and Sass emits `/* */` comments. The rules keep reading `--nv-*`, which the site provides
+with `nv-aliases`. A literal `rem` in a component is therefore safe, but a component that reads a
+site token directly would not be: components read `--nv-*` only.
+
 `--check <file or URL>` compares the export with a `tokens.scss` of the site, and the weekly
 drift workflow runs it against the live file: on 2026-11-15 every one of the site's tokens came
 out with the same value. Switching the site over is NV-13.

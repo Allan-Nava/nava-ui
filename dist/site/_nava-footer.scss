@@ -1,0 +1,89 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Footer") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-footer {
+  margin: var(--nv-space-9) 0 0;
+  padding: var(--nv-space-7) 0 var(--nv-space-6);
+  font-size: var(--nv-text-sm);
+  color: var(--nv-fg-muted);
+  border-top: 1px solid var(--nv-border);
+}
+
+.nv-footer__cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--nv-space-6);
+}
+
+.nv-footer__title {
+  margin: 0 0 var(--nv-space-3);
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-footer__name {
+  margin: 0 0 var(--nv-space-2);
+  font-weight: 600;
+  color: var(--nv-fg-strong);
+}
+
+.nv-footer__text {
+  max-width: 34ch;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.nv-footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-footer__list > li {
+  margin-bottom: var(--nv-space-2);
+  line-height: 1.4;
+}
+
+.nv-footer__link {
+  color: var(--nv-fg);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-footer__link:hover {
+  color: var(--nv-accent);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--nv-space-2);
+  margin-top: var(--nv-space-7);
+  padding-top: var(--nv-space-4);
+  font-size: var(--nv-text-xs);
+  border-top: 1px solid var(--nv-border);
+}
+
+.nv-footer__bottom p {
+  margin: 0;
+}
+
+@media (max-width: 780px) {
+  .nv-footer__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nv-space-5);
+  }
+}
+
+@media (max-width: 560px) {
+  .nv-footer__cols {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,20 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Reduced motion: no lift, no press") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+@media (prefers-reduced-motion: reduce) {
+  .nv-card,
+  .nv-card:hover,
+  .nv-button,
+  .nv-button:hover,
+  .nv-button:active {
+    transform: none;
+    transition-duration: 0.001ms;
+  }
+
+  .nv-checkbox::before,
+  .nv-radio::before,
+  .nv-switch::before {
+    transition-duration: 0.001ms;
+  }
+}

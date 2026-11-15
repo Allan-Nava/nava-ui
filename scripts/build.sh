@@ -27,4 +27,4 @@ mkdir -p dist
 node scripts/export-site.mjs
 
 echo "dist/ built for v${version}"
-wc -c dist/*
+wc -c dist/*.css dist/*.js dist/*.scss

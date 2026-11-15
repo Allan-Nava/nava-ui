@@ -66,10 +66,13 @@ kit, so the copy cannot age. To start once the kit is stable.
   decided home. Done: the export reproduces every token of the site's current file with the
   same value (`--check`, also run weekly against the live file); it also emits `nv-aliases`
   for NV-37; the 18 site-only tokens stay in the site, in its own mixins. <!-- nv: prio=high size=M labels=site,tokens ver=main -->
-- [ ] **NV-13 — The site reads its tokens from the kit**: vendor the generated file into the
+- [x] **NV-13 — The site reads its tokens from the kit**: vendor the generated file into the
   site as `_sass/base/tokens.scss` with a sync script pinned to a kit tag, and a check in the
   site's CI that fails when the vendored file differs from the pin. The change is in the
-  site's repository, which has its own rules. Needs NV-12. <!-- nv: prio=high size=M labels=site -->
+  site's repository, which has its own rules. Needs NV-12.
+  Done on 2026-11-15: the site pins v0.3.0 with `scripts/sync_nava_ui.sh`, its `checks.yml` fails
+  on a modified copy, and its compiled tokens came out unchanged; checks, deploy and Lighthouse
+  green. The weekly drift check here stands down. <!-- nv: prio=high size=M labels=site ver=0.3.0 -->
 - [ ] **NV-14 — Port the fixes back to the site**: the bar list of the stats page has rows
   with their own grid, so bars start at different points (the kit uses `subgrid`); and
   `.brand-name` is `display: none` on phones, harmless only if the avatar has an `alt`. Check

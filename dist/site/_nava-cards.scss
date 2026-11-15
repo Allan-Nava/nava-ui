@@ -1,0 +1,227 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Cards") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-list {
+  display: grid;
+  
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--nv-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 860px) {
+  .nv-list--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.nv-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease),
+    transform var(--nv-dur) var(--nv-ease-out);
+}
+
+@media (hover: hover) {
+  .nv-card:hover {
+    background: var(--nv-surface-hover);
+    border-color: var(--nv-accent-border);
+    transform: translateY(-2px);
+  }
+
+  .nv-card:hover .nv-card__title {
+    color: var(--nv-accent);
+  }
+}
+
+.nv-card:active {
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-card__link {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--nv-space-4);
+  padding: var(--nv-space-4);
+  text-decoration: none;
+  color: inherit;
+  border-radius: calc(var(--nv-radius-lg) - 1px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nv-card__link:hover {
+  color: inherit;
+}
+
+.nv-card__thumb {
+  flex: 0 0 116px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--nv-radius-md);
+  background: var(--nv-bg);
+}
+
+.nv-card__thumb > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.nv-card__thumb--square {
+  flex-basis: 92px;
+  aspect-ratio: 1 / 1;
+}
+
+.nv-card__thumb--contain {
+  position: relative;
+  background: var(--nv-thumb-bg);
+  box-shadow: inset 0 0 0 1px var(--nv-inset-line);
+}
+
+.nv-card__thumb--contain > img {
+  object-fit: contain;
+  padding: var(--nv-space-2);
+}
+
+.nv-card__thumb--contain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--nv-thumb-veil);
+  pointer-events: none;
+}
+
+.nv-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-space-2);
+  min-width: 0;
+}
+
+.nv-card__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 600;
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+  overflow-wrap: anywhere;
+  transition: color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  font-size: var(--nv-text-sm);
+  line-height: 1.5;
+  color: var(--nv-fg-muted);
+}
+
+.nv-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nv-space-1) var(--nv-space-2);
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-card__meta-tag {
+  color: var(--nv-accent-text);
+}
+
+@media (max-width: 560px) {
+  .nv-list {
+    gap: var(--nv-space-2);
+  }
+
+  .nv-card__link {
+    gap: var(--nv-space-3);
+    padding: var(--nv-space-3);
+  }
+
+  .nv-card__thumb {
+    flex-basis: clamp(100px, 30vw, 132px);
+  }
+
+  .nv-card__body {
+    gap: var(--nv-space-1);
+  }
+
+  .nv-card__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: var(--nv-text-base);
+  }
+}
+
+.nv-ph {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--nv-ph-a, #0b3d2e), var(--nv-ph-b, #10cf53));
+}
+
+.nv-ph > span {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.nv-ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.16), transparent 55%);
+}
+
+.nv-ph-0 { --nv-ph-a: #0b3d2e; --nv-ph-b: #10cf53; }
+.nv-ph-1 { --nv-ph-a: #0b2f3d; --nv-ph-b: #1e88a8; }
+.nv-ph-2 { --nv-ph-a: #221b3d; --nv-ph-b: #6b4fd8; }
+.nv-ph-3 { --nv-ph-a: #3d1b2b; --nv-ph-b: #c2456e; }
+.nv-ph-4 { --nv-ph-a: #3d2f0b; --nv-ph-b: #c99213; }
+.nv-ph-5 { --nv-ph-a: #12303d; --nv-ph-b: #2fa8a0; }
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  [data-nv-spotlight] .nv-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--nv-dur) var(--nv-ease);
+    background: radial-gradient(
+      220px circle at var(--nv-mx, 50%) var(--nv-my, 50%),
+      var(--nv-accent-soft),
+      transparent 70%
+    );
+  }
+
+  [data-nv-spotlight] .nv-card:hover::after {
+    opacity: 1;
+  }
+}

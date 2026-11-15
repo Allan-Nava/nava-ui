@@ -1,0 +1,50 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Badge") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-badge {
+  --nv-tone: var(--nv-fg-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 2px 8px;
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--nv-tone);
+  background: transparent;
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-badge--accent {
+  --nv-tone: var(--nv-accent-text);
+  background: var(--nv-accent-soft);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-badge--warning {
+  --nv-tone: var(--nv-warning);
+  background: var(--nv-warning-soft);
+  border-color: var(--nv-warning-border);
+}
+
+.nv-badge--danger {
+  --nv-tone: var(--nv-danger);
+  background: var(--nv-danger-soft);
+  border-color: var(--nv-danger-border);
+}
+
+.nv-badge--dot::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.5em;
+  height: 0.5em;
+  box-sizing: border-box;
+  border: 0.25em solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}

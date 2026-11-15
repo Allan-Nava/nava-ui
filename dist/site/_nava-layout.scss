@@ -1,0 +1,50 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Layout") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-wrap {
+  width: 92%;
+  max-width: var(--nv-width-normal);
+  margin-inline: auto;
+}
+
+.nv-wrap--large {
+  max-width: var(--nv-width-large);
+}
+
+.nv-wrap--wide {
+  max-width: var(--nv-width-wide);
+}
+
+@media (max-width: 1050px) {
+  .nv-wrap {
+    width: 88%;
+  }
+}
+
+.nv-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: var(--nv-space-2) var(--nv-space-4);
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-radius: 0 0 var(--nv-radius-sm) 0;
+}
+
+.nv-skip-link:focus {
+  left: 0;
+  color: var(--nv-on-accent);
+}
+
+.nv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

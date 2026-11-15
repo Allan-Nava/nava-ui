@@ -1,0 +1,47 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Pagination") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nv-space-3);
+  margin: var(--nv-space-7) auto 0;
+  
+  grid-column: 1 / -1;
+}
+
+.nv-pagination__page {
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}
+
+.nv-pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: var(--nv-text-lg);
+  line-height: 1;
+  text-decoration: none;
+  color: var(--nv-fg);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  transition: background var(--nv-dur) var(--nv-ease), border-color var(--nv-dur) var(--nv-ease),
+    color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-pagination__btn:hover {
+  color: var(--nv-accent);
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-pagination__btn[aria-disabled="true"] {
+  visibility: hidden;
+}

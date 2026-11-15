@@ -1,0 +1,31 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Stats") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-6);
+  margin: 0;
+}
+
+.nv-stat {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.nv-stat__value {
+  margin: 0;
+  font-size: var(--nv-text-xl);
+  font-weight: 800;
+  letter-spacing: var(--nv-tracking-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-strong);
+}
+
+.nv-stat__label {
+  font-size: var(--nv-text-xs);
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-fg-muted);
+}

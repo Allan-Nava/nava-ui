@@ -1,0 +1,30 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Panel") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-panel {
+  margin: var(--nv-space-9) 0 0;
+  padding: var(--nv-space-7) var(--nv-space-6);
+  text-align: center;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+}
+
+.nv-panel__title {
+  margin: 0 0 var(--nv-space-3);
+  font-size: var(--nv-text-2xl);
+  font-weight: 800;
+  letter-spacing: var(--nv-tracking-tight);
+  color: var(--nv-fg-strong);
+}
+
+.nv-panel__text {
+  max-width: 46ch;
+  margin: 0 auto var(--nv-space-5);
+  color: var(--nv-fg-muted);
+}
+
+.nv-panel .nv-actions {
+  justify-content: center;
+}

@@ -1,0 +1,103 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Alert") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-alert,
+.nv-toast {
+  --nv-tone: var(--nv-info);
+  --nv-tone-soft: var(--nv-info-soft);
+  --nv-tone-border: var(--nv-info-border);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--nv-space-3);
+  padding: var(--nv-space-3) var(--nv-space-4);
+  font-size: var(--nv-text-sm);
+  line-height: 1.5;
+  color: var(--nv-fg);
+  border: 1px solid var(--nv-tone-border);
+  border-radius: var(--nv-radius-md);
+}
+
+.nv-alert {
+  margin: 0 0 var(--nv-space-4);
+  background: var(--nv-tone-soft);
+}
+
+.nv-alert--success,
+.nv-toast--success {
+  --nv-tone: var(--nv-success-text);
+  --nv-tone-soft: var(--nv-success-soft);
+  --nv-tone-border: var(--nv-success-border);
+}
+
+.nv-alert--warning,
+.nv-toast--warning {
+  --nv-tone: var(--nv-warning);
+  --nv-tone-soft: var(--nv-warning-soft);
+  --nv-tone-border: var(--nv-warning-border);
+}
+
+.nv-alert--danger,
+.nv-toast--danger {
+  --nv-tone: var(--nv-danger);
+  --nv-tone-soft: var(--nv-danger-soft);
+  --nv-tone-border: var(--nv-danger-border);
+}
+
+.nv-alert__icon {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.08rem;
+  font-size: var(--nv-text-xs);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--nv-tone);
+  border: 1.5px solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-alert__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.nv-alert__body > :last-child {
+  margin-bottom: 0;
+}
+
+.nv-alert__title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--nv-fg-strong);
+}
+
+.nv-alert__text {
+  margin: 0;
+}
+
+.nv-alert__close {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: -0.16rem calc(var(--nv-space-2) * -1) 0 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--nv-text-lg);
+  line-height: 1;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-alert__close:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+}

@@ -21,6 +21,12 @@
 //                                       components work on the site without a second set
 //                                       of values (NV-37)
 //
+// Components, one Sass partial per section of css/components.css, in dist/site/:
+//   dist/site/_nava-<section>.scss      e.g. _nava-bento.scss, _nava-marks-pills-and-legends.scss
+// The rules are the kit's, with every rem × 1.6; they keep reading --nv-* tokens, which
+// the site gets from the nv-aliases mixin. A site imports only the parts it uses, because
+// its CSS is inlined in every page.
+//
 // What stays in the site: tokens the kit has no component for, today the 17 syntax
 // highlighting colours (--syn-*) and --color-inset-line-strong. The site keeps them in
 // its own mixins, included next to these.
@@ -114,6 +120,31 @@ mkdirSync(new URL('dist/', root), { recursive: true });
 const target = new URL('dist/tokens.site.scss', root);
 writeFileSync(target, out);
 console.log(`dist/tokens.site.scss: ${palette(dark).length} themed tokens, ${scale.length} scale tokens, ${aliases.length} aliases`);
+
+// --- components: one partial per section ------------------------------------
+// A section starts at a header comment: a line of dashes, then the title on the next line.
+// The slug is the title up to its first dash or colon: "Bento — tiles of …" -> bento.
+const components = readFileSync(new URL('css/components.css', root), 'utf8');
+const header = /\/\* -{20,}\n\s+([^\n]+)/g;
+const starts = [...components.matchAll(header)].map((m) => ({ index: m.index, title: m[1] }));
+// Block comments go: the site inlines its CSS in every page, and a `/* */` comment in Sass
+// is emitted into it (a `//` one is not). The source with its comments is css/components.css.
+const noBlockComments = (text) => text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n{3,}/g, '\n\n');
+const remOnly = (text) => text.replace(/(-?\d*\.?\d+)rem\b/g, (_, n) => `${round(parseFloat(n) * 1.6)}rem`);
+const partsDir = new URL('dist/site/', root);
+mkdirSync(partsDir, { recursive: true });
+const parts = [];
+starts.forEach((start, k) => {
+  const end = k + 1 < starts.length ? starts[k + 1].index : components.length;
+  const slug = start.title.split(/\s+—\s+|:/)[0].toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const file = `_nava-${slug}.scss`;
+  const text = `// GENERATED from nava-ui v${version} (css/components.css, "${start.title.split(/\s+—\s+/)[0]}") by scripts/export-site.mjs.\n` +
+    `// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.\n// Comments are in the source, css/components.css.\n\n` +
+    remOnly(noBlockComments(components.slice(start.index, end))).trim() + '\n';
+  writeFileSync(new URL(file, partsDir), text);
+  parts.push(file);
+});
+console.log(`dist/site/: ${parts.length} component partials (${parts.join(', ')})`);
 
 // --check: every token the site declares must come out of the export with the same value
 const i = process.argv.indexOf('--check');

@@ -1,0 +1,165 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Nav") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-nav {
+  position: sticky;
+  top: var(--nv-space-3);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.nv-nav__inner {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  max-width: min(94vw, var(--nv-width-large));
+  padding: 5px;
+  background: var(--nv-glass);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  box-shadow: 0 1px 0 var(--nv-inset-line) inset;
+}
+
+.nv-nav__brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  padding: 0 var(--nv-space-2) 0 3px;
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-tight);
+  text-decoration: none;
+  color: var(--nv-fg-strong);
+}
+
+.nv-nav__brand:hover {
+  color: var(--nv-fg-strong);
+}
+
+.nv-nav__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--nv-radius-pill);
+  border: 1px solid var(--nv-border-strong);
+  transition: border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-nav__brand:hover .nv-nav__avatar {
+  border-color: var(--nv-accent);
+}
+
+.nv-nav__links {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 0 var(--nv-space-2);
+  list-style: none;
+  border-left: 1px solid var(--nv-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nv-nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.nv-nav__links > li {
+  margin: 0;
+  line-height: 1;
+}
+
+.nv-nav__link {
+  display: inline-block;
+  padding: 7px 13px;
+  font-size: var(--nv-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--nv-fg-muted);
+  border-radius: var(--nv-radius-pill);
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-nav__link:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+}
+
+.nv-nav__link.is-active,
+.nv-nav__link[aria-current="page"] {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+}
+
+.nv-nav__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  appearance: none;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-nav__icon:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+  border-color: var(--nv-border);
+}
+
+.nv-nav__icon svg {
+  width: 17px;
+  height: 17px;
+  pointer-events: none;
+}
+
+.nv-icon-sun {
+  display: var(--nv-icon-sun);
+}
+
+.nv-icon-moon {
+  display: var(--nv-icon-moon);
+}
+
+@media (max-width: 560px) {
+  .nv-nav__inner {
+    width: 94vw;
+    gap: var(--nv-space-1);
+  }
+
+  
+  .nv-nav__name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .nv-nav__links {
+    padding-left: var(--nv-space-1);
+  }
+
+  .nv-nav__link {
+    padding: 7px 11px;
+  }
+}

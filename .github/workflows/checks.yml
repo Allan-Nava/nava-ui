@@ -34,7 +34,8 @@ jobs:
       - name: dist/ is in sync with css/ and js/
         run: |
           ./scripts/build.sh
-          git diff --exit-code -- dist/
+          # status, not diff: a new generated file is untracked, and diff would not see it
+          test -z "$(git status --porcelain -- dist/)" || { git status --short -- dist/; exit 1; }
       - run: npm ci
       - name: The site's token file compiles with Sass
         run: npx sass --no-source-map --load-path=dist --silence-deprecation=import tests/site-tokens.scss > /dev/null

@@ -1,0 +1,90 @@
+// GENERATED from nava-ui v0.3.0 (css/components.css, "Chips") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  text-decoration: none;
+  color: var(--nv-accent-text);
+  background: var(--nv-accent-soft);
+  border: 1px solid var(--nv-accent-border);
+  border-radius: var(--nv-radius-pill);
+  transition: background var(--nv-dur) var(--nv-ease), color var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+a.nv-tag:hover {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  padding: 6px 13px;
+  font-family: inherit;
+  font-size: var(--nv-text-sm);
+  line-height: 1.4;
+  text-decoration: none;
+  color: var(--nv-fg);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-chip:hover {
+  color: var(--nv-accent);
+  background: var(--nv-surface-hover);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-chip__count {
+  font-size: var(--nv-text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-muted);
+}
+
+.nv-chip--filter {
+  padding: 5px 12px;
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.03em;
+  color: var(--nv-fg-muted);
+  cursor: pointer;
+}
+
+.nv-chip--filter:hover {
+  color: var(--nv-fg-strong);
+  background: var(--nv-surface);
+  border-color: var(--nv-border-strong);
+}
+
+.nv-chip--filter.is-active,
+.nv-chip--filter[aria-pressed="true"] {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+.nv-chip--filter.is-active .nv-chip__count,
+.nv-chip--filter[aria-pressed="true"] .nv-chip__count {
+  color: var(--nv-on-accent);
+}
