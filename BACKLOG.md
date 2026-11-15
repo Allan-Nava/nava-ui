@@ -99,10 +99,17 @@ accessibility rules green.
   tokens, with header, body and actions; no focus-trap code, the element provides it. <!-- nv: prio=med size=M labels=components,a11y -->
 - [ ] **NV-20 — Tabs**: a tab list in the look of the nav links, with the ARIA tab pattern
   and arrow-key movement in the optional script. <!-- nv: prio=med size=M labels=components,a11y -->
-- [ ] **NV-21 — Badges**: a small status label in neutral, accent, warning and danger, and a
-  dot variant, with a text alternative so the state is not told by colour alone. <!-- nv: prio=low size=S labels=components -->
+- [ ] **NV-21 — Badges and marked chips**: a small status label in neutral, accent, warning and
+  danger, and a dot variant, with a text alternative so the state is not told by colour alone.
+  Also the chip with a mark that changes shape, and its legend, built first in the site's
+  `/stack/` page: a filled dot, a ring and a diamond, a solid, neutral or dashed border, and
+  the words for screen readers. <!-- nv: prio=med size=M labels=components,a11y -->
 - [ ] **NV-22 — Data table**: a table wrapper that scrolls with keyboard access, row hover on
   `--nv-row-hover`, a sticky header, numeric columns with tabular figures, a selected row. <!-- nv: prio=med size=M labels=components,a11y -->
+- [ ] **NV-35 — Bento grid**: tiles of different sizes in one grid, as in the "What I work
+  with" section of the site: one column on phones, two on tablets, a named-area layout on
+  desktop with a fallback to auto placement for a tile without an area, and a highlighted
+  tile with a soft wash of the accent. <!-- nv: prio=med size=M labels=components -->
 
 ## v0.5.0 — Distribution <!-- ms: phase=later -->
 
