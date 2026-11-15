@@ -150,10 +150,11 @@ are stable.
 
 ## v0.7.0 — Documentation and examples <!-- ms: phase=later -->
 
-- [ ] **NV-36 — Logo and social preview**: a mark in the family of the other projects (green
+- [x] **NV-36 — Logo and social preview**: a mark in the family of the other projects (green
   on near-black, rounded square), used as the favicon and in the nav of the documentation
   page and at the top of the README; and a 1280×640 social preview rendered from an HTML
-  source, for the repository settings and the page's `og:image`. <!-- nv: prio=med size=S labels=docs -->
+  source, for the repository settings and the page's `og:image`. Done: three tiles of a bento
+  grid; the preview is rendered by the `assets` workflow, in the Playwright image. <!-- nv: prio=med size=S labels=docs ver=main -->
 
 - [ ] **NV-30 — Page templates**: three complete pages built only with the kit (a landing, a
   listing with filters, an application screen with a form and a table), linked from the

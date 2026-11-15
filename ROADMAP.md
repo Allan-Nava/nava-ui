@@ -4,7 +4,7 @@
 
 > This page is **generated** from [BACKLOG.md](BACKLOG.md), the single source of truth for planned work. Regenerate it with `npx backlogsync roadmap` after editing the backlog — CI fails when the two disagree.
 
-**37 items · 18 shipped · 19 open · 7 milestones.**
+**37 items · 19 shipped · 18 open · 7 milestones.**
 
 ## At a glance
 
@@ -16,7 +16,7 @@
 | **v0.4.0 — Components for applications** | next | `######....` 56% | 4 | 5 |
 | **v0.5.0 — Distribution** | later | `###.......` 25% | 3 | 1 |
 | **v0.6.0 — Tokens from one file** | later | `..........` 0% | 2 | 0 |
-| **v0.7.0 — Documentation and examples** | later | `..........` 0% | 6 | 0 |
+| **v0.7.0 — Documentation and examples** | later | `##........` 17% | 5 | 1 |
 
 ## v0.1.0 — The site's look, extracted
 
@@ -69,7 +69,7 @@
 
 ## v0.7.0 — Documentation and examples
 
-- [ ] **NV-36** — Logo and social preview · med · S · docs
+- [x] **NV-36** — Logo and social preview · med · S · docs · `main`
 - [ ] **NV-30** — Page templates · med · L · docs, components
 - [ ] **NV-31** — Copy button on code · low · S · docs
 - [ ] **NV-32** — Usage rules per component · med · M · docs, a11y
