@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.4.0 — 2026-11-15
+
+The components as Sass partials for allan-nava.github.io, so the site can use them directly.
+
 - `dist/site/_nava-*.scss`: every component section as a Sass partial for allan-nava.github.io,
   with its 10 px rem and no comments, so the site can import the components it uses.
 - The `dist/` check in CI also fails on a generated file that was never committed.
