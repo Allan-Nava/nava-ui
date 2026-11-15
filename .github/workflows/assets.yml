@@ -10,6 +10,7 @@ on:
       - assets/*.html
       - assets/logo.svg
       - scripts/render-assets.mjs
+      - .github/workflows/assets.yml
   workflow_dispatch:
 
 permissions:
