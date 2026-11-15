@@ -4,7 +4,7 @@
 
 > This page is **generated** from [BACKLOG.md](BACKLOG.md), the single source of truth for planned work. Regenerate it with `npx backlogsync roadmap` after editing the backlog — CI fails when the two disagree.
 
-**37 items · 21 shipped · 16 open · 7 milestones.**
+**38 items · 23 shipped · 15 open · 7 milestones.**
 
 ## At a glance
 
@@ -12,8 +12,8 @@
 |---|---|---|---|---|
 | **v0.1.0 — The site's look, extracted** | shipped | `##########` 100% | 0 | 5 |
 | **v0.2.0 — Quality gate** | shipped | `##########` 100% | 0 | 6 |
-| **v0.3.0 — One source of truth with the site** | next | `######....` 60% | 2 | 3 |
-| **v0.4.0 — Components for applications** | next | `######....` 56% | 4 | 5 |
+| **v0.3.0 — One source of truth with the site** | next | `########..` 80% | 1 | 4 |
+| **v0.4.0 — Components for applications** | next | `######....` 60% | 4 | 6 |
 | **v0.5.0 — Distribution** | later | `###.......` 25% | 3 | 1 |
 | **v0.6.0 — Tokens from one file** | later | `..........` 0% | 2 | 0 |
 | **v0.7.0 — Documentation and examples** | later | `##........` 17% | 5 | 1 |
@@ -41,7 +41,7 @@
 - [x] **NV-12** — Token file in the site's dialect · high · M · site, tokens · `main`
 - [x] **NV-13** — The site reads its tokens from the kit · high · M · site · `0.3.0`
 - [ ] **NV-14** — Port the fixes back to the site · med · S · site, a11y
-- [ ] **NV-37** — The site's Stack section on the kit · med · M · site, components
+- [x] **NV-37** — The site's Stack section on the kit · med · M · site, components · `0.4.0`
 
 ## v0.4.0 — Components for applications
 
@@ -54,6 +54,7 @@
 - [x] **NV-21** — Badges and marked chips · med · M · components, a11y · `main`
 - [ ] **NV-22** — Data table · med · M · components, a11y
 - [x] **NV-35** — Bento grid · med · M · components · `main`
+- [x] **NV-38** — Banner · med · M · components, site · `main`
 
 ## v0.5.0 — Distribution
 

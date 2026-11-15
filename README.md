@@ -229,6 +229,7 @@ under "Show the HTML".
 | Placeholder | `nv-ph`, `nv-ph-0` … `nv-ph-5` | a monogram on a gradient, for cards without an image |
 | Bento grid | `nv-bento`, `nv-tile`, `nv-tile--feature`, `--w3`, `--w4`, `--w6`, `--h2`, `nv-tile__title`, `__count`, `__text` | 1, 2 and 6 columns; a tile spans two of six by default; `dense` placement; set your own `grid-template-areas` for a fixed composition |
 | Lede | `nv-lede`, `__kicker`, `__title`, `__sub`, `nv-em` | the opening of a page |
+| Banner | `nv-banner`, `__ridges`, `__far`, `__mid`, `__near`, `__line`, `__body`, `__kicker`, `__title`, `__lede`, `__meta`, `__sep` | a page opening over layered ridges in an inline SVG; the line draws itself and the ridges drift on scroll, without reduced motion |
 | Section head | `nv-section`, `nv-section-head`, `__title`, `__link` | title, small link, hairline |
 | Stats | `nv-stats`, `nv-stat`, `__value`, `__label` | use a `<dl>` |
 | Bars | `nv-bars`, `nv-bar`, `__label`, `__track`, `__fill`, `__value` | width as an inline style |

@@ -77,10 +77,13 @@ kit, so the copy cannot age. To start once the kit is stable.
   with their own grid, so bars start at different points (the kit uses `subgrid`); and
   `.brand-name` is `display: none` on phones, harmless only if the avatar has an `alt`. Check
   both on the live site and fix them there. <!-- nv: prio=med size=S labels=site,a11y -->
-- [ ] **NV-37 — The site's Stack section on the kit**: once the site reads its tokens from the
+- [x] **NV-37 — The site's Stack section on the kit**: once the site reads its tokens from the
   kit (NV-13), rebuild "What I work with" and `/stack/` with `nv-bento`, `nv-tile` and
   `nv-pill`, and delete the site's own `stack.scss`. The first section of the site that uses
-  the kit's components directly, and the proof that the two can live on one page. <!-- nv: prio=med size=M labels=site,components -->
+  the kit's components directly, and the proof that the two can live on one page.
+  Done on 2026-11-15: the site vendors `_nava-bento.scss` and `_nava-marks-pills-and-legends.scss`
+  from v0.4.0 next to the tokens, its `stack.scss` is gone; checks, deploy and Lighthouse
+  green. <!-- nv: prio=med size=M labels=site,components ver=0.4.0 -->
 
 ## v0.4.0 — Components for applications <!-- ms: phase=next -->
 
@@ -122,6 +125,12 @@ accessibility rules green.
   tile with a soft wash of the accent. Done with span modifiers and dense placement instead
   of named areas, which a kit cannot know: a page that wants a fixed composition still sets
   its own areas. <!-- nv: prio=med size=M labels=components ver=main -->
+- [x] **NV-38 — Banner**: the opening of the site's videos page, from the YouTube channel
+  banner: kicker, title, a line of words and one of facts over a grid, an accent glow and
+  layered ridges in an inline SVG, in tokens so it follows both themes, with motion that stops
+  under `prefers-reduced-motion`. Done as `nv-banner`: the ridge line draws itself on load and
+  the ridges drift on scroll where scroll-driven animation exists; the site imports
+  `_nava-banner.scss` instead of keeping its own copy. <!-- nv: prio=med size=M labels=components,site ver=main -->
 
 ## v0.5.0 — Distribution <!-- ms: phase=later -->
 

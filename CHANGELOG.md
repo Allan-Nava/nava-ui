@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Banner (`nv-banner`): a page opening over a faint grid, an accent glow and layered ridges in
+  an inline SVG, the look of the YouTube channel banner in tokens, so it follows both themes.
+  Without reduced motion the ridge line draws itself on load, the glow breathes and the
+  ridges drift at three speeds on scroll (scroll-driven animation, where supported); first
+  built for the site's videos page, which imports it as `dist/site/_nava-banner.scss`.
+- The contrast script checks strong text over the accent glow on the page; the banner's facts
+  are in `--nv-fg`, because muted text over the glow is 5.6:1 in the light theme.
+
 ## 0.4.0 — 2026-11-15
 
 The components as Sass partials for allan-nava.github.io, so the site can use them directly.
@@ -9,6 +17,7 @@ The components as Sass partials for allan-nava.github.io, so the site can use th
 - `dist/site/_nava-*.scss`: every component section as a Sass partial for allan-nava.github.io,
   with its 10 px rem and no comments, so the site can import the components it uses.
 - The `dist/` check in CI also fails on a generated file that was never committed.
+
 ## 0.3.0 — 2026-11-15
 
 Components for applications, and the tokens in the dialect of allan-nava.github.io, so the site
