@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="nava-ui">
+  <title>nava-ui</title>
+  <!-- Palette of allan-nava.github.io, as the other projects' marks: green #10cf53 and
+       off-white #f2f4f5 on near-black #050505, in a rounded square. -->
+  <rect width="256" height="256" rx="56" fill="#050505"/>
+  <!-- Three tiles of a bento grid, the kit's own layout. They are also its three kinds of
+       mark: filled (the feature tile, in the accent), solid, and outlined. -->
+  <rect x="44" y="44" width="76" height="168" rx="18" fill="#10cf53"/>
+  <rect x="136" y="44" width="76" height="76" rx="18" fill="#f2f4f5"/>
+  <rect x="141" y="141" width="66" height="66" rx="13" fill="none" stroke="#10cf53" stroke-width="10"/>
+</svg>

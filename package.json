@@ -11,6 +11,7 @@
     "backlog": "npx --yes backlogsync check",
     "roadmap": "npx --yes backlogsync roadmap",
     "contrast": "node scripts/contrast.mjs",
+    "render-assets": "node scripts/render-assets.mjs",
     "drift": "node scripts/site-drift.mjs",
     "release-check": "node scripts/release-check.mjs",
     "test": "playwright test",

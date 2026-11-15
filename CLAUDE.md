@@ -27,6 +27,7 @@ js/nava-ui.js         optional: theme toggle, card spotlight
 dist/                 built by scripts/build.sh, committed (the CDN serves it from the tag)
 fonts/                Inter Variable, Latin subset, with its licence
 index.html            documentation page and test fixture
+assets/               logo.svg (the mark), social-preview.html and the .png rendered from it
 BACKLOG.md            planned work, the source of truth; ROADMAP.md is generated from it
 scripts/build.sh      concatenates css/ and js/ into dist/
 scripts/contrast.mjs  contrast of every pair, both themes
@@ -66,6 +67,10 @@ tests/__screenshots__/  baselines, generated on the CI runner
   follow the backlog on push to `main`, one way. Do not create or edit backlog issues on
   GitHub: change the file. A finished item is ticked and gets `ver=main` (or the version) in
   the same commit as the work.
+- **Images made from HTML are rendered, not drawn.** `assets/social-preview.png` comes from
+  `assets/social-preview.html`: change the HTML, then run the `assets` workflow
+  (`gh workflow run assets.yml`), download its artifact into `assets/` and commit both. The mark
+  is `assets/logo.svg`; the preview, the favicon, the README and the nav use that file.
 - **The site is a separate repository** with its own rules (it is never pushed by an agent).
   Do not change it from here.
 

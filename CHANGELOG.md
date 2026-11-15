@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- A logo (`assets/logo.svg`): three tiles of a bento grid in the accent and off-white on
+  near-black, the family look of the other projects. It is the favicon and the nav mark of the
+  documentation page, and it heads the README.
+- A 1280×640 social preview, rendered from `assets/social-preview.html` by
+  `scripts/render-assets.mjs` (the `assets` workflow), used as the page's `og:image`.
 - Bento grid (`nv-bento`, `nv-tile`): tiles of different sizes in one, two or six columns, with
   width and height modifiers, dense placement and a feature tile.
 - Badges (`nv-badge`) in a neutral and three toned variants, with an optional dot.

@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.svg" width="96" height="96" alt="nava-ui logo"></p>
+
 # nava-ui
 
 A small, dark-first UI kit in plain CSS: the design tokens and components of
