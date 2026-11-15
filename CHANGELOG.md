@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.5.0 — 2026-11-15
+
+A banner for the opening of a page, first used on the site's videos page.
+
 - Banner (`nv-banner`): a page opening over a faint grid, an accent glow and layered ridges in
   an inline SVG, the look of the YouTube channel banner in tokens, so it follows both themes.
   Without reduced motion the ridge line draws itself on load, the glow breathes and the
