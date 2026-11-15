@@ -210,6 +210,35 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <h3>Badges</h3>
+    <p>A short status label, neutral by default, in three tones. The words carry the state, so a badge is never a coloured dot alone; <code>nv-badge--dot</code> adds a dot before them.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-chips">
+        <span class="nv-badge">Draft</span>
+        <span class="nv-badge nv-badge--accent nv-badge--dot">Live</span>
+        <span class="nv-badge nv-badge--warning nv-badge--dot">Degraded</span>
+        <span class="nv-badge nv-badge--danger nv-badge--dot">Down</span>
+      </div>
+      <br>
+      <p>checkfleet <span class="nv-badge nv-badge--accent">v1.4</span> runs every 10 minutes.</p>
+    </div>
+
+    <h3>Marked pills and legend</h3>
+    <p>For a list where every item has a kind. The kind is told three ways: the shape of the mark (dot, ring, diamond), the pill's fill and border, and words, visible in the legend and read by screen readers in each pill. This is how the site lists where each skill was used.</p>
+    <div class="doc-demo" data-demo>
+      <ul class="nv-pills nv-legend" aria-label="Legend">
+        <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>At work</span></li>
+        <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>Earlier role</span></li>
+        <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>Own projects</span></li>
+      </ul>
+      <ul class="nv-pills">
+        <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Go<span class="nv-sr-only">, at work</span></span></li>
+        <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Nomad<span class="nv-sr-only">, at work</span></span></li>
+        <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>Kotlin<span class="nv-sr-only">, earlier role</span></span></li>
+        <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>Kubernetes<span class="nv-sr-only">, own projects</span></span></li>
+      </ul>
+    </div>
+
     <h3>Cards</h3>
     <p>A horizontal card: thumbnail, title, two-line excerpt, meta. <code>nv-list--two</code> gives two columns from 860px. Without an image use the generated placeholder, <code>nv-ph nv-ph-0</code> to <code>nv-ph-5</code>. Add <code>data-nv-spotlight</code> to the list for the glow that follows the pointer.</p>
     <div class="doc-demo" data-demo>

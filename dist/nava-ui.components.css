@@ -622,6 +622,141 @@ a.nv-tag:hover {
 }
 
 /* ---------------------------------------------------------------------------
+   Badge — a short status label: "Live", "Beta", "Failing".
+   Neutral by default; --accent, --warning and --danger set the tone.
+   --dot puts a dot before the words. The words are what carries the state:
+   a badge is never a coloured dot alone. If the words must not be seen, keep
+   them in .nv-sr-only inside the badge.
+   ------------------------------------------------------------------------ */
+
+.nv-badge {
+  --nv-tone: var(--nv-fg-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 2px 8px;
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--nv-tone);
+  background: transparent;
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-badge--accent {
+  --nv-tone: var(--nv-accent-text);
+  background: var(--nv-accent-soft);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-badge--warning {
+  --nv-tone: var(--nv-warning);
+  background: var(--nv-warning-soft);
+  border-color: var(--nv-warning-border);
+}
+
+.nv-badge--danger {
+  --nv-tone: var(--nv-danger);
+  background: var(--nv-danger-soft);
+  border-color: var(--nv-danger-border);
+}
+
+/* A border as wide as half the box fills it: the dot survives forced-colours
+   mode, where backgrounds are replaced but borders keep the text colour. */
+.nv-badge--dot::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.5em;
+  height: 0.5em;
+  box-sizing: border-box;
+  border: 0.25em solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+/* ---------------------------------------------------------------------------
+   Marks, pills and legends — for lists where every item has a kind, such as
+   "used at work" against "used in my own projects".
+   The kind is told three ways, so colour is never the only one:
+     .nv-mark--dot, --ring, --diamond   the shape of the mark
+     .nv-pill, --accent, --dashed       the fill and the border of the pill
+     the words                          visible in the legend, and in each
+                                        pill for screen readers (nv-sr-only)
+   Marks are drawn with borders only, so they also show in forced colours.
+   ------------------------------------------------------------------------ */
+
+.nv-mark {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  box-sizing: border-box;
+  border: 1.5px solid currentColor;
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-mark--dot {
+  border-width: 0.25em;
+}
+
+.nv-mark--diamond {
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+
+.nv-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 4px 11px;
+  font-size: var(--nv-text-sm);
+  line-height: 1.35;
+  white-space: nowrap;
+  color: var(--nv-fg);
+  background: transparent;
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-pill);
+}
+
+.nv-pill--accent {
+  color: var(--nv-accent-text);
+  background: var(--nv-accent-soft);
+  border-color: var(--nv-accent-border);
+}
+
+.nv-pill--dashed {
+  border-style: dashed;
+}
+
+.nv-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nv-pills > li {
+  margin: 0;
+}
+
+/* The legend is a list of pills at the small size, above what it explains */
+.nv-legend {
+  margin-bottom: var(--nv-space-4);
+}
+
+.nv-legend .nv-pill {
+  font-size: var(--nv-text-xs);
+}
+
+/* ---------------------------------------------------------------------------
    Cards — a horizontal card: optional thumbnail, title, excerpt, meta.
    .nv-list is the grid; .nv-list--two goes to two columns from 860px.
    It stops at two on purpose: at three the horizontal card is ~355px wide,

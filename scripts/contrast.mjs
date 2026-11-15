@@ -84,6 +84,8 @@ const PAIRS = [
   ['--nv-warning', '--nv-bg'],
   ['--nv-warning', '--nv-surface'],
   ['--nv-warning', '--nv-warning-soft', '--nv-bg'],
+  ['--nv-warning', '--nv-warning-soft', '--nv-surface'],
+  ['--nv-accent-text', '--nv-accent-soft', '--nv-overlay-soft', '--nv-bg'],
   ['--nv-accent-text', '--nv-surface'],
   ['--nv-fg', '--nv-info-soft', '--nv-bg'],
   ['--nv-fg', '--nv-warning-soft', '--nv-bg'],
