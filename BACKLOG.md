@@ -72,6 +72,10 @@ kit, so the copy cannot age. To start once the kit is stable.
   with their own grid, so bars start at different points (the kit uses `subgrid`); and
   `.brand-name` is `display: none` on phones, harmless only if the avatar has an `alt`. Check
   both on the live site and fix them there. <!-- nv: prio=med size=S labels=site,a11y -->
+- [ ] **NV-37 — The site's Stack section on the kit**: once the site reads its tokens from the
+  kit (NV-13), rebuild "What I work with" and `/stack/` with `nv-bento`, `nv-tile` and
+  `nv-pill`, and delete the site's own `stack.scss`. The first section of the site that uses
+  the kit's components directly, and the proof that the two can live on one page. <!-- nv: prio=med size=M labels=site,components -->
 
 ## v0.4.0 — Components for applications <!-- ms: phase=next -->
 
@@ -145,6 +149,11 @@ are stable.
   format and a Tailwind preset, for projects that do not write plain CSS. <!-- nv: prio=low size=M labels=tokens,dist -->
 
 ## v0.7.0 — Documentation and examples <!-- ms: phase=later -->
+
+- [ ] **NV-36 — Logo and social preview**: a mark in the family of the other projects (green
+  on near-black, rounded square), used as the favicon and in the nav of the documentation
+  page and at the top of the README; and a 1280×640 social preview rendered from an HTML
+  source, for the repository settings and the page's `og:image`. <!-- nv: prio=med size=S labels=docs -->
 
 - [ ] **NV-30 — Page templates**: three complete pages built only with the kit (a landing, a
   listing with filters, an application screen with a form and a table), linked from the
