@@ -223,6 +223,7 @@ under "Show the HTML".
 | Card | `nv-card`, `nv-card__link`, `__thumb`, `__body`, `__title`, `__excerpt`, `__meta`, `__meta-tag` | the whole card is one link |
 | Thumbnail variants | `nv-card__thumb--square`, `nv-card__thumb--contain` | square for vertical sources; `contain` on a tile for logos and screenshots you do not control |
 | Placeholder | `nv-ph`, `nv-ph-0` … `nv-ph-5` | a monogram on a gradient, for cards without an image |
+| Bento grid | `nv-bento`, `nv-tile`, `nv-tile--feature`, `--w3`, `--w4`, `--w6`, `--h2`, `nv-tile__title`, `__count`, `__text` | 1, 2 and 6 columns; a tile spans two of six by default; `dense` placement; set your own `grid-template-areas` for a fixed composition |
 | Lede | `nv-lede`, `__kicker`, `__title`, `__sub`, `nv-em` | the opening of a page |
 | Section head | `nv-section`, `nv-section-head`, `__title`, `__link` | title, small link, hairline |
 | Stats | `nv-stats`, `nv-stat`, `__value`, `__label` | use a `<dl>` |

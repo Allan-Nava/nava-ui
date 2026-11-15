@@ -284,6 +284,77 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </ul>
     </div>
 
+    <h3>Bento grid</h3>
+    <p>Tiles of different sizes in one grid: one column on phones, two from 561px, six from 860px. A tile takes two of the six columns by default; <code>nv-tile--w3</code>, <code>--w4</code> and <code>--w6</code> make it wider, <code>nv-tile--h2</code> two rows tall. <code>nv-tile--feature</code> marks the one tile that leads. Placement is <code>dense</code>, so a tall tile leaves no holes. This is the "What I work with" section of the site.</p>
+    <div class="doc-demo" data-demo>
+      <ul class="nv-bento">
+        <li class="nv-tile nv-tile--feature nv-tile--w3 nv-tile--h2">
+          <h4 class="nv-tile__title"><a href="#">Infrastructure</a><span class="nv-tile__count">11<span class="nv-sr-only"> skills</span></span></h4>
+          <ul class="nv-pills">
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Nomad<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Consul<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Traefik<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>HAProxy<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Docker<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Ansible<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Terraform<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>AWS<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>TeamCity<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Linux<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>Kubernetes<span class="nv-sr-only">, own projects</span></span></li>
+          </ul>
+        </li>
+        <li class="nv-tile nv-tile--w3">
+          <h4 class="nv-tile__title"><a href="#">Languages</a><span class="nv-tile__count">8<span class="nv-sr-only"> skills</span></span></h4>
+          <ul class="nv-pills">
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Go<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Java<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>Kotlin<span class="nv-sr-only">, earlier role</span></span></li>
+            <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>Swift<span class="nv-sr-only">, earlier role</span></span></li>
+            <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>Python<span class="nv-sr-only">, earlier role</span></span></li>
+            <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>PHP<span class="nv-sr-only">, earlier role</span></span></li>
+            <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>TypeScript<span class="nv-sr-only">, own projects</span></span></li>
+            <li><span class="nv-pill"><span class="nv-mark" aria-hidden="true"></span>React<span class="nv-sr-only">, earlier role</span></span></li>
+          </ul>
+        </li>
+        <li class="nv-tile nv-tile--w3">
+          <h4 class="nv-tile__title"><a href="#">Data and identity</a><span class="nv-tile__count">6<span class="nv-sr-only"> skills</span></span></h4>
+          <ul class="nv-pills">
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Keycloak<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>NATS JetStream<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>MariaDB<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>PostgreSQL<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>KeyDB<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Canal<span class="nv-sr-only">, at work</span></span></li>
+          </ul>
+        </li>
+        <li class="nv-tile">
+          <h4 class="nv-tile__title"><a href="#">Reliability</a><span class="nv-tile__count">4<span class="nv-sr-only"> skills</span></span></h4>
+          <ul class="nv-pills">
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Prometheus<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>checkfleet<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>k6<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Incident response<span class="nv-sr-only">, at work</span></span></li>
+          </ul>
+        </li>
+        <li class="nv-tile">
+          <h4 class="nv-tile__title"><a href="#">Live video</a><span class="nv-tile__count">3<span class="nv-sr-only"> skills</span></span></h4>
+          <ul class="nv-pills">
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>OTT<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>HLS and DASH<span class="nv-sr-only">, own projects</span></span></li>
+            <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>Low-latency HLS<span class="nv-sr-only">, own projects</span></span></li>
+          </ul>
+        </li>
+        <li class="nv-tile">
+          <h4 class="nv-tile__title"><a href="#">AI-assisted</a><span class="nv-tile__count">2<span class="nv-sr-only"> skills</span></span></h4>
+          <ul class="nv-pills">
+            <li><span class="nv-pill nv-pill--accent"><span class="nv-mark nv-mark--dot" aria-hidden="true"></span>Claude Code<span class="nv-sr-only">, at work</span></span></li>
+            <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>Agent tooling<span class="nv-sr-only">, own projects</span></span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
     <h3>Lede</h3>
     <p>The opening of a page: a kicker, a very large title with one or two highlighted words, a short paragraph.</p>
     <div class="doc-demo" data-demo>

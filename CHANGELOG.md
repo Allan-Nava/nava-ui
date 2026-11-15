@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bento grid (`nv-bento`, `nv-tile`): tiles of different sizes in one, two or six columns, with
+  width and height modifiers, dense placement and a feature tile.
 - Badges (`nv-badge`) in a neutral and three toned variants, with an optional dot.
 - Marked pills and legends (`nv-pill`, `nv-mark`, `nv-pills--legend`): a kind told by the shape of the
   mark, the pill's border and words, never by colour alone; first built for the site's

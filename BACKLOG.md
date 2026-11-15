@@ -107,10 +107,12 @@ accessibility rules green.
   drawn with borders only, so they also show in forced colours. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
 - [ ] **NV-22 — Data table**: a table wrapper that scrolls with keyboard access, row hover on
   `--nv-row-hover`, a sticky header, numeric columns with tabular figures, a selected row. <!-- nv: prio=med size=M labels=components,a11y -->
-- [ ] **NV-35 — Bento grid**: tiles of different sizes in one grid, as in the "What I work
+- [x] **NV-35 — Bento grid**: tiles of different sizes in one grid, as in the "What I work
   with" section of the site: one column on phones, two on tablets, a named-area layout on
   desktop with a fallback to auto placement for a tile without an area, and a highlighted
-  tile with a soft wash of the accent. <!-- nv: prio=med size=M labels=components -->
+  tile with a soft wash of the accent. Done with span modifiers and dense placement instead
+  of named areas, which a kit cannot know: a page that wants a fixed composition still sets
+  its own areas. <!-- nv: prio=med size=M labels=components ver=main -->
 
 ## v0.5.0 — Distribution <!-- ms: phase=later -->
 
