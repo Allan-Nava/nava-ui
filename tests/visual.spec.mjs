@@ -13,10 +13,20 @@ test.beforeEach(async ({ page }) => {
   await page.evaluate(() => document.fonts.ready);
 });
 
+// Each example is screenshotted ALONE: everything else in <main> is hidden,
+// so the example always sits at the same place on the page. Screenshotted in
+// place, an example's position depended on everything above it, and a new
+// example higher up moved the others by a fraction of a pixel, which rounded
+// their heights one pixel differently and failed baselines nobody had touched.
+const ALONE = `
+  html.shot body > .nv-nav { display: none; }
+  html.shot main > *:not(:has(.is-shot)) { display: none; }
+  html.shot main > section:has(.is-shot) > *:not(.is-shot) { display: none; }
+  html.shot main > section:has(.is-shot) { margin: 0; }
+`;
+
 test('every example matches its baseline', async ({ page }) => {
-  // The page's own nav is sticky: on an example taller than the viewport it
-  // would be drawn over the top of the screenshot.
-  await page.addStyleTag({ content: 'body > .nv-nav { visibility: hidden; }' });
+  await page.addStyleTag({ content: ALONE });
 
   const demos = page.locator('[data-demo]');
   const count = await demos.count();
@@ -27,9 +37,12 @@ test('every example matches its baseline', async ({ page }) => {
     const title = await demo.evaluate((el) => {
       let node = el.previousElementSibling;
       while (node && node.tagName !== 'H3') node = node.previousElementSibling;
+      document.documentElement.classList.add('shot');
+      document.querySelectorAll('.is-shot').forEach((other) => other.classList.remove('is-shot'));
+      el.classList.add('is-shot');
+      window.scrollTo(0, 0);
       return node ? node.textContent : 'untitled';
     });
-    await demo.scrollIntoViewIfNeeded();
     await expect.soft(demo).toHaveScreenshot(`${slug(title)}.png`);
   }
 });
