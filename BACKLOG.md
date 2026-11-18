@@ -73,10 +73,13 @@ kit, so the copy cannot age. To start once the kit is stable.
   Done on 2026-11-15: the site pins v0.3.0 with `scripts/sync_nava_ui.sh`, its `checks.yml` fails
   on a modified copy, and its compiled tokens came out unchanged; checks, deploy and Lighthouse
   green. The weekly drift check here stands down. <!-- nv: prio=high size=M labels=site ver=0.3.0 -->
-- [ ] **NV-14 — Port the fixes back to the site**: the bar list of the stats page has rows
+- [x] **NV-14 — Port the fixes back to the site**: the bar list of the stats page has rows
   with their own grid, so bars start at different points (the kit uses `subgrid`); and
   `.brand-name` is `display: none` on phones, harmless only if the avatar has an `alt`. Check
-  both on the live site and fix them there. <!-- nv: prio=med size=S labels=site,a11y -->
+  both on the live site and fix them there. Done on 2026-11-18: the site's `/stats/` uses the
+  kit's `nv-bars` (vendored `_nava-bars.scss`, its own bar styles deleted); the brand link
+  has an explicit `aria-label`, so hiding the name keeps its accessible name and needed no
+  change. Checks, deploy and Lighthouse green. <!-- nv: prio=med size=S labels=site,a11y ver=0.5.0 -->
 - [x] **NV-37 — The site's Stack section on the kit**: once the site reads its tokens from the
   kit (NV-13), rebuild "What I work with" and `/stack/` with `nv-bento`, `nv-tile` and
   `nv-pill`, and delete the site's own `stack.scss`. The first section of the site that uses
