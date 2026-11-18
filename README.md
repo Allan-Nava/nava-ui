@@ -286,6 +286,9 @@ accessibility that stays with you: the label, the ARIA state, the order of the m
 | Bento grid | `nv-bento`, `nv-tile`, `nv-tile--feature`, `--w3`, `--w4`, `--w6`, `--h2`, `nv-tile__title`, `__count`, `__text` | 1, 2 and 6 columns; a tile spans two of six by default; `dense` placement; set your own `grid-template-areas` for a fixed composition |
 | Lede | `nv-lede`, `__kicker`, `__title`, `__sub`, `nv-em` | the opening of a page |
 | Banner | `nv-banner`, `__ridges`, `__far`, `__mid`, `__near`, `__line`, `__body`, `__kicker`, `__title`, `__lede`, `__meta`, `__sep` | a page opening over layered ridges in an inline SVG; the line draws itself and the ridges drift on scroll, without reduced motion |
+| Profile | `nv-profile`, `__photo`, `__name`, `__role`, `__actions` | who a page is about: round photo, name, role and buttons; stacked on phones |
+| Timeline | `nv-timeline`, `__item`, `__item--current`, `__when`, `__body`, `__title`, `__org`, `__logo`, `__text` | roles or events in order, with a rail and a dot per item; the current one in accent |
+| Award | `nv-award`, `__mark`, `__kicker`, `__title`, `__text`, `__link` | a recognition set apart, with an accent hairline and wash |
 | Section head | `nv-section`, `nv-section-head`, `__title`, `__link` | title, small link, hairline |
 | Stats | `nv-stats`, `nv-stat`, `__value`, `__label` | use a `<dl>` |
 | Bars | `nv-bars`, `nv-bar`, `__label`, `__track`, `__fill`, `__value` | width as an inline style |

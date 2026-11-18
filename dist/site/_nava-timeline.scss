@@ -1,0 +1,132 @@
+// GENERATED from nava-ui v0.8.0 (css/components.css, "Timeline") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-timeline {
+  --nv-timeline-when: 15.2rem;
+  --nv-timeline-gap: var(--nv-space-5);
+  list-style: none;
+  margin: var(--nv-space-6) 0;
+  padding: 0;
+}
+
+.nv-timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--nv-timeline-when) 1fr;
+  column-gap: calc(var(--nv-timeline-gap) * 2);
+  align-items: start;
+  margin: 0;
+  padding-bottom: var(--nv-space-6);
+}
+
+.nv-timeline__item::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--nv-timeline-when) + var(--nv-timeline-gap) - 1px);
+  top: 0.72rem;
+  bottom: -0.72rem;
+  width: 2px;
+  background: var(--nv-border);
+}
+
+.nv-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.nv-timeline__item:last-child::before {
+  display: none;
+}
+
+.nv-timeline__item::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--nv-timeline-when) + var(--nv-timeline-gap) - 6px);
+  top: 0.72rem;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--nv-border-strong);
+  border-radius: 50%;
+  background: var(--nv-bg);
+}
+
+.nv-timeline__item--current::after {
+  border-color: var(--nv-accent);
+  background: var(--nv-accent);
+  box-shadow: 0 0 0 4px var(--nv-accent-soft);
+}
+
+.nv-timeline__when {
+  margin: 0;
+  padding-top: 0.24rem;
+  font-size: var(--nv-text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-muted);
+  text-align: right;
+}
+
+.nv-timeline__item--current .nv-timeline__when {
+  font-weight: 600;
+  color: var(--nv-accent-text);
+}
+
+.nv-timeline__body {
+  min-width: 0;
+}
+
+.nv-timeline__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 700;
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+}
+
+.nv-timeline__org {
+  display: flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  margin: var(--nv-space-1) 0 0;
+  font-size: var(--nv-text-sm);
+  color: var(--nv-fg-muted);
+}
+
+.nv-timeline__logo {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--nv-radius-sm);
+  object-fit: contain;
+}
+
+.nv-timeline__text {
+  max-width: var(--nv-measure);
+  margin: var(--nv-space-2) 0 0;
+  line-height: var(--nv-leading);
+  color: var(--nv-fg);
+}
+
+@media (max-width: 560px) {
+  .nv-timeline__item {
+    grid-template-columns: 1fr;
+    row-gap: var(--nv-space-1);
+    padding-left: var(--nv-space-6);
+  }
+
+  .nv-timeline__item::before {
+    left: 5px;
+    top: 0.48rem;
+    bottom: -0.48rem;
+  }
+
+  .nv-timeline__item::after {
+    left: 0;
+    top: 0.48rem;
+  }
+
+  .nv-timeline__when {
+    padding-top: 0;
+    text-align: left;
+  }
+}

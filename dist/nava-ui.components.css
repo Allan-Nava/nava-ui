@@ -1443,6 +1443,290 @@ a.nv-tag:hover {
 }
 
 /* ---------------------------------------------------------------------------
+   Profile — who a page is about: a photo, a name, a role, a row of actions.
+   The opening of an about page.
+     .nv-profile__photo    a square <img>, shown round; give it width and height
+     .nv-profile__name     the page's <h1>
+     .nv-profile__role     one line: what and where
+     .nv-profile__actions  a row of .nv-button, the first one primary
+   Side by side; stacked and centred below 560px.
+   ------------------------------------------------------------------------ */
+
+.nv-profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--nv-space-6);
+  margin: var(--nv-space-8) 0 var(--nv-space-7);
+}
+
+/* A ring of page colour, then a hairline of accent: the photo sits on the
+   page like the nav's avatar, at the scale of a heading. */
+.nv-profile__photo {
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--nv-surface);
+  box-shadow: 0 0 0 4px var(--nv-bg), 0 0 0 5px var(--nv-accent-border);
+}
+
+.nv-profile__name {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, var(--nv-text-4xl));
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--nv-fg-strong);
+}
+
+.nv-profile__role {
+  margin: var(--nv-space-2) 0 0;
+  font-size: var(--nv-text-lg);
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-muted);
+  text-wrap: balance;
+}
+
+.nv-profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nv-space-3);
+  margin-top: var(--nv-space-5);
+}
+
+@media (max-width: 560px) {
+  .nv-profile {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--nv-space-4);
+    margin: var(--nv-space-7) 0 var(--nv-space-6);
+    text-align: center;
+  }
+
+  .nv-profile__actions {
+    justify-content: center;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Timeline — roles or events in order, the latest first.
+   An <ol class="nv-timeline">; each <li class="nv-timeline__item"> holds:
+     .nv-timeline__when   the dates: a <p> with <time datetime> elements
+     .nv-timeline__body   everything else:
+       .nv-timeline__title  the role, a heading one level below the section's
+       .nv-timeline__org    where: an optional .nv-timeline__logo <img>, then text
+       .nv-timeline__text   a line or two
+   A rail runs between the dates and the body with a dot per item; the item
+   that is still going on takes .nv-timeline__item--current: accent dot with
+   a soft ring, dates in accent text. Below 560px the dates go above the
+   body and the rail moves to the left edge.
+   ------------------------------------------------------------------------ */
+
+.nv-timeline {
+  --nv-timeline-when: 9.5rem;
+  --nv-timeline-gap: var(--nv-space-5);
+  list-style: none;
+  margin: var(--nv-space-6) 0;
+  padding: 0;
+}
+
+.nv-timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--nv-timeline-when) 1fr;
+  column-gap: calc(var(--nv-timeline-gap) * 2);
+  align-items: start;
+  margin: 0;
+  padding-bottom: var(--nv-space-6);
+}
+
+/* The rail: down the middle of the gap, from this dot to the next. */
+.nv-timeline__item::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--nv-timeline-when) + var(--nv-timeline-gap) - 1px);
+  top: 0.45rem;
+  bottom: -0.45rem;
+  width: 2px;
+  background: var(--nv-border);
+}
+
+.nv-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.nv-timeline__item:last-child::before {
+  display: none;
+}
+
+/* The dot. */
+.nv-timeline__item::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--nv-timeline-when) + var(--nv-timeline-gap) - 6px);
+  top: 0.45rem;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--nv-border-strong);
+  border-radius: 50%;
+  background: var(--nv-bg);
+}
+
+.nv-timeline__item--current::after {
+  border-color: var(--nv-accent);
+  background: var(--nv-accent);
+  box-shadow: 0 0 0 4px var(--nv-accent-soft);
+}
+
+.nv-timeline__when {
+  margin: 0;
+  padding-top: 0.15rem;
+  font-size: var(--nv-text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--nv-fg-muted);
+  text-align: right;
+}
+
+.nv-timeline__item--current .nv-timeline__when {
+  font-weight: 600;
+  color: var(--nv-accent-text);
+}
+
+.nv-timeline__body {
+  min-width: 0;
+}
+
+.nv-timeline__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 700;
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+}
+
+.nv-timeline__org {
+  display: flex;
+  align-items: center;
+  gap: var(--nv-space-2);
+  margin: var(--nv-space-1) 0 0;
+  font-size: var(--nv-text-sm);
+  color: var(--nv-fg-muted);
+}
+
+.nv-timeline__logo {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--nv-radius-sm);
+  object-fit: contain;
+}
+
+.nv-timeline__text {
+  max-width: var(--nv-measure);
+  margin: var(--nv-space-2) 0 0;
+  line-height: var(--nv-leading);
+  color: var(--nv-fg);
+}
+
+@media (max-width: 560px) {
+  .nv-timeline__item {
+    grid-template-columns: 1fr;
+    row-gap: var(--nv-space-1);
+    padding-left: var(--nv-space-6);
+  }
+
+  .nv-timeline__item::before {
+    left: 5px;
+    top: 0.3rem;
+    bottom: -0.3rem;
+  }
+
+  .nv-timeline__item::after {
+    left: 0;
+    top: 0.3rem;
+  }
+
+  .nv-timeline__when {
+    padding-top: 0;
+    text-align: left;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Award — a recognition, set apart from the text around it.
+     .nv-award__mark    an inline <svg> in currentColor, aria-hidden
+     .nv-award__kicker  the kind and the year
+     .nv-award__title   what was won
+     .nv-award__text    from whom, and for what
+     .nv-award__link    optional: the story behind it
+   An accent hairline and a faint accent wash, so it reads as a highlight in
+   both themes without a second accent colour.
+   ------------------------------------------------------------------------ */
+
+.nv-award {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--nv-space-5);
+  margin: var(--nv-space-6) 0;
+  padding: var(--nv-space-6);
+  background:
+    linear-gradient(135deg, var(--nv-accent-soft), transparent 70%),
+    var(--nv-surface);
+  border: 1px solid var(--nv-accent-border);
+  border-radius: var(--nv-radius-lg);
+}
+
+.nv-award__mark {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  color: var(--nv-accent);
+}
+
+.nv-award__kicker {
+  margin: 0 0 var(--nv-space-2);
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--nv-tracking-wide);
+  text-transform: uppercase;
+  color: var(--nv-accent-text);
+}
+
+.nv-award__title {
+  margin: 0;
+  font-size: var(--nv-text-xl);
+  font-weight: 800;
+  line-height: var(--nv-leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--nv-fg-strong);
+}
+
+.nv-award__text {
+  margin: var(--nv-space-2) 0 0;
+  line-height: var(--nv-leading);
+  color: var(--nv-fg-muted);
+}
+
+.nv-award__link {
+  display: inline-block;
+  margin-top: var(--nv-space-3);
+  font-weight: 600;
+  color: var(--nv-accent-text);
+}
+
+@media (max-width: 560px) {
+  .nv-award {
+    grid-template-columns: 1fr;
+    gap: var(--nv-space-4);
+    padding: var(--nv-space-5);
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Section head — a title on the left, a small link on the right, a hairline
    ------------------------------------------------------------------------ */
 

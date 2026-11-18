@@ -450,6 +450,85 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       <div><dt>Your part</dt><dd>The title is the page's <code>&lt;h1&gt;</code> and the ridges SVG stays <code>aria-hidden</code>. Its motion already stops under reduced motion: add none of your own that does not.</dd></div>
     </dl>
 
+    <h3>Profile</h3>
+    <p>Who a page is about: a round photo, the name as the page's <code>&lt;h1&gt;</code>, one line of role and place, and a row of buttons. Side by side, stacked and centred on phones. This is the opening of the site's about page.</p>
+    <div class="doc-demo" data-demo>
+      <header class="nv-profile">
+        <img class="nv-profile__photo" src="assets/logo.svg" width="128" height="128" alt="">
+        <div>
+          <h4 class="nv-profile__name">Allan Nava</h4>
+          <p class="nv-profile__role">Software &amp; DevOps engineer · Milan</p>
+          <div class="nv-profile__actions">
+            <a class="nv-button nv-button--primary" href="#">Download CV</a>
+            <a class="nv-button" href="#">LinkedIn</a>
+            <a class="nv-button" href="#">GitHub</a>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>The opening of a page about a person.</dd></div>
+      <div><dt>Not for</dt><dd>Author lines under a post, or lists of people.</dd></div>
+      <div><dt>Your part</dt><dd>The name is the page's <code>&lt;h1&gt;</code>. The photo's <code>alt</code> is empty when the name is next to it, and its <code>width</code> and <code>height</code> are set so the page does not jump while it loads.</dd></div>
+    </dl>
+
+    <h3>Timeline</h3>
+    <p>Roles or events in order, the latest first: an <code>&lt;ol class="nv-timeline"&gt;</code> whose items have the dates in <code>nv-timeline__when</code> and the rest in <code>nv-timeline__body</code> — a title, an <code>nv-timeline__org</code> line with an optional logo, a line of text. A rail with a dot per item runs between dates and body; the item still going on takes <code>nv-timeline__item--current</code>. On phones the dates go above the body.</p>
+    <div class="doc-demo" data-demo>
+      <ol class="nv-timeline">
+        <li class="nv-timeline__item nv-timeline__item--current">
+          <p class="nv-timeline__when"><time datetime="2023-01">Jan 2023</time> – now</p>
+          <div class="nv-timeline__body">
+            <h4 class="nv-timeline__title">DevOps Engineer</h4>
+            <p class="nv-timeline__org"><img class="nv-timeline__logo" src="assets/logo.svg" width="20" height="20" alt=""> HiWay Media · Milan</p>
+            <p class="nv-timeline__text">Infrastructure for live video and OTT platforms, from the capacity test before the match to the post-mortem after it.</p>
+          </div>
+        </li>
+        <li class="nv-timeline__item">
+          <p class="nv-timeline__when"><time datetime="2020-07">Jul 2020</time> – <time datetime="2022-12">Dec 2022</time></p>
+          <div class="nv-timeline__body">
+            <h4 class="nv-timeline__title">Full Stack Developer</h4>
+            <p class="nv-timeline__org">HiWay Media · Milan</p>
+            <p class="nv-timeline__text">The platform's apps for Android, Android TV, Fire TV, iOS and tvOS.</p>
+          </div>
+        </li>
+        <li class="nv-timeline__item">
+          <p class="nv-timeline__when"><time datetime="2015-11">Nov 2015</time> – <time datetime="2020-07">Jul 2020</time></p>
+          <div class="nv-timeline__body">
+            <h4 class="nv-timeline__title">Software Web Developer, then Full Stack Developer</h4>
+            <p class="nv-timeline__org">IES Italia</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Work history, the steps of a project, a changelog told as a story.</dd></div>
+      <div><dt>Not for</dt><dd>Lists without dates, or dozens of entries: use a table.</dd></div>
+      <div><dt>Your part</dt><dd>Keep it an <code>&lt;ol&gt;</code>, with dates in <code>&lt;time datetime&gt;</code>. The title is a heading one level below the section's. A logo next to the organisation's name has an empty <code>alt</code>.</dd></div>
+    </dl>
+
+    <h3>Award</h3>
+    <p>A recognition, set apart from the text around it: a mark, the kind and year, what was won, from whom and for what, and an optional link to the story. An accent hairline and a faint accent wash make it a highlight in both themes.</p>
+    <div class="doc-demo" data-demo>
+      <aside class="nv-award" aria-label="Award">
+        <svg class="nv-award__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M15 3h7l4 11-6 3zM33 3h-7l-4 11 6 3z" fill="currentColor" opacity=".55"/><circle cx="24" cy="30" r="13" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 22.5l2.3 4.7 5.2.8-3.8 3.6.9 5.1-4.6-2.4-4.6 2.4.9-5.1-3.8-3.6 5.2-.8z" fill="currentColor"/></svg>
+        <div>
+          <p class="nv-award__kicker">Award · 2025</p>
+          <p class="nv-award__title">Gold — Best New Platform</p>
+          <p class="nv-award__text">SportsPro Media Awards 2025, for Sevilla FC+, the club's OTT platform.</p>
+          <a class="nv-award__link" href="#">The story →</a>
+        </div>
+      </aside>
+    </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>One or two recognitions worth a reader's attention.</dd></div>
+      <div><dt>Not for</dt><dd>A list of certificates, or anything that is not an outside recognition.</dd></div>
+      <div><dt>Your part</dt><dd>The mark stays <code>aria-hidden</code>; give the <code>&lt;aside&gt;</code> an <code>aria-label</code>. Name who gave it and when: an award without its source reads as a claim.</dd></div>
+    </dl>
+
     <h3>Section head</h3>
     <div class="doc-demo" data-demo>
       <section class="nv-section">
