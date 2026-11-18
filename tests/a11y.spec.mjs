@@ -122,3 +122,19 @@ test('tabs select on click and move with the arrow keys, Home and End', async ({
   await page.keyboard.press('Tab');
   await expect(panel(1)).toBeFocused();
 });
+
+test('a table row is selected by its checkbox, and the table box takes the focus', async ({ page }) => {
+  await page.goto('/index.html');
+  const box = page.getByRole('region', { name: 'Regions' });
+  await box.focus();
+  await expect(box).toBeFocused();
+
+  const row = page.getByRole('row', { name: /eu-south-1/ });
+  const bg = () => row.evaluate((el) => getComputedStyle(el).backgroundColor);
+  const before = await bg();
+  await row.getByRole('checkbox', { name: 'Select eu-south-1' }).check();
+  expect(await bg()).not.toBe(before);
+  await row.getByRole('checkbox', { name: 'Select eu-south-1' }).uncheck();
+  await page.mouse.move(0, 0);
+  expect(await bg()).toBe(before);
+});

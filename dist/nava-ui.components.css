@@ -2300,6 +2300,112 @@ a.nv-bar__label:hover {
 }
 
 /* ---------------------------------------------------------------------------
+   Data table — a table that scrolls inside its own box.
+     .nv-table-wrap        the box: scrolls both ways; give it tabindex="0",
+                           role="region" and an aria-label, so a keyboard can
+                           scroll it; set a max-height for a sticky header
+     .nv-table             the <table>; a <caption> is its title
+     .nv-table__num        on a <th> or <td>: right-aligned, tabular figures
+   The header sticks to the top of the box while the rows scroll. A row is
+   selected when a checkbox in it is checked, or with the class is-selected:
+   the state stays in the checkbox, where a screen reader finds it, and the
+   colour follows it. Row hover only where there is a pointer that hovers.
+   Works without base.css.
+   ------------------------------------------------------------------------ */
+
+.nv-table-wrap {
+  max-width: 100%;
+  overflow: auto;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-lg);
+}
+
+.nv-table-wrap:focus-visible {
+  outline: 2px solid var(--nv-accent);
+  outline-offset: 2px;
+}
+
+.nv-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--nv-text-sm);
+  color: var(--nv-fg);
+}
+
+.nv-table caption {
+  padding: var(--nv-space-4) var(--nv-space-4) var(--nv-space-2);
+  font-weight: 650;
+  text-align: left;
+  color: var(--nv-fg-strong);
+}
+
+.nv-table th,
+.nv-table td {
+  padding: var(--nv-space-3) var(--nv-space-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--nv-border);
+}
+
+.nv-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: var(--nv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--nv-fg-muted);
+  background: var(--nv-surface);
+  border-bottom-color: var(--nv-border-strong);
+}
+
+.nv-table tbody th {
+  font-weight: 600;
+  color: var(--nv-fg-strong);
+}
+
+.nv-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.nv-table .nv-table__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.nv-table td:has(> input[type="checkbox"]:only-child),
+.nv-table th:has(> input[type="checkbox"]:only-child) {
+  width: 1%;
+  padding-right: 0;
+}
+
+.nv-table tbody tr {
+  transition: background var(--nv-dur-fast) var(--nv-ease);
+}
+
+@media (hover: hover) {
+  .nv-table tbody tr:hover {
+    background: var(--nv-row-hover);
+  }
+}
+
+/* Selected: a wash of the accent and a bar on the leading edge. */
+.nv-table tbody tr.is-selected,
+.nv-table tbody tr:has(> :first-child > input[type="checkbox"]:checked) {
+  background: var(--nv-accent-soft);
+}
+
+.nv-table tbody tr.is-selected > :first-child,
+.nv-table tbody tr:has(> :first-child > input[type="checkbox"]:checked) > :first-child {
+  box-shadow: inset 3px 0 0 var(--nv-accent);
+}
+
+/* ---------------------------------------------------------------------------
    Empty and loading — what a region shows when it has nothing yet.
    .nv-empty          nothing to show: an optional icon, a title, one line of
                       text and at most one action (.nv-actions)

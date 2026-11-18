@@ -127,8 +127,11 @@ accessibility rules green.
   `/stack/` page: a filled dot, a ring and a diamond, a solid, neutral or dashed border, and
   the words for screen readers. Done as `nv-badge` and `nv-pill` with `nv-mark`; the marks are
   drawn with borders only, so they also show in forced colours. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
-- [ ] **NV-22 — Data table**: a table wrapper that scrolls with keyboard access, row hover on
-  `--nv-row-hover`, a sticky header, numeric columns with tabular figures, a selected row. <!-- nv: prio=med size=M labels=components,a11y -->
+- [x] **NV-22 — Data table**: a table wrapper that scrolls with keyboard access, row hover on
+  `--nv-row-hover`, a sticky header, numeric columns with tabular figures, a selected row.
+  Done as `nv-table-wrap` and `nv-table`: a row is selected when the checkbox in its first cell
+  is checked (`:has()`), so the state stays where a screen reader finds it; `is-selected` for
+  rows without one. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
 - [x] **NV-35 — Bento grid**: tiles of different sizes in one grid, as in the "What I work
   with" section of the site: one column on phones, two on tablets, a named-area layout on
   desktop with a fallback to auto placement for a tile without an area, and a highlighted

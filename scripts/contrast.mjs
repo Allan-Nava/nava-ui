@@ -97,6 +97,9 @@ const PAIRS = [
   ['--nv-fg-strong', '--nv-hover-overlay', '--nv-glass', '--nv-bg'],
   ['--nv-fg', '--nv-overlay-soft', '--nv-bg'],
   ['--nv-fg-strong', '--nv-accent-soft', '--nv-bg'],
+  ['--nv-fg', '--nv-accent-soft', '--nv-surface'],
+  ['--nv-fg', '--nv-row-hover', '--nv-surface'],
+  ['--nv-fg-muted', '--nv-row-hover', '--nv-surface'],
 ];
 
 // Edges and marks of controls: WCAG 1.4.11 asks 3:1 for the parts needed to

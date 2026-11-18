@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Data table (`nv-table-wrap`, `nv-table`): a box that scrolls both ways and can be scrolled from
+  the keyboard, a sticky header, `nv-table__num` for right-aligned tabular figures, row hover
+  on `--nv-row-hover`, and a selected row that follows the checkbox in its first cell; the
+  contrast script checks text over a hovered and a selected row.
+
 - Tabs (`nv-tabs`): the ARIA tab pattern in the look of the nav links; nava-ui.js selects on
   click and moves with the arrow keys, Home and End, with one focusable tab at a time.
 

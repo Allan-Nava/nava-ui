@@ -607,6 +607,60 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <h3>Data table</h3>
+    <p>A table in a box that scrolls both ways. The box takes <code>tabindex="0"</code>, <code>role="region"</code> and an <code>aria-label</code>, so a keyboard can scroll it; with a <code>max-height</code> the header sticks to its top. <code>nv-table__num</code> right-aligns a column in tabular figures. A row is selected when the checkbox in its first cell is checked (or with <code>is-selected</code>): the state lives in the checkbox and the colour follows it.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-table-wrap" tabindex="0" role="region" aria-label="Regions" style="max-height: 20rem">
+        <table class="nv-table">
+          <caption>Regions</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="nv-sr-only">Selected</span></th>
+              <th scope="col">Region</th>
+              <th scope="col">City</th>
+              <th scope="col" class="nv-table__num">Allocations</th>
+              <th scope="col" class="nv-table__num">Uptime</th>
+              <th scope="col" class="nv-table__num">p95</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input class="nv-checkbox" type="checkbox" aria-label="Select eu-south-1"></td>
+              <th scope="row">eu-south-1</th>
+              <td>Milan</td>
+              <td class="nv-table__num">42</td>
+              <td class="nv-table__num">99.98%</td>
+              <td class="nv-table__num">184 ms</td>
+            </tr>
+            <tr>
+              <td><input class="nv-checkbox" type="checkbox" aria-label="Select eu-west-1" checked></td>
+              <th scope="row">eu-west-1</th>
+              <td>Dublin</td>
+              <td class="nv-table__num">36</td>
+              <td class="nv-table__num">99.95%</td>
+              <td class="nv-table__num">211 ms</td>
+            </tr>
+            <tr>
+              <td><input class="nv-checkbox" type="checkbox" aria-label="Select eu-central-1"></td>
+              <th scope="row">eu-central-1</th>
+              <td>Frankfurt</td>
+              <td class="nv-table__num">28</td>
+              <td class="nv-table__num">99.99%</td>
+              <td class="nv-table__num">167 ms</td>
+            </tr>
+            <tr>
+              <td><input class="nv-checkbox" type="checkbox" aria-label="Select us-east-1"></td>
+              <th scope="row">us-east-1</th>
+              <td>Virginia</td>
+              <td class="nv-table__num">19</td>
+              <td class="nv-table__num">99.91%</td>
+              <td class="nv-table__num">243 ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <h3>Empty state</h3>
     <p>What a region shows when it has nothing to show: an optional icon, a title, one line of text and at most one action. Say what is missing and what to do about it, not that something went wrong.</p>
     <div class="doc-demo" data-demo>
