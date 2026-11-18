@@ -120,13 +120,13 @@ say so and rely on CI.
 Pushing the tag runs `.github/workflows/release.yml`: the same check on the tagged files,
 `dist/` rebuilt and compared, then the GitHub release with the changelog section as notes and
 the `dist/` files attached. Run it by hand with a `tag` input to create or refresh the release
-of an existing tag. Its npm job then publishes `nava-ui` and `@allan_nava/nava-ui-react` (NV-23) through
+of an existing tag. Its npm job then publishes `@allan_nava/nava-ui` and `@allan_nava/nava-ui-react` (NV-23) through
 **npm trusted publishing**: OIDC, with provenance, no token in the repository. It skips a
 version already on npm.
 
 One-time setup, by the owner, because npm cannot trust a publisher for a package that does
-not exist yet. The packages are `nava-ui` and `@allan_nava/nava-ui-react`, in the owner's own npm
-scope (as `@allan_nava/claimcheck`), so no npm organisation is needed.
+not exist yet. The packages are `@allan_nava/nava-ui` and `@allan_nava/nava-ui-react`, in the owner's own npm
+scope (npm refuses the bare `nava-ui` as too close to `naive-ui`) (as `@allan_nava/claimcheck`), so no npm organisation is needed.
 
 1. Publish the first version, one of two ways:
    - from the workflow: create a granular access token on npmjs.com with read and write on

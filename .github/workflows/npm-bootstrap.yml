@@ -1,6 +1,6 @@
 name: npm bootstrap
 
-# The first publish of nava-ui and @allan_nava/nava-ui-react, run by hand from the Actions tab
+# The first publish of @allan_nava/nava-ui and @allan_nava/nava-ui-react, run by hand from the Actions tab
 # (or `gh workflow run npm-bootstrap.yml -f dry_run=false`). npm forbids a trusted publisher for
 # a package that does not exist yet, so release.yml, which publishes by OIDC, cannot publish the
 # very first version: this workflow does it once, with a granular token in the NPM_TOKEN secret.

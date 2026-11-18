@@ -1,12 +1,12 @@
 # @allan_nava/nava-ui-react
 
 Thin typed React wrappers over the [nava-ui](https://github.com/Allan-Nava/nava-ui) classes. The
-look stays in the kit's CSS: load `nava-ui/dist/nava-ui.css` (or `nava-ui.components.css`) once
+look stays in the kit's CSS: load `@allan_nava/nava-ui/dist/nava-ui.css` (or `nava-ui.components.css`) once
 in the app, then use the components. Nothing here styles, and every component passes the other
 props to its element and merges a `className`.
 
 ```tsx
-import 'nava-ui/dist/nava-ui.css';
+import '@allan_nava/nava-ui/dist/nava-ui.css';
 import { Button, Field, Input, Tabs, Dialog, DataTable, Badge } from '@allan_nava/nava-ui-react';
 
 <Field label="URL" hint="A page or a stream" error={error}>
@@ -38,7 +38,7 @@ React 18 or later. The version follows the kit's: `@allan_nava/nava-ui-react@X.Y
 nava-ui `vX.Y.Z`, and both are published together.
 
 ```bash
-npm install nava-ui @allan_nava/nava-ui-react
+npm install @allan_nava/nava-ui @allan_nava/nava-ui-react
 ```
 
 ```bash

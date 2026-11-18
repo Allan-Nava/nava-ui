@@ -40,26 +40,27 @@ Pick one.
 **From npm**, with the React wrappers if you want them:
 
 ```bash
-npm install nava-ui
+npm install @allan_nava/nava-ui
 npm install @allan_nava/nava-ui-react   # optional, React 18 or later
 ```
 
 ```js
-import 'nava-ui';                        // dist/nava-ui.css: tokens, base, components
-import 'nava-ui/components.css';         // or: tokens and components only
-import 'nava-ui/js';                     // optional: theme toggle, dismiss, toasts, dialogs, tabs
+import '@allan_nava/nava-ui';             // dist/nava-ui.css: tokens, base, components
+import '@allan_nava/nava-ui/components.css'; // or: tokens and components only
+import '@allan_nava/nava-ui/js';          // optional: theme toggle, dismiss, toasts, dialogs, tabs
 ```
 
 The package carries `dist/`, the sources in `css/` and `src/`, and the font in `fonts/`, which
-`dist/nava-ui.css` loads from `../fonts/`. Short paths: `nava-ui/tailwind.css`,
-`nava-ui/tailwind-preset`, `nava-ui/tokens.dark.json`, `nava-ui/tokens.light.json`; any file
-by its path, such as `nava-ui/dist/nava-ui.min.css`.
+`dist/nava-ui.css` loads from `../fonts/`. Short paths: `@allan_nava/nava-ui/tailwind.css`,
+`@allan_nava/nava-ui/tailwind-preset`, `@allan_nava/nava-ui/tokens.dark.json` and `.light.json`;
+any file by its path, such as `@allan_nava/nava-ui/dist/nava-ui.min.css`. The package is in the
+owner's npm scope: npm refuses the bare name `nava-ui` as too close to `naive-ui`.
 
 **From a CDN**, pinned to a release tag:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.css">
-<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.1/dist/nava-ui.css">
+<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.1/dist/nava-ui.js"></script>
 ```
 
 Each file also comes minified, same content: `nava-ui.min.css`, `nava-ui.components.min.css`
@@ -116,8 +117,8 @@ A complete page: nav, opening, a list of cards, footer.
   })();
   </script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.css">
-  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.1/dist/nava-ui.css">
+  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.1/dist/nava-ui.js"></script>
 </head>
 <body>
   <a class="nv-skip-link" href="#main">Skip to content</a>
@@ -335,12 +336,12 @@ they do not, because the colours are `var()` — the kit's soft variants cover t
 ```css
 /* Tailwind v4 */
 @import "tailwindcss";
-@import "nava-ui/dist/tailwind.css";
+@import "@allan_nava/nava-ui/dist/tailwind.css";
 ```
 
 ```js
 // Tailwind v3, tailwind.config.js
-module.exports = { presets: [require('nava-ui/dist/tailwind.preset.cjs')] };
+module.exports = { presets: [require('@allan_nava/nava-ui/dist/tailwind.preset.cjs')] };
 ```
 
 The JSON files say what Design Tokens can say. A fluid font size (`clamp()`) has its smallest

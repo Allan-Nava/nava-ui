@@ -10,7 +10,7 @@ name: release
 # The tooling comes from the commit the workflow runs on; the files checked
 # come from the tag, so an old tag can be released with today's checks.
 #
-# npm: the second job publishes nava-ui and @allan_nava/nava-ui-react (NV-23) through npm
+# npm: the second job publishes @allan_nava/nava-ui and @allan_nava/nava-ui-react (NV-23) through npm
 # trusted publishing (OIDC), with provenance and no token; it skips a version
 # that is already on npm, so a re-run is safe.
 
@@ -127,7 +127,7 @@ jobs:
       # --ignore-scripts: no dependency lifecycle script runs beside the publishing
       # privilege. The React package's own build runs below, from its prepack.
       - run: npm ci --no-audit --no-fund --ignore-scripts
-      - name: Publish nava-ui and @allan_nava/nava-ui-react, unless already on npm
+      - name: Publish @allan_nava/nava-ui and @allan_nava/nava-ui-react, unless already on npm
         env:
           VERSION: ${{ needs.release.outputs.version }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -158,7 +158,7 @@ jobs:
         env:
           VERSION: ${{ needs.release.outputs.version }}
         run: |
-          for name in nava-ui @allan_nava/nava-ui-react; do
+          for name in @allan_nava/nava-ui @allan_nava/nava-ui-react; do
             ok=
             for i in $(seq 1 20); do
               if [ "$(npm view "$name@$VERSION" version 2>/dev/null)" = "$VERSION" ]; then

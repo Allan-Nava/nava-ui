@@ -154,7 +154,7 @@ are stable.
   `exports` map for the stylesheets and the script, and install instructions next to the CDN
   ones. The release workflow already has the npm job (NV-26): it runs once `package.json`
   drops `"private": true`, with an `NPM_TOKEN` secret. Done with trusted publishing (OIDC)
-  instead of a token, for `nava-ui` and `@allan_nava/nava-ui-react` together; both tarballs installed and
+  instead of a token, for `@allan_nava/nava-ui` and `@allan_nava/nava-ui-react` together; both tarballs installed and
   every export resolved before shipping. The first publish of each is the owner's, by hand
   (CLAUDE.md, Releases). <!-- nv: prio=high size=M labels=dist ver=main -->
 - [x] **NV-24 — Minified build**: `dist/nava-ui.min.css` and `.min.js` with their sizes in the

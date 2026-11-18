@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 0.9.1 — 2026-11-18
+
+The npm package under the name npm accepts.
+
+- The kit's npm package is `@allan_nava/nava-ui`: npm refuses the bare `nava-ui` as too close
+  to `naive-ui`, so the 0.9.0 publish failed and nothing went out under that name. Install with
+  `npm install @allan_nava/nava-ui`; imports become `@allan_nava/nava-ui`,
+  `@allan_nava/nava-ui/js`, `@allan_nava/nava-ui/tailwind-preset` and so on. The CDN URLs do not
+  change.
+
 ## 0.9.0 — 2026-11-18
 
 Components for a page about a person, and the npm packages under the owner's scope.
