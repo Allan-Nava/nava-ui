@@ -247,6 +247,10 @@ version and is published with it (NV-23); until then it is in this repository on
 The HTML of each one is on the [documentation page](https://allan-nava.github.io/nava-ui/#components),
 under "Show the HTML".
 
+On the [documentation page](https://allan-nava.github.io/nava-ui/#components), every component
+has its live example and, under it, what it is for, what it is not for, and the part of
+accessibility that stays with you: the label, the ARIA state, the order of the markup.
+
 | Component | Classes | Notes |
 |---|---|---|
 | Layout | `nv-wrap`, `nv-wrap--large`, `nv-wrap--wide` | 640 px for reading, 880 px, 1120 px for listings |

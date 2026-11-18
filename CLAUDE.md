@@ -58,9 +58,10 @@ tests/__screenshots__/  baselines, generated on the CI runner
   The fixed pixel values that exist (control heights, the card thumbnail) come from the site.
 - **Prefix everything**: classes `nv-`, custom properties `--nv-`, data attributes `data-nv-`.
   Classes starting with `doc-` belong to `index.html` only and are not part of the kit.
-- **A new component needs four things**: the CSS, a live example in `index.html` inside an
-  element with `data-demo` under an `<h3>`, a row in the README component table, and new
-  screenshot baselines. A new text and background pair also needs a line in
+- **A new component needs five things**: the CSS, a live example in `index.html` inside an
+  element with `data-demo` under an `<h3>`, its usage rules under the example (a `doc-usage`
+  list: use it for, not for, your part — the accessibility left to the author), a row in the
+  README component table, and new screenshot baselines. A new text and background pair also needs a line in
   `scripts/contrast.mjs`.
 - **A visual change needs new baselines.** They are generated in CI, never locally:
   `gh workflow run checks.yml -f update_snapshots=true`, wait, then

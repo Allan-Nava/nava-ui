@@ -75,6 +75,11 @@ main > section { margin-top: var(--nv-space-8); }
 main > section > h2 { color: var(--nv-fg-strong); }
 main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7); }
 .doc-table { overflow-x: auto; }
+.doc-usage { display: grid; gap: var(--nv-space-2); margin: var(--nv-space-4) 0 0; font-size: var(--nv-text-sm); }
+.doc-usage > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--nv-space-3); }
+.doc-usage dt { font-weight: 600; color: var(--nv-fg-strong); }
+.doc-usage dd { margin: 0; color: var(--nv-fg-muted); }
+@media (max-width: 560px) { .doc-usage > div { grid-template-columns: 1fr; gap: 0; } }
 .doc-skeleton-card { display: flex; gap: var(--nv-space-4); align-items: center; max-width: 28rem; padding: var(--nv-space-4); background: var(--nv-surface); border: 1px solid var(--nv-border); border-radius: var(--nv-radius-lg); }
 .doc-skeleton-card > div { flex: 1; }
 .doc-dialog-inline { margin-bottom: var(--nv-space-5); }
@@ -202,6 +207,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>An action on this page; a link drawn as a button when it is the page's main way forward.</dd></div>
+      <div><dt>Not for</dt><dd>Navigation inside running text: that is a link. More than one primary button in a view.</dd></div>
+      <div><dt>Your part</dt><dd><code>&lt;button type="button"&gt;</code> for an action, <code>&lt;a href&gt;</code> for going somewhere. An icon-only button needs an <code>aria-label</code>. A disabled button hides why: say it next to it.</dd></div>
+    </dl>
+
     <h3>Chips</h3>
     <p>Three roles: <code>nv-tag</code> labels content, <code>nv-chip</code> links to a topic, <code>nv-chip--filter</code> is a toggle (a <code>&lt;button&gt;</code> with <code>aria-pressed</code>).</p>
     <div class="doc-demo" data-demo>
@@ -223,6 +234,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd><code>nv-tag</code> labels content, <code>nv-chip</code> links to a topic, <code>nv-chip--filter</code> toggles a filter.</dd></div>
+      <div><dt>Not for</dt><dd>A state (use a badge) or an action that changes data (use a button).</dd></div>
+      <div><dt>Your part</dt><dd>Filter chips are buttons with <code>aria-pressed</code> kept in step, grouped by <code>role="group"</code> with an <code>aria-label</code>; announce the result count in a <code>role="status"</code> line.</dd></div>
+    </dl>
+
     <h3>Badges</h3>
     <p>A short status label, neutral by default, in three tones. The words carry the state, so a badge is never a coloured dot alone; <code>nv-badge--dot</code> adds a dot before them.</p>
     <div class="doc-demo" data-demo>
@@ -235,6 +252,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       <br>
       <p>checkfleet <span class="nv-badge nv-badge--accent">v1.4</span> runs every 10 minutes.</p>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A short state next to a name: Live, Beta, Down.</dd></div>
+      <div><dt>Not for</dt><dd>Anything to click, or more than two words.</dd></div>
+      <div><dt>Your part</dt><dd>The word carries the state and the colour only repeats it. A badge that is only a dot needs its word in <code>nv-sr-only</code>.</dd></div>
+    </dl>
 
     <h3>Marked pills and legend</h3>
     <p>For a list where every item has a kind. The kind is told three ways: the shape of the mark (dot, ring, diamond), the pill's fill and border, and words, visible in the legend and read by screen readers in each pill. This is how the site lists where each skill was used.</p>
@@ -251,6 +274,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <li><span class="nv-pill nv-pill--dashed"><span class="nv-mark nv-mark--diamond" aria-hidden="true"></span>Kubernetes<span class="nv-sr-only">, own projects</span></span></li>
       </ul>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A list where every item has a kind that must read without colour.</dd></div>
+      <div><dt>Not for</dt><dd>A list with one kind: plain chips are enough.</dd></div>
+      <div><dt>Your part</dt><dd>A legend near the list, and the kind in words for screen readers (<code>nv-sr-only</code>): the marks are <code>aria-hidden</code>.</dd></div>
+    </dl>
 
     <h3>Cards</h3>
     <p>A horizontal card: thumbnail, title, two-line excerpt, meta. <code>nv-list--two</code> gives two columns from 860px. Without an image use the generated placeholder, <code>nv-ph nv-ph-0</code> to <code>nv-ph-5</code>. Add <code>data-nv-spotlight</code> to the list for the glow that follows the pointer.</p>
@@ -296,6 +325,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         </li>
       </ul>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Lists of things to open: posts, projects, videos.</dd></div>
+      <div><dt>Not for</dt><dd>A single feature (a panel or a tile), or content with several actions: the whole card is one link.</dd></div>
+      <div><dt>Your part</dt><dd>One link per card, whose text is the title. A thumbnail that only decorates has <code>alt=""</code>; one that informs has real alt text.</dd></div>
+    </dl>
 
     <h3>Bento grid</h3>
     <p>Tiles of different sizes in one grid: one column on phones, two from 561px, six from 860px. A tile takes two of the six columns by default; <code>nv-tile--w3</code>, <code>--w4</code> and <code>--w6</code> make it wider, <code>nv-tile--h2</code> two rows tall. <code>nv-tile--feature</code> marks the one tile that leads. Placement is <code>dense</code>, so a tall tile leaves no holes. This is the "What I work with" section of the site.</p>
@@ -368,6 +403,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </ul>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>An overview of groups of different weight.</dd></div>
+      <div><dt>Not for</dt><dd>Long lists of equal items (cards) or values to compare (a table).</dd></div>
+      <div><dt>Your part</dt><dd>Write the markup in reading order: dense placement may move a tile on screen, never in the order a screen reader follows. One feature tile per grid.</dd></div>
+    </dl>
+
     <h3>Lede</h3>
     <p>The opening of a page: a kicker, a very large title with one or two highlighted words, a short paragraph.</p>
     <div class="doc-demo" data-demo>
@@ -377,6 +418,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <p class="nv-lede__sub">Backend in Go, infrastructure on three data centres, and the parts in between.</p>
       </div>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>The opening of a page, once.</dd></div>
+      <div><dt>Not for</dt><dd>Section headings.</dd></div>
+      <div><dt>Your part</dt><dd>Its title is the page's <code>&lt;h1&gt;</code>; the kicker is a paragraph, not a heading.</dd></div>
+    </dl>
 
     <h3>Banner</h3>
     <p>A page opening over a landscape: kicker, title, a line of words and a line of facts, over a faint grid, an accent glow and layered ridges. The ridges are an inline <code>&lt;svg class="nv-banner__ridges"&gt;</code> with <code>preserveAspectRatio="none"</code>: paths <code>nv-banner__far</code>, <code>__mid</code> and <code>__near</code>, and a <code>nv-banner__line</code> with <code>pathLength="1"</code>. Without <code>prefers-reduced-motion</code> the line draws itself, the glow breathes and the ridges drift at three speeds on scroll. This is the opening of the site's videos page, from the YouTube channel banner.</p>
@@ -397,6 +444,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </header>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>The opening of a showcase or media page.</dd></div>
+      <div><dt>Not for</dt><dd>Every page, or a page whose content must start above the fold.</dd></div>
+      <div><dt>Your part</dt><dd>The title is the page's <code>&lt;h1&gt;</code> and the ridges SVG stays <code>aria-hidden</code>. Its motion already stops under reduced motion: add none of your own that does not.</dd></div>
+    </dl>
+
     <h3>Section head</h3>
     <div class="doc-demo" data-demo>
       <section class="nv-section">
@@ -408,6 +461,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </section>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A titled section with a link to its full list.</dd></div>
+      <div><dt>Not for</dt><dd>Inside a card or a tile.</dd></div>
+      <div><dt>Your part</dt><dd>The heading level follows the page's outline; the link says where it goes ("All projects", never "More").</dd></div>
+    </dl>
+
     <h3>Stats</h3>
     <p>A <code>&lt;dl&gt;</code>: the label comes first in the markup, the number is drawn on top.</p>
     <div class="doc-demo" data-demo>
@@ -417,6 +476,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <div class="nv-stat"><dt class="nv-stat__label">Years</dt><dd class="nv-stat__value">11</dd></div>
       </dl>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Three or four numbers that give the scale at a glance.</dd></div>
+      <div><dt>Not for</dt><dd>Numbers to compare in detail (a table) or that change live.</dd></div>
+      <div><dt>Your part</dt><dd>The label (<code>&lt;dt&gt;</code>) says what is counted, and the page says when.</dd></div>
+    </dl>
 
     <h3>Bars</h3>
     <p>A horizontal bar list. The width is an inline style; the number is always written next to the bar, so the bar is never the only carrier of the value.</p>
@@ -428,12 +493,24 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </ul>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Comparing a handful of counts.</dd></div>
+      <div><dt>Not for</dt><dd>Exact values to read (a table), or more than about fifteen rows.</dd></div>
+      <div><dt>Your part</dt><dd>The number is in the text (<code>nv-bar__value</code>); the bar's width is decoration. A label that leads somewhere is a link.</dd></div>
+    </dl>
+
     <h3>Form field</h3>
     <div class="doc-demo" data-demo>
       <label class="nv-label" for="demo-search">Search</label>
       <input class="nv-input" id="demo-search" type="search" placeholder="Type a title or a tag">
       <p class="nv-hint">Press <kbd>/</kbd> to focus, <kbd>Esc</kbd> to clear.</p>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A single search or filter box.</dd></div>
+      <div><dt>Not for</dt><dd>A form with several fields: use <code>nv-field</code> and the controls below.</dd></div>
+      <div><dt>Your part</dt><dd>A visible label, or an <code>aria-label</code> for a search in a toolbar; <code>type="search"</code>.</dd></div>
+    </dl>
 
     <h3>Form controls</h3>
     <p>For a form with several fields: <code>nv-field</code> ties a label, a control and a hint together, and <code>nv-input--box</code> gives the input the same corners as the other controls. Checkbox, radio and switch are classes on the native <code>&lt;input&gt;</code>, wrapped in a <code>nv-choice</code> label so the text is part of the target. A switch is a checkbox with <code>role="switch"</code>: use it for a setting that applies at once, a checkbox for something sent with the form.</p>
@@ -472,6 +549,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </form>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Forms. A switch for a setting that applies at once, a checkbox for something sent with the form, radios for a few visible options, a select for many.</dd></div>
+      <div><dt>Not for</dt><dd>A switch inside a form that waits for Submit.</dd></div>
+      <div><dt>Your part</dt><dd>Every control has a label (<code>nv-field</code> or <code>nv-choice</code>); a group has a <code>fieldset</code> and a <code>legend</code>; a hint is linked with <code>aria-describedby</code>.</dd></div>
+    </dl>
+
     <h3>Validation</h3>
     <p>An invalid control has <code>aria-invalid="true"</code>, and its message is linked with <code>aria-describedby</code>: the CSS styles the attribute, so what a screen reader announces and what the eye sees cannot disagree. A valid control has the class <code>is-valid</code>. Neither is told by colour alone: the edge gets thicker and the message has a mark and says what to do.</p>
     <div class="doc-demo" data-demo>
@@ -499,6 +582,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <p class="nv-error" id="demo-terms-error">Accept the terms to create the project.</p>
       </form>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>After the person leaves a field or submits the form.</dd></div>
+      <div><dt>Not for</dt><dd>While they are still typing.</dd></div>
+      <div><dt>Your part</dt><dd><code>aria-invalid="true"</code> and the message in <code>aria-describedby</code>; the message says how to fix it. On submit, move the focus to the first error.</dd></div>
+    </dl>
 
     <h3>Alerts</h3>
     <p>A message in the page, in four tones. The tone is never told by colour alone: each has its own mark and a title that says what happened. Add <code>role="alert"</code> only to a message that appears after an action and needs attention now. A button with <code>data-nv-dismiss</code> removes the alert it is in.</p>
@@ -533,6 +622,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Something on this page to read now: a problem, a result.</dd></div>
+      <div><dt>Not for</dt><dd>A confirmation that can be missed (a toast), or promotion.</dd></div>
+      <div><dt>Your part</dt><dd><code>role="alert"</code> only for an urgent message added after load. Dismissing one must not remove the only copy of an error.</dd></div>
+    </dl>
+
     <h3>Toasts</h3>
     <p>A short message over the page that goes away by itself. Call <code>navaUI.toast(message, { tone, title, timeout })</code>: the script creates the live region, so screen readers announce the message, and stops the timer while the pointer or the focus is on the toast. A toast is for something the person can afford to miss; anything they must act on belongs in an alert.</p>
     <div class="doc-demo" data-demo>
@@ -551,6 +646,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <button class="nv-alert__close" type="button" data-nv-dismiss aria-label="Dismiss">×</button>
       </div>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A confirmation the person can afford to miss: "Saved".</dd></div>
+      <div><dt>Not for</dt><dd>Errors that need action, or a link that must be followed.</dd></div>
+      <div><dt>Your part</dt><dd>Short text; <code>timeout: 0</code> for anything longer to read; never a burst of several at once.</dd></div>
+    </dl>
 
     <h3>Dialog</h3>
     <p>The native <code>&lt;dialog&gt;</code>, opened with <code>showModal()</code> or a button with <code>data-nv-dialog="&lt;id&gt;"</code>: the browser traps the focus, closes it on Escape, makes the page behind inert and gives the focus back to the button that opened it. The close button sits in a <code>&lt;form method="dialog"&gt;</code>, so it works without the script; <code>closedby="any"</code> also closes it on a click outside. Below, the same dialog drawn in the page, and a button that opens it for real.</p>
@@ -586,6 +687,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </dialog>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A decision that blocks the task: confirming a deletion, a short form.</dd></div>
+      <div><dt>Not for</dt><dd>Content that could be a page, long forms, information that can sit inline.</dd></div>
+      <div><dt>Your part</dt><dd><code>aria-labelledby</code> its title, a close button inside <code>&lt;form method="dialog"&gt;</code>, and a destructive action named for what it does ("Delete playlist", never "OK").</dd></div>
+    </dl>
+
     <h3>Tabs</h3>
     <p>The ARIA tab pattern in the look of the nav links: <code>role="tablist"</code> with an <code>aria-label</code>, buttons with <code>role="tab"</code>, <code>aria-selected</code> and <code>aria-controls</code>, panels with <code>role="tabpanel"</code>. With nava-ui.js a click selects a tab, the arrow keys move and select, Home and End go to the ends, and Tab goes on to the panel. Without the script only the first panel can be reached.</p>
     <div class="doc-demo" data-demo>
@@ -606,6 +713,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         </div>
       </div>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Switching between a few views of the same thing, with short labels.</dd></div>
+      <div><dt>Not for</dt><dd>Steps of a process, navigation between pages (links), or content to compare side by side.</dd></div>
+      <div><dt>Your part</dt><dd>The ARIA markup with its ids, and <code>nava-ui.js</code> (or the React <code>Tabs</code>): without a script only the first panel can be reached.</dd></div>
+    </dl>
 
     <h3>Data table</h3>
     <p>A table in a box that scrolls both ways. The box takes <code>tabindex="0"</code>, <code>role="region"</code> and an <code>aria-label</code>, so a keyboard can scroll it; with a <code>max-height</code> the header sticks to its top. <code>nv-table__num</code> right-aligns a column in tabular figures. A row is selected when the checkbox in its first cell is checked (or with <code>is-selected</code>): the state lives in the checkbox and the colour follows it.</p>
@@ -661,6 +774,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Rows to compare or to act on.</dd></div>
+      <div><dt>Not for</dt><dd>Layout, or a list of one column.</dd></div>
+      <div><dt>Your part</dt><dd><code>scope</code> on every header cell, an <code>aria-label</code> on the scrolling box with <code>tabindex="0"</code> and <code>role="region"</code>, and a row checkbox named after its row.</dd></div>
+    </dl>
+
     <h3>Empty state</h3>
     <p>What a region shows when it has nothing to show: an optional icon, a title, one line of text and at most one action. Say what is missing and what to do about it, not that something went wrong.</p>
     <div class="doc-demo" data-demo>
@@ -671,6 +790,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <div class="nv-actions"><a class="nv-button nv-button--primary" href="#">Browse videos</a></div>
       </div>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A region with nothing in it yet, or no match for a filter.</dd></div>
+      <div><dt>Not for</dt><dd>Errors (an alert) and loading (a skeleton).</dd></div>
+      <div><dt>Your part</dt><dd>Say what is missing and what to do about it, with one action; the heading level fits the page.</dd></div>
+    </dl>
 
     <h3>Skeleton</h3>
     <p>Placeholders while content loads, in the shape of what is coming: <code>nv-skeleton</code> sized inline, <code>--line</code> for a line of text, <code>--circle</code> for an avatar. The region carries <code>aria-busy="true"</code> and a "Loading…" for screen readers; the skeletons are <code>aria-hidden</code>. The shimmer stops under <code>prefers-reduced-motion</code>.</p>
@@ -686,6 +811,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </div>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Content whose shape is known and that takes more than a moment to arrive.</dd></div>
+      <div><dt>Not for</dt><dd>A short wait (show nothing) or content of unknown shape.</dd></div>
+      <div><dt>Your part</dt><dd><code>aria-busy="true"</code> on the region and a "Loading…" text for screen readers; remove both when the content is in.</dd></div>
+    </dl>
+
     <h3>Button spinner</h3>
     <p>A button that is working keeps its label, gets <code>aria-busy="true"</code> and an <code>nv-spinner</code> before the text. It stays readable, unlike a disabled button, and ignores clicks until it is done. The spinner takes the colour of the text and stands still under <code>prefers-reduced-motion</code>.</p>
     <div class="doc-demo" data-demo>
@@ -694,6 +825,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <button class="nv-button" type="button" aria-busy="true"><span class="nv-spinner" aria-hidden="true"></span>Loading more</button>
       </div>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>An action that takes a moment after the click.</dd></div>
+      <div><dt>Not for</dt><dd>A page load.</dd></div>
+      <div><dt>Your part</dt><dd><code>aria-busy="true"</code>, the label kept; when it is done, say the result (a toast or an alert).</dd></div>
+    </dl>
 
     <h3>Pagination</h3>
     <p>On the first or last page keep the arrow in the markup with <code>aria-disabled="true"</code>: it is hidden but still takes its space, so the page number stays centred.</p>
@@ -705,6 +842,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </nav>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>A long list split into pages.</dd></div>
+      <div><dt>Not for</dt><dd>A handful of items, or a feed that loads as it scrolls.</dd></div>
+      <div><dt>Your part</dt><dd>A <code>&lt;nav&gt;</code> with an <code>aria-label</code>, an <code>aria-label</code> on each arrow, and the current page written out.</dd></div>
+    </dl>
+
     <h3>Panel</h3>
     <div class="doc-demo" data-demo>
       <div class="nv-panel">
@@ -713,6 +856,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <div class="nv-actions"><a class="nv-button nv-button--primary" href="#">Get in touch</a></div>
       </div>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>One call to action at the end of a page.</dd></div>
+      <div><dt>Not for</dt><dd>More than one per page.</dd></div>
+      <div><dt>Your part</dt><dd>A heading at the right level and one clear action.</dd></div>
+    </dl>
 
     <h3>Nav</h3>
     <p>A floating glass island, sticky at the top; the nav of this page is the same component. Mark the current page with <code>aria-current="page"</code>. On phones the name is hidden and the links scroll sideways: there is no menu to open.</p>
@@ -728,6 +877,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         </div>
       </header>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>The site's main navigation, with a few links.</dd></div>
+      <div><dt>Not for</dt><dd>More than about six links: on a phone they scroll sideways.</dd></div>
+      <div><dt>Your part</dt><dd><code>aria-current="page"</code> on the current link, a skip link before the nav, and a brand link that keeps a name (the kit hides the name visually only).</dd></div>
+    </dl>
 
     <h3>Footer</h3>
     <div class="doc-demo" data-demo>
@@ -756,6 +911,12 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </footer>
     </div>
 
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>The end of every page: who, the main links, the licence.</dd></div>
+      <div><dt>Not for</dt><dd>A second navigation with everything in it.</dd></div>
+      <div><dt>Your part</dt><dd>Column titles are real headings; links say where they go.</dd></div>
+    </dl>
+
     <h3>Prose</h3>
     <p>With <code>base.css</code> loaded, plain elements are styled too: headings, links, quotes, inline code, code blocks, tables, rules.</p>
     <div class="doc-demo" data-demo>
@@ -766,6 +927,13 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <tbody><tr><td>--nv-radius-lg</td><td>14px</td></tr><tr><td>--nv-dur</td><td>200ms</td></tr></tbody>
       </table>
     </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Long-form text: posts and documentation.</dd></div>
+      <div><dt>Not for</dt><dd>Interface text.</dd></div>
+      <div><dt>Your part</dt><dd>Headings in order, alt text on images, and <code>tabindex="0"</code> on a code block that scrolls sideways.</dd></div>
+    </dl>
+
   </section>
 
   <section id="examples">

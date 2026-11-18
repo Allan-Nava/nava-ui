@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Usage rules on the documentation page: under every component's example, what it is for, what
+  it is not for, and the accessibility left to the author (labels, ARIA state, markup order).
+
 ## 0.8.0 — 2026-11-18
 
 One source for the tokens and exports from it, page templates, and React wrappers.

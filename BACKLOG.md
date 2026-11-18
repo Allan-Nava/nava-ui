@@ -201,8 +201,10 @@ are stable.
   included) and a test of the listing's filter. <!-- nv: prio=med size=L labels=docs,components ver=main -->
 - [ ] **NV-31 — Copy button on code**: a button on every code block of the documentation
   page, visible on hover and on focus, as on the site. <!-- nv: prio=low size=S labels=docs -->
-- [ ] **NV-32 — Usage rules per component**: for each component when to use it, when not to,
-  and the accessibility duties left to the author, next to its example. <!-- nv: prio=med size=M labels=docs,a11y -->
+- [x] **NV-32 — Usage rules per component**: for each component when to use it, when not to,
+  and the accessibility duties left to the author, next to its example. Done: a "Use it for /
+  Not for / Your part" list under each of the 27 examples, and a rule in CLAUDE.md that a new
+  component brings its own. <!-- nv: prio=med size=M labels=docs,a11y ver=main -->
 - [ ] **NV-33 — Opt-in motion module**: the site's scroll reveal, section rule and view
   transitions as a separate `nava-ui.motion.css`, off under `prefers-reduced-motion`. <!-- nv: prio=low size=M labels=components -->
 - [x] **NV-34 — React components**: thin typed wrappers over the classes, in a separate
