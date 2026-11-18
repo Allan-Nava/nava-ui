@@ -6,6 +6,8 @@
  *   2. Card spotlight any container with [data-nv-spotlight]
  *   3. Dismiss        a button with [data-nv-dismiss] inside an alert or a toast
  *   4. Toasts         navaUI.toast(message, { tone, title, timeout })
+ *   5. Dialogs        a button with [data-nv-dialog="<id>"] opens that <dialog> as a
+ *                     modal; closedby="any" where the browser does not know it
  *
  * Load it with `defer`. To avoid a flash of the wrong theme, also put the
  * three-line snippet from the README in <head>: it must run before first paint.
@@ -151,6 +153,29 @@
 
     return el;
   }
+
+  /* Dialogs. The browser does the rest: focus, Escape, inert page, focus back to
+     the opener. closedby="any" (a click outside closes) is native in recent
+     browsers; elsewhere a click on the dialog box itself, outside its content,
+     is a click on the backdrop. */
+  var nativeClosedBy = 'closedBy' in (window.HTMLDialogElement ? HTMLDialogElement.prototype : {});
+
+  document.addEventListener('click', function (event) {
+    var opener = event.target.closest && event.target.closest('[data-nv-dialog]');
+    if (opener) {
+      var dialog = document.getElementById(opener.getAttribute('data-nv-dialog'));
+      if (dialog && typeof dialog.showModal === 'function' && !dialog.open) dialog.showModal();
+      return;
+    }
+    var target = event.target;
+    if (!nativeClosedBy && target.tagName === 'DIALOG' && target.open &&
+        target.getAttribute('closedby') === 'any') {
+      var box = target.getBoundingClientRect();
+      var outside = event.clientX < box.left || event.clientX > box.right ||
+        event.clientY < box.top || event.clientY > box.bottom;
+      if (outside) target.close();
+    }
+  });
 
   window.navaUI = { setTheme: setTheme, theme: current, toast: toast, dismiss: leave };
 })();

@@ -112,8 +112,11 @@ accessibility rules green.
   a skeleton that respects `prefers-reduced-motion`, and a spinner for buttons. Done as
   `nv-empty`, `nv-skeleton` (`--line`, `--circle`) and `nv-spinner`; a working button is
   `aria-busy="true"`, which keeps it readable where `disabled` would halve its contrast. <!-- nv: prio=med size=S labels=components ver=main -->
-- [ ] **NV-19 — Dialog**: styles for the native `<dialog>` and its backdrop on the glass
-  tokens, with header, body and actions; no focus-trap code, the element provides it. <!-- nv: prio=med size=M labels=components,a11y -->
+- [x] **NV-19 — Dialog**: styles for the native `<dialog>` and its backdrop on the glass
+  tokens, with header, body and actions; no focus-trap code, the element provides it. Done as
+  `nv-dialog`: the close button sits in a `<form method="dialog">`, the page behind stops
+  scrolling, and nava-ui.js opens a dialog from `data-nv-dialog` and backs `closedby="any"` in
+  browsers without it; a browser test covers focus, Escape and the click outside. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
 - [ ] **NV-20 — Tabs**: a tab list in the look of the nav links, with the ARIA tab pattern
   and arrow-key movement in the optional script. <!-- nv: prio=med size=M labels=components,a11y -->
 - [x] **NV-21 — Badges and marked chips**: a small status label in neutral, accent, warning and

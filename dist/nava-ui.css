@@ -2324,6 +2324,140 @@ a.nv-bar__label:hover {
 }
 
 /* ---------------------------------------------------------------------------
+   Dialog — the native <dialog>, styled. Open it with showModal() (or a button
+   with data-nv-dialog="<id>" and nava-ui.js): the browser then traps the
+   focus, closes on Escape, makes the page behind it inert and returns the
+   focus to the opener. No focus-trap code here, because none is needed.
+     .nv-dialog            on the <dialog>; give it aria-labelledby its title
+     .nv-dialog__header    title and a close button
+     .nv-dialog__title
+     .nv-dialog__close     in a <form method="dialog">, so it closes without JS
+     .nv-dialog__body      scrolls when the content is taller than the screen
+     .nv-dialog__actions   the buttons, the main one last
+   closedby="any" also closes it on a click outside; nava-ui.js adds that to
+   browsers that do not know the attribute yet. The page behind does not
+   scroll while a modal dialog is open.
+   ------------------------------------------------------------------------ */
+
+.nv-dialog {
+  display: none;
+  flex-direction: column;
+  width: min(32rem, calc(100vw - var(--nv-space-4) * 2));
+  max-height: calc(100dvh - var(--nv-space-6) * 2);
+  padding: 0;
+  overflow: hidden;
+  color: var(--nv-fg);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-lg);
+  box-shadow: var(--nv-shadow-md);
+}
+
+.nv-dialog[open] {
+  display: flex;
+}
+
+.nv-dialog::backdrop {
+  background: var(--nv-glass);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+:root:has(.nv-dialog:modal) {
+  overflow: hidden;
+}
+
+.nv-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nv-space-3);
+  padding: var(--nv-space-5) var(--nv-space-5) 0;
+}
+
+.nv-dialog__header form {
+  display: contents;
+}
+
+.nv-dialog__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 650;
+  letter-spacing: var(--nv-tracking-tight);
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+}
+
+.nv-dialog__close {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--nv-space-6);
+  height: var(--nv-space-6);
+  margin: calc(var(--nv-space-1) * -1) calc(var(--nv-space-2) * -1) 0 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--nv-text-xl);
+  line-height: 1;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-dialog__close:focus-visible {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+}
+
+@media (hover: hover) {
+  .nv-dialog__close:hover {
+    color: var(--nv-fg-strong);
+    background: var(--nv-hover-overlay);
+  }
+}
+
+.nv-dialog__body {
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--nv-space-4) var(--nv-space-5);
+}
+
+.nv-dialog__body > :first-child {
+  margin-top: 0;
+}
+
+.nv-dialog__body > :last-child {
+  margin-bottom: 0;
+}
+
+.nv-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--nv-space-3);
+  padding: var(--nv-space-4) var(--nv-space-5) var(--nv-space-5);
+  border-top: 1px solid var(--nv-border);
+}
+
+/* Opening: a short fade and rise, only without reduced motion and only where
+   the browser can animate from display: none (@starting-style). */
+@media (prefers-reduced-motion: no-preference) {
+  .nv-dialog[open] {
+    transition: opacity var(--nv-dur) var(--nv-ease), transform var(--nv-dur) var(--nv-ease-out);
+  }
+
+  @starting-style {
+    .nv-dialog[open] {
+      opacity: 0;
+      transform: translateY(var(--nv-space-2)) scale(0.98);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Empty and loading — what a region shows when it has nothing yet.
    .nv-empty          nothing to show: an optional icon, a title, one line of
                       text and at most one action (.nv-actions)

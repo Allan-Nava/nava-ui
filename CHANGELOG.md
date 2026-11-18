@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Dialog (`nv-dialog`): styles for the native `<dialog>` and its backdrop on the glass token,
+  with header, close button, a body that scrolls and actions; the page behind does not scroll.
+  No focus-trap code: `showModal()` gives focus, Escape and the inert page. nava-ui.js opens a
+  dialog from a button with `data-nv-dialog="<id>"` and adds `closedby="any"` to browsers that
+  do not know it.
+
 - Empty and loading states: `nv-empty` (icon, title, text, one action), `nv-skeleton` with
   `--line` and `--circle` and a shimmer that stops under reduced motion, and `nv-spinner` for a
   button marked `aria-busy="true"`, which stays readable and ignores clicks.

@@ -77,6 +77,8 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
 .doc-table { overflow-x: auto; }
 .doc-skeleton-card { display: flex; gap: var(--nv-space-4); align-items: center; max-width: 28rem; padding: var(--nv-space-4); background: var(--nv-surface); border: 1px solid var(--nv-border); border-radius: var(--nv-radius-lg); }
 .doc-skeleton-card > div { flex: 1; }
+.doc-dialog-inline { margin-bottom: var(--nv-space-5); }
+.doc-dialog-inline .nv-dialog { position: static; margin: 0; }
 </style>
 </head>
 <body>
@@ -548,6 +550,40 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         </div>
         <button class="nv-alert__close" type="button" data-nv-dismiss aria-label="Dismiss">×</button>
       </div>
+    </div>
+
+    <h3>Dialog</h3>
+    <p>The native <code>&lt;dialog&gt;</code>, opened with <code>showModal()</code> or a button with <code>data-nv-dialog="&lt;id&gt;"</code>: the browser traps the focus, closes it on Escape, makes the page behind inert and gives the focus back to the button that opened it. The close button sits in a <code>&lt;form method="dialog"&gt;</code>, so it works without the script; <code>closedby="any"</code> also closes it on a click outside. Below, the same dialog drawn in the page, and a button that opens it for real.</p>
+    <div class="doc-demo" data-demo>
+      <div class="doc-dialog-inline">
+        <dialog class="nv-dialog" open aria-labelledby="doc-dialog-title-inline">
+          <div class="nv-dialog__header">
+            <h4 class="nv-dialog__title" id="doc-dialog-title-inline">Delete this playlist?</h4>
+            <form method="dialog"><button class="nv-dialog__close" aria-label="Close">×</button></form>
+          </div>
+          <div class="nv-dialog__body">
+            <p>The 12 videos stay on the channel; only the list goes. This cannot be undone.</p>
+          </div>
+          <form class="nv-dialog__actions" method="dialog">
+            <button class="nv-button" value="cancel">Keep it</button>
+            <button class="nv-button nv-button--primary" value="delete">Delete playlist</button>
+          </form>
+        </dialog>
+      </div>
+      <div class="nv-actions"><button class="nv-button" type="button" data-nv-dialog="doc-dialog">Open the dialog</button></div>
+      <dialog class="nv-dialog" id="doc-dialog" closedby="any" aria-labelledby="doc-dialog-title">
+        <div class="nv-dialog__header">
+          <h4 class="nv-dialog__title" id="doc-dialog-title">Delete this playlist?</h4>
+          <form method="dialog"><button class="nv-dialog__close" aria-label="Close">×</button></form>
+        </div>
+        <div class="nv-dialog__body">
+          <p>The 12 videos stay on the channel; only the list goes. This cannot be undone.</p>
+        </div>
+        <form class="nv-dialog__actions" method="dialog">
+          <button class="nv-button" value="cancel">Keep it</button>
+          <button class="nv-button nv-button--primary" value="delete">Delete playlist</button>
+        </form>
+      </dialog>
     </div>
 
     <h3>Empty state</h3>

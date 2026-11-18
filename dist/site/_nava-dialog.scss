@@ -1,0 +1,119 @@
+// GENERATED from nava-ui v0.5.0 (css/components.css, "Dialog") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-dialog {
+  display: none;
+  flex-direction: column;
+  width: min(51.2rem, calc(100vw - var(--nv-space-4) * 2));
+  max-height: calc(100dvh - var(--nv-space-6) * 2);
+  padding: 0;
+  overflow: hidden;
+  color: var(--nv-fg);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border-strong);
+  border-radius: var(--nv-radius-lg);
+  box-shadow: var(--nv-shadow-md);
+}
+
+.nv-dialog[open] {
+  display: flex;
+}
+
+.nv-dialog::backdrop {
+  background: var(--nv-glass);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+:root:has(.nv-dialog:modal) {
+  overflow: hidden;
+}
+
+.nv-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nv-space-3);
+  padding: var(--nv-space-5) var(--nv-space-5) 0;
+}
+
+.nv-dialog__header form {
+  display: contents;
+}
+
+.nv-dialog__title {
+  margin: 0;
+  font-size: var(--nv-text-lg);
+  font-weight: 650;
+  letter-spacing: var(--nv-tracking-tight);
+  line-height: var(--nv-leading-snug);
+  color: var(--nv-fg-strong);
+}
+
+.nv-dialog__close {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--nv-space-6);
+  height: var(--nv-space-6);
+  margin: calc(var(--nv-space-1) * -1) calc(var(--nv-space-2) * -1) 0 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--nv-text-xl);
+  line-height: 1;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-dialog__close:focus-visible {
+  color: var(--nv-fg-strong);
+  background: var(--nv-hover-overlay);
+}
+
+@media (hover: hover) {
+  .nv-dialog__close:hover {
+    color: var(--nv-fg-strong);
+    background: var(--nv-hover-overlay);
+  }
+}
+
+.nv-dialog__body {
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--nv-space-4) var(--nv-space-5);
+}
+
+.nv-dialog__body > :first-child {
+  margin-top: 0;
+}
+
+.nv-dialog__body > :last-child {
+  margin-bottom: 0;
+}
+
+.nv-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--nv-space-3);
+  padding: var(--nv-space-4) var(--nv-space-5) var(--nv-space-5);
+  border-top: 1px solid var(--nv-border);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nv-dialog[open] {
+    transition: opacity var(--nv-dur) var(--nv-ease), transform var(--nv-dur) var(--nv-ease-out);
+  }
+
+  @starting-style {
+    .nv-dialog[open] {
+      opacity: 0;
+      transform: translateY(var(--nv-space-2)) scale(0.98);
+    }
+  }
+}

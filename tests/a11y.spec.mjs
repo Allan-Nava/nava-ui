@@ -64,3 +64,30 @@ test('a toast is announced, can be dismissed, and goes away by itself', async ({
   await page.evaluate(() => window.navaUI.toast('<img src=x onerror=alert(1)>', { timeout: 0 }));
   await expect(region.locator('img')).toHaveCount(0);
 });
+
+test('a dialog opens as a modal, closes on Escape and outside, and gives the focus back', async ({ page }) => {
+  await page.goto('/index.html');
+  const opener = page.getByRole('button', { name: 'Open the dialog' });
+  const dialog = page.locator('#doc-dialog');
+
+  await opener.click();
+  await expect(dialog).toBeVisible();
+  expect(await dialog.evaluate((el) => el.matches(':modal'))).toBe(true);
+  // The browser moves the focus into the dialog: the first focusable is its close button.
+  await expect(dialog.getByRole('button', { name: 'Close' })).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(opener).toBeFocused();
+
+  // closedby="any": a click on the backdrop, outside the box, closes it.
+  await opener.click();
+  await expect(dialog).toBeVisible();
+  await page.mouse.click(5, 5);
+  await expect(dialog).toBeHidden();
+
+  // The close button works without the script: it is in a <form method="dialog">.
+  await opener.click();
+  await dialog.getByRole('button', { name: 'Keep it' }).click();
+  await expect(dialog).toBeHidden();
+});
