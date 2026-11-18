@@ -129,15 +129,20 @@ not exist yet:
 
 1. On npmjs.com, create the organisation `nava-ui` (free, public packages), which owns the
    `@nava-ui` scope.
-2. `npm login`, then publish the first version of each package by hand from `main`:
-   `npm publish --access public` at the root, and `npm publish --access public` in
-   `packages/react` (its `prepack` builds it).
+2. The first release with the npm job publishes with a token, from the workflow: on
+   npmjs.com create a granular access token with read and write on packages and scopes (for
+   `nava-ui` and `@nava-ui`), allowed to publish without 2FA, and store it as the repository
+   secret `NPM_TOKEN` (`gh secret set NPM_TOKEN -R Allan-Nava/nava-ui`). Then release as usual:
+   the job sees the secret and publishes both packages with it.
 3. For each package, npmjs.com → the package → Settings → Trusted Publisher → GitHub Actions:
    organisation or user `Allan-Nava` (this case exactly: npm compares it with GitHub's claim
    literally), repository `nava-ui`, workflow `release.yml`, no environment. Or
    `npm trust github <name> --repo Allan-Nava/nava-ui --file release.yml --allow-publish`.
 
-From then on every tag publishes both. `release.yml` is part of that configuration: renaming it
+4. Delete the `NPM_TOKEN` secret (`gh secret delete NPM_TOKEN -R Allan-Nava/nava-ui`) and
+   revoke the token on npmjs.com. While the secret exists the job uses it, with a warning.
+
+From then on every tag publishes both, by OIDC alone. `release.yml` is part of that configuration: renaming it
 breaks publishing, with an error that does not mention the filename. Do not add `registry-url`
 to its `setup-node`: the `.npmrc` it writes makes npm skip the OIDC exchange.
 

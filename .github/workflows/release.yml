@@ -92,8 +92,9 @@ jobs:
   npm:
     # Trusted publishing (OIDC): no npm token anywhere. Each package's page on npmjs.com names
     # this repository and this workflow file as its trusted publisher, so DO NOT RENAME THIS
-    # FILE without changing that too. The first version of each package is published by hand
-    # (npm cannot trust a publisher for a package that does not exist yet): see CLAUDE.md.
+    # FILE without changing that too. The first version of each package goes out with the
+    # NPM_TOKEN secret (npm cannot trust a publisher for a package that does not exist yet):
+    # see CLAUDE.md.
     needs: release
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
@@ -120,7 +121,16 @@ jobs:
       - name: Publish nava-ui and @nava-ui/react, unless the version is already on npm
         env:
           VERSION: ${{ needs.release.outputs.version }}
+          # Bootstrap only: npm cannot trust a publisher for a package that does not exist yet,
+          # so the very first publish uses a granular token in the NPM_TOKEN secret. Once both
+          # packages have their trusted publisher, delete the secret: from then on this job
+          # authenticates by OIDC alone.
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "::warning::Publishing with the NPM_TOKEN secret. Set the trusted publishers on npmjs.com, then delete the secret."
+            npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          fi
           publish() {
             name="$(node -p "require('./$1/package.json').name")"
             if npm view "$name@$VERSION" version >/dev/null 2>&1; then
