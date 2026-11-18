@@ -139,3 +139,31 @@ test('a table row is selected by its checkbox, and the table box takes the focus
   await page.mouse.move(0, 0);
   await expect.poll(bg).toBe(before);
 });
+
+// The page templates are whole pages, so here every rule is on, the structure ones included.
+for (const name of ['landing', 'listing', 'app']) {
+  test(`example page ${name}: no accessibility violations`, async ({ page }) => {
+    await page.goto(`/examples/${name}.html`);
+    await page.evaluate(() => document.fonts.ready);
+    const results = await new AxeBuilder({ page }).analyze();
+    const summary = results.violations.map((v) => ({
+      rule: v.id,
+      impact: v.impact,
+      nodes: v.nodes.map((n) => n.target.join(' ')),
+    }));
+    expect(summary).toEqual([]);
+  });
+}
+
+test('the listing example filters by kind and by search, and says when nothing matches', async ({ page }) => {
+  await page.goto('/examples/listing.html');
+  const cards = page.locator('[data-filter-list] .nv-card:visible');
+  await expect(cards).toHaveCount(8);
+  await page.getByRole('button', { name: /Metrics/ }).click();
+  await expect(cards).toHaveCount(2);
+  await page.getByLabel('Search').fill('zzz');
+  await expect(cards).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'No integration matches' })).toBeVisible();
+  await page.getByRole('button', { name: 'Clear the filters' }).click();
+  await expect(cards).toHaveCount(8);
+});

@@ -21,6 +21,7 @@ the same look.
 - [Quick start](#quick-start)
 - [What is in the box](#what-is-in-the-box)
 - [Tokens](#tokens)
+- [Page templates](#page-templates)
 - [Components](#components)
 - [Tokens for other tools](#tokens-for-other-tools)
 - [Theming](#theming)
@@ -222,6 +223,15 @@ and background pair the components use, in both themes, and CI fails under 6:1 (
 
 Which radius for what: `sm` for inline code and focus rings, `md` for images and code blocks, `lg`
 for cards and panels, `pill` for everything you can click that is not a card.
+
+## Page templates
+
+Three complete pages built only with the kit, in [`examples/`](examples/), for a made-up
+product: a [landing](examples/landing.html), a [listing with filters](examples/listing.html) and an
+[application screen](examples/app.html) with tabs, a table, a form and a dialog. They show how the
+pieces sit together, and CI screenshots each one whole, in both themes and both widths, and runs
+every accessibility rule on it. The only code of their own is the listing's filter and the
+spacing between blocks.
 
 ## Components
 

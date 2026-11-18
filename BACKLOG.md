@@ -194,9 +194,11 @@ are stable.
   source, for the repository settings and the page's `og:image`. Done: three tiles of a bento
   grid; the preview is rendered by the `assets` workflow, in the Playwright image. <!-- nv: prio=med size=S labels=docs ver=main -->
 
-- [ ] **NV-30 — Page templates**: three complete pages built only with the kit (a landing, a
+- [x] **NV-30 — Page templates**: three complete pages built only with the kit (a landing, a
   listing with filters, an application screen with a form and a table), linked from the
-  documentation and covered by screenshots. They show how the pieces sit together. <!-- nv: prio=med size=L labels=docs,components -->
+  documentation and covered by screenshots. They show how the pieces sit together. Done in
+  `examples/`: full-page screenshots in both themes and widths, every axe rule (structure
+  included) and a test of the listing's filter. <!-- nv: prio=med size=L labels=docs,components ver=main -->
 - [ ] **NV-31 — Copy button on code**: a button on every code block of the documentation
   page, visible on hover and on focus, as on the site. <!-- nv: prio=low size=S labels=docs -->
 - [ ] **NV-32 — Usage rules per component**: for each component when to use it, when not to,

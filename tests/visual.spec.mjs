@@ -61,3 +61,17 @@ test('nothing overflows the viewport sideways', async ({ page }) => {
   );
   expect(overflow).toBeLessThanOrEqual(0);
 });
+
+// The page templates (NV-30): each one whole, in both themes and both widths, and never
+// wider than the screen.
+for (const name of ['landing', 'listing', 'app']) {
+  test(`example page: ${name}`, async ({ page }) => {
+    await page.goto(`/examples/${name}.html`);
+    await page.evaluate(() => document.fonts.ready);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(0);
+    await expect(page).toHaveScreenshot(`example-${name}.png`, { fullPage: true });
+  });
+}

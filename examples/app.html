@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Beacon</title>
+<meta name="description" content="An example application screen with a table, tabs, a form and a dialog, built only with nava-ui.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('nv-theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" href="../dist/nava-ui.css">
+</head>
+<body>
+<a class="nv-skip-link" href="#main">Skip to content</a>
+
+<header class="nv-nav">
+  <div class="nv-nav__inner">
+    <a class="nv-nav__brand" href="landing.html"><span class="nv-nav__name">Beacon</span></a>
+    <ul class="nv-nav__links">
+      <li><a class="nv-nav__link" href="landing.html">Product</a></li>
+      <li><a class="nv-nav__link" href="listing.html">Integrations</a></li>
+      <li><a class="nv-nav__link" href="app.html" aria-current="page">Dashboard</a></li>
+    </ul>
+    <button class="nv-nav__icon" type="button" data-nv-theme-toggle>
+      <svg class="nv-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="nv-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="nv-wrap nv-wrap--wide">
+  <div class="nv-section-head">
+    <h1 class="nv-section-head__title">Endpoints</h1>
+    <button class="nv-button nv-button--primary" type="button" data-nv-dialog="add-endpoint">Add endpoint</button>
+  </div>
+
+  <div class="nv-alert nv-alert--warning">
+    <span class="nv-alert__icon" aria-hidden="true">!</span>
+    <div class="nv-alert__body">
+      <p class="nv-alert__title">One endpoint is down</p>
+      <p class="nv-alert__text">auth.example.com has failed its last 4 checks, from all three regions.</p>
+    </div>
+  </div>
+
+  <div class="nv-tabs">
+    <div class="nv-tabs__list" role="tablist" aria-label="Dashboard">
+      <button class="nv-tabs__tab" type="button" role="tab" id="tab-endpoints" aria-selected="true" aria-controls="panel-endpoints" tabindex="0">Endpoints</button>
+      <button class="nv-tabs__tab" type="button" role="tab" id="tab-alerts" aria-selected="false" aria-controls="panel-alerts" tabindex="-1">Alerts</button>
+      <button class="nv-tabs__tab" type="button" role="tab" id="tab-settings" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Settings</button>
+    </div>
+
+    <div class="nv-tabs__panel" role="tabpanel" id="panel-endpoints" aria-labelledby="tab-endpoints" tabindex="0">
+      <div class="nv-table-wrap" tabindex="0" role="region" aria-label="Endpoints">
+        <table class="nv-table">
+          <thead>
+            <tr>
+              <th scope="col"><span class="nv-sr-only">Selected</span></th>
+              <th scope="col">Endpoint</th>
+              <th scope="col">Check</th>
+              <th scope="col">State</th>
+              <th scope="col" class="nv-table__num">Uptime, 30 days</th>
+              <th scope="col" class="nv-table__num">p95</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><input class="nv-checkbox" type="checkbox" aria-label="Select api.example.com"></td>
+                <th scope="row">api.example.com</th>
+                <td>HTTP</td>
+                <td><span class="nv-badge nv-badge--accent nv-badge--dot">Up</span></td>
+                <td class="nv-table__num">99.98%</td>
+                <td class="nv-table__num">184 ms</td>
+              </tr>
+              <tr>
+                <td><input class="nv-checkbox" type="checkbox" aria-label="Select live.example.com/master.m3u8" checked></td>
+                <th scope="row">live.example.com/master.m3u8</th>
+                <td>HLS</td>
+                <td><span class="nv-badge nv-badge--accent nv-badge--dot">Up</span></td>
+                <td class="nv-table__num">99.95%</td>
+                <td class="nv-table__num">211 ms</td>
+              </tr>
+              <tr>
+                <td><input class="nv-checkbox" type="checkbox" aria-label="Select cdn.example.com"></td>
+                <th scope="row">cdn.example.com</th>
+                <td>TLS</td>
+                <td><span class="nv-badge nv-badge--warning nv-badge--dot">Expires in 12 days</span></td>
+                <td class="nv-table__num">100.00%</td>
+                <td class="nv-table__num">—</td>
+              </tr>
+              <tr>
+                <td><input class="nv-checkbox" type="checkbox" aria-label="Select auth.example.com"></td>
+                <th scope="row">auth.example.com</th>
+                <td>HTTP</td>
+                <td><span class="nv-badge nv-badge--danger nv-badge--dot">Down</span></td>
+                <td class="nv-table__num">97.10%</td>
+                <td class="nv-table__num">—</td>
+              </tr>
+              <tr>
+                <td><input class="nv-checkbox" type="checkbox" aria-label="Select stats.example.com"></td>
+                <th scope="row">stats.example.com</th>
+                <td>DNS</td>
+                <td><span class="nv-badge nv-badge--accent nv-badge--dot">Up</span></td>
+                <td class="nv-table__num">99.99%</td>
+                <td class="nv-table__num">31 ms</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="nv-tabs__panel" role="tabpanel" id="panel-alerts" aria-labelledby="tab-alerts" tabindex="0" hidden>
+      <div class="nv-empty">
+        <span class="nv-empty__icon" aria-hidden="true">&#10003;</span>
+        <h2 class="nv-empty__title">No alerts in the last 24 hours</h2>
+        <p class="nv-empty__text">Alerts show here when a check fails twice in a row from two regions.</p>
+      </div>
+    </div>
+
+    <div class="nv-tabs__panel" role="tabpanel" id="panel-settings" aria-labelledby="tab-settings" tabindex="0" hidden>
+      <form class="doc-settings" action="#" data-settings>
+        <div class="nv-field">
+          <label class="nv-label" for="team">Team name</label>
+          <input class="nv-input nv-input--box" id="team" type="text" value="Platform">
+        </div>
+        <div class="nv-field">
+          <label class="nv-label" for="interval">Check every</label>
+          <select class="nv-select" id="interval">
+            <option>30 seconds</option>
+            <option selected>1 minute</option>
+            <option>5 minutes</option>
+          </select>
+        </div>
+        <fieldset class="nv-fieldset">
+          <legend class="nv-legend">Notifications</legend>
+          <label class="nv-choice"><input class="nv-switch" type="checkbox" role="switch" checked> Slack, for every failure</label>
+          <label class="nv-choice"><input class="nv-switch" type="checkbox" role="switch"> A daily digest by e-mail</label>
+        </fieldset>
+        <div class="nv-actions"><button class="nv-button nv-button--primary" type="submit">Save settings</button></div>
+      </form>
+    </div>
+  </div>
+
+  <dialog class="nv-dialog" id="add-endpoint" closedby="any" aria-labelledby="add-endpoint-title">
+    <div class="nv-dialog__header">
+      <h2 class="nv-dialog__title" id="add-endpoint-title">Add an endpoint</h2>
+      <form method="dialog"><button class="nv-dialog__close" aria-label="Close">×</button></form>
+    </div>
+    <form method="dialog" data-add>
+      <div class="nv-dialog__body">
+        <div class="nv-field">
+          <label class="nv-label" for="url">URL</label>
+          <input class="nv-input nv-input--box" id="url" type="url" placeholder="https://" required aria-describedby="url-hint">
+          <p class="nv-hint" id="url-hint">A page, an API or a stream manifest.</p>
+        </div>
+      </div>
+      <div class="nv-dialog__actions">
+        <button class="nv-button" value="cancel" formnovalidate>Cancel</button>
+        <button class="nv-button nv-button--primary" value="add">Add and check</button>
+      </div>
+    </form>
+  </dialog>
+</main>
+
+<style>
+/* This page only: the space between the blocks. Everything else is the kit. */
+main > .nv-section-head { margin-top: var(--nv-space-7); }
+main > .nv-alert { margin-bottom: var(--nv-space-5); }
+.doc-settings { display: grid; gap: var(--nv-space-5); max-width: 28rem; }
+</style>
+<script>
+/* What the buttons do in this example: a toast, nothing is stored. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('add-endpoint').addEventListener('close', function () {
+    if (this.returnValue === 'add') window.navaUI.toast('The first check is running.', { tone: 'success', title: 'Endpoint added' });
+  });
+  document.querySelector('[data-settings]').addEventListener('submit', function (event) {
+    event.preventDefault();
+    window.navaUI.toast('Settings saved.', { tone: 'success' });
+  });
+});
+</script>
+
+<div class="nv-wrap nv-wrap--wide">
+<footer class="nv-footer">
+  <div class="nv-footer__cols">
+    <div>
+      <p class="nv-footer__name">Beacon</p>
+      <p class="nv-footer__text">An example product, made up to show the nava-ui page templates. Nothing here is real.</p>
+    </div>
+    <div>
+      <h2 class="nv-footer__title">Examples</h2>
+      <ul class="nv-footer__list">
+        <li><a class="nv-footer__link" href="landing.html">Landing</a></li>
+        <li><a class="nv-footer__link" href="listing.html">Listing with filters</a></li>
+        <li><a class="nv-footer__link" href="app.html">Application screen</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="nv-footer__title">nava-ui</h2>
+      <ul class="nv-footer__list">
+        <li><a class="nv-footer__link" href="../index.html">Documentation</a></li>
+        <li><a class="nv-footer__link" href="https://github.com/Allan-Nava/nava-ui">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="nv-footer__bottom"><p>Built only with nava-ui</p><p>Apache-2.0</p></div>
+</footer>
+</div>
+
+<script defer src="../dist/nava-ui.js"></script>
+</body>
+</html>

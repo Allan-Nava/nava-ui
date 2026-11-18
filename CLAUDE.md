@@ -33,6 +33,7 @@ dist/                 built by scripts/build.sh, committed (the CDN serves it fr
                       tailwind.preset.cjs (Tailwind v4 / v3), by scripts/export-tokens.mjs
 fonts/                Inter Variable, Latin subset, with its licence
 index.html            documentation page and test fixture
+examples/             three page templates built only with the kit (NV-30), screenshotted whole
 assets/               logo.svg (the mark), social-preview.html and the .png rendered from it
 BACKLOG.md            planned work, the source of truth; ROADMAP.md is generated from it
 scripts/build.sh      concatenates css/ and js/ into dist/, then minifies them with esbuild

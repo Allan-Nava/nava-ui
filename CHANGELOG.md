@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Page templates in `examples/`: a landing, a listing with filters and an application screen
+  (tabs, a data table, a form, a dialog), built only with the kit and linked from the
+  documentation page; CI screenshots each one whole and runs every accessibility rule on it.
+
 - Tokens for other tools, from the same source: `dist/tokens.dark.json` and
   `dist/tokens.light.json` in the Design Tokens format (2025.10), and `dist/tailwind.css`
   (Tailwind v4, `@theme inline`) and `dist/tailwind.preset.cjs` (Tailwind v3), whose names
