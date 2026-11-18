@@ -154,9 +154,12 @@ are stable.
   `exports` map for the stylesheets and the script, and install instructions next to the CDN
   ones. The release workflow already has the npm job (NV-26): it runs once `package.json`
   drops `"private": true`, with an `NPM_TOKEN` secret. <!-- nv: prio=high size=M labels=dist -->
-- [ ] **NV-24 — Minified build**: `dist/nava-ui.min.css` and `.min.js` with their sizes in the
+- [x] **NV-24 — Minified build**: `dist/nava-ui.min.css` and `.min.js` with their sizes in the
   README; decide between a zero-dependency minifier script and a dev dependency, keeping the
-  build reproducible in CI. <!-- nv: prio=med size=S labels=dist -->
+  build reproducible in CI. Done with esbuild as a dev dependency pinned to an exact version:
+  a hand-written minifier would have to know where CSS whitespace matters (`calc()`, media
+  queries, selectors) and JS would need a parser. Also `nava-ui.components.min.css`; the
+  release attaches all six files. <!-- nv: prio=med size=S labels=dist ver=main -->
 - [ ] **NV-25 — Cascade layers**: wrap tokens, base and components in `@layer nv.tokens,
   nv.base, nv.components`, so any rule of the host page wins without fighting specificity;
   document the consequence for unlayered resets. <!-- nv: prio=med size=M labels=components,dist -->

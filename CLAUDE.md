@@ -31,7 +31,8 @@ fonts/                Inter Variable, Latin subset, with its licence
 index.html            documentation page and test fixture
 assets/               logo.svg (the mark), social-preview.html and the .png rendered from it
 BACKLOG.md            planned work, the source of truth; ROADMAP.md is generated from it
-scripts/build.sh      concatenates css/ and js/ into dist/
+scripts/build.sh      concatenates css/ and js/ into dist/, then minifies them with esbuild
+                      (*.min.css, *.min.js; the one build dependency, pinned exact)
 scripts/contrast.mjs  contrast of every pair, both themes
 scripts/site-drift.mjs  compares tokens with the site's
 tests/                Playwright: screenshots, accessibility, theme toggle
@@ -79,6 +80,7 @@ tests/__screenshots__/  baselines, generated on the CI runner
 ## Commands
 
 ```bash
+npm ci                      # esbuild (the build) and Playwright (the tests)
 ./scripts/build.sh          # rebuild dist/
 npm run contrast            # contrast check, no install needed
 npm run drift               # compare tokens with the live site

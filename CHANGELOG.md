@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Minified files next to the readable ones: `dist/nava-ui.min.css`,
+  `dist/nava-ui.components.min.css` and `dist/nava-ui.min.js`, with their sizes in the README and
+  attached to the release. Built by esbuild, the one build dependency, pinned to an exact
+  version so CI rebuilds the same bytes; `npm ci` now comes before `./scripts/build.sh`.
+
 ## 0.6.0 — 2026-11-18
 
 The components an application needs beyond forms and feedback: dialogs, tabs, data tables, and

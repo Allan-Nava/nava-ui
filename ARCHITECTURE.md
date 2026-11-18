@@ -6,7 +6,8 @@ How nava-ui is put together, and why. For how to use it, read the [README](READM
 
 Everything visual is decided once, in custom properties (`css/tokens.css`). Components
 (`css/components.css`) read those properties and nothing else, so a theme is a different set of
-values under the same names. There is no build tool: `dist/` is the source files concatenated.
+values under the same names. The build is small: `dist/` is the source files concatenated, plus a minified copy of each
+made by esbuild (pinned to an exact version, so CI rebuilds the same bytes).
 The documentation page (`index.html`) is both the manual and the test fixture: every live example
 on it is screenshotted in CI.
 
@@ -22,6 +23,7 @@ css/tokens.css        values: colour (dark, light), spacing, radius, motion, typ
 dist/nava-ui.css               tokens + base + components
 dist/nava-ui.components.css    tokens + components (for pages with their own typography)
 dist/nava-ui.js                copy of js/nava-ui.js with a banner
+dist/*.min.css, nava-ui.min.js the three above, minified by esbuild, banner kept
 ```
 
 The dependency goes one way: base and components depend on tokens, never on each other, and

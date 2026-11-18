@@ -63,6 +63,7 @@ jobs:
       - name: dist/ at the tag is what its sources build
         working-directory: tagged
         run: |
+          npm ci
           ./scripts/build.sh
           git diff --exit-code -- dist/
 
@@ -78,7 +79,7 @@ jobs:
           HIGHEST="$(git tag -l 'v*' --sort=-v:refname | head -1)"
           LATEST=false
           [ "$TAG" = "$HIGHEST" ] && LATEST=true
-          FILES="dist/nava-ui.css dist/nava-ui.components.css dist/nava-ui.js"
+          FILES="dist/nava-ui.css dist/nava-ui.components.css dist/nava-ui.js dist/nava-ui.min.css dist/nava-ui.components.min.css dist/nava-ui.min.js"
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title "nava-ui $VERSION" --notes-file ../release-notes.md --latest="$LATEST"
             gh release upload "$TAG" $FILES --clobber
