@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Tokens for other tools, from the same source: `dist/tokens.dark.json` and
+  `dist/tokens.light.json` in the Design Tokens format (2025.10), and `dist/tailwind.css`
+  (Tailwind v4, `@theme inline`) and `dist/tailwind.preset.cjs` (Tailwind v3), whose names
+  point at the kit's custom properties so the classes follow the theme. Built by
+  `scripts/export-tokens.mjs`, attached to the release; both Tailwind files were compiled with
+  Tailwind 4.1 and 3.4 before shipping.
+
 - One token source: `src/tokens.css` states the light palette once, and `scripts/build-tokens.mjs`
   (run by `./scripts/build.sh`) generates `css/tokens.css` with it written twice, in the
   system-preference media query and on `[data-theme="light"]`. The build refuses a light token

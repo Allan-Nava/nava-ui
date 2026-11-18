@@ -180,8 +180,11 @@ are stable.
   as the source, still plain CSS so its comments stay next to the values;
   `scripts/build-tokens.mjs` writes `css/tokens.css`, from which the site dialect was already
   generated. CI checks both against their sources. <!-- nv: prio=med size=M labels=tokens ver=main -->
-- [ ] **NV-29 — Token exports**: from the same source, a JSON file in the Design Tokens
-  format and a Tailwind preset, for projects that do not write plain CSS. <!-- nv: prio=low size=M labels=tokens,dist -->
+- [x] **NV-29 — Token exports**: from the same source, a JSON file in the Design Tokens
+  format and a Tailwind preset, for projects that do not write plain CSS. Done: one JSON per
+  theme (DTCG 2025.10, with `$extensions` for what the format cannot say), a Tailwind v4
+  `@theme inline` file and a v3 preset, both pointing at the `--nv-*` properties rather than
+  copying values; checked by compiling a page with Tailwind 4.1 and 3.4. <!-- nv: prio=low size=M labels=tokens,dist ver=main -->
 
 ## v0.7.0 — Documentation and examples <!-- ms: phase=later -->
 

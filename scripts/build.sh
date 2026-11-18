@@ -49,6 +49,9 @@ for f in nava-ui.css nava-ui.components.css nava-ui.js; do
     --outfile="dist/${f%.*}.min.${f##*.}"
 done
 
+# The tokens for other tools: Design Tokens JSON (dark, light) and Tailwind v4 and v3.
+node scripts/export-tokens.mjs
+
 # The tokens in the dialect of allan-nava.github.io (Sass mixins, 10 px rem).
 node scripts/export-site.mjs
 

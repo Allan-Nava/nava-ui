@@ -22,6 +22,7 @@ the same look.
 - [What is in the box](#what-is-in-the-box)
 - [Tokens](#tokens)
 - [Components](#components)
+- [Tokens for other tools](#tokens-for-other-tools)
 - [Theming](#theming)
   - [Cascade layers](#cascade-layers)
 - [JavaScript](#javascript)
@@ -270,6 +271,37 @@ script.
 
 Breakpoints, written as plain media queries because custom properties cannot be used there:
 560 px (phones), 780 px, 860 px (two columns of cards), 1050 px.
+
+## Tokens for other tools
+
+The build also writes the tokens for projects that do not write plain CSS, from the same source
+(`src/tokens.css`):
+
+| File | For | What it holds |
+|---|---|---|
+| `dist/tokens.dark.json`, `dist/tokens.light.json` | Style Dictionary and other tools that read the [Design Tokens format](https://www.designtokens.org/) | every token with its value, one file per theme; the scale is the same in both, `color.success` is an alias of `color.accent` |
+| `dist/tailwind.css` | Tailwind CSS v4 | an `@theme inline` block: `bg-nv-surface`, `text-nv-fg-muted`, `p-nv-4`, `rounded-nv-lg`, `shadow-nv-md`, `ease-nv-out` |
+| `dist/tailwind.preset.cjs` | Tailwind CSS v3 | a preset with the same names, plus `duration-nv-fast` |
+
+The Tailwind files hold no values: every name points at a `--nv-*` property, so the page loads
+the kit's tokens too (`dist/nava-ui.css`, or `css/tokens.css` alone) and the classes follow the
+theme. With v4 the opacity modifiers work (`bg-nv-accent/50`, through `color-mix()`); with v3
+they do not, because the colours are `var()` — the kit's soft variants cover that.
+
+```css
+/* Tailwind v4 */
+@import "tailwindcss";
+@import "nava-ui/dist/tailwind.css";
+```
+
+```js
+// Tailwind v3, tailwind.config.js
+module.exports = { presets: [require('nava-ui/dist/tailwind.preset.cjs')] };
+```
+
+The JSON files say what Design Tokens can say. A fluid font size (`clamp()`) has its smallest
+value as `$value` and the CSS in `$extensions["dev.nava-ui"].css`; the line length, 68ch, is
+given as 34em with the same extension.
 
 ## Theming
 

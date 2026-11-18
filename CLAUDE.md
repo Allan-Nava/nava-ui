@@ -28,7 +28,9 @@ css/components.css    every .nv- class
 js/nava-ui.js         optional: theme toggle, card spotlight
 dist/                 built by scripts/build.sh, committed (the CDN serves it from the tag);
                       tokens.site.scss is the tokens in the site's dialect (scripts/export-site.mjs),
-                      site/_nava-*.scss one partial per component section, for the site
+                      site/_nava-*.scss one partial per component section, for the site;
+                      tokens.{dark,light}.json (Design Tokens) and tailwind.css /
+                      tailwind.preset.cjs (Tailwind v4 / v3), by scripts/export-tokens.mjs
 fonts/                Inter Variable, Latin subset, with its licence
 index.html            documentation page and test fixture
 assets/               logo.svg (the mark), social-preview.html and the .png rendered from it

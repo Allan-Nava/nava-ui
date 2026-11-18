@@ -28,6 +28,9 @@ dist/nava-ui.css               tokens + base + components, in @layer nv.tokens, 
 dist/nava-ui.components.css    tokens + components (for pages with their own typography), layered too
 dist/nava-ui.js                copy of js/nava-ui.js with a banner
 dist/*.min.css, nava-ui.min.js the three above, minified by esbuild, banner kept
+dist/tokens.{dark,light}.json  the tokens in the Design Tokens format, per theme
+dist/tailwind.css, tailwind.preset.cjs  Tailwind v4 and v3 names pointing at the --nv-* properties
+                               (both by scripts/export-tokens.mjs, from css/tokens.css)
 ```
 
 The dependency goes one way: base and components depend on tokens, never on each other, and
