@@ -586,6 +586,27 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       </dialog>
     </div>
 
+    <h3>Tabs</h3>
+    <p>The ARIA tab pattern in the look of the nav links: <code>role="tablist"</code> with an <code>aria-label</code>, buttons with <code>role="tab"</code>, <code>aria-selected</code> and <code>aria-controls</code>, panels with <code>role="tabpanel"</code>. With nava-ui.js a click selects a tab, the arrow keys move and select, Home and End go to the ends, and Tab goes on to the panel. Without the script only the first panel can be reached.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-tabs">
+        <div class="nv-tabs__list" role="tablist" aria-label="Deploy details">
+          <button class="nv-tabs__tab" type="button" role="tab" id="doc-tab-1" aria-selected="true" aria-controls="doc-panel-1" tabindex="0">Overview</button>
+          <button class="nv-tabs__tab" type="button" role="tab" id="doc-tab-2" aria-selected="false" aria-controls="doc-panel-2" tabindex="-1">Logs</button>
+          <button class="nv-tabs__tab" type="button" role="tab" id="doc-tab-3" aria-selected="false" aria-controls="doc-panel-3" tabindex="-1">Settings</button>
+        </div>
+        <div class="nv-tabs__panel" role="tabpanel" id="doc-panel-1" aria-labelledby="doc-tab-1" tabindex="0">
+          <p>Three data centres, 42 allocations, last deploy 12 minutes ago through the canary node.</p>
+        </div>
+        <div class="nv-tabs__panel" role="tabpanel" id="doc-panel-2" aria-labelledby="doc-tab-2" tabindex="0" hidden>
+          <p>The last 200 lines of the deploy, newest first.</p>
+        </div>
+        <div class="nv-tabs__panel" role="tabpanel" id="doc-panel-3" aria-labelledby="doc-tab-3" tabindex="0" hidden>
+          <p>Canary size, health-check timeout and the rollback rule.</p>
+        </div>
+      </div>
+    </div>
+
     <h3>Empty state</h3>
     <p>What a region shows when it has nothing to show: an optional icon, a title, one line of text and at most one action. Say what is missing and what to do about it, not that something went wrong.</p>
     <div class="doc-demo" data-demo>

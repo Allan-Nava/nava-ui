@@ -8,6 +8,7 @@
  *   4. Toasts         navaUI.toast(message, { tone, title, timeout })
  *   5. Dialogs        a button with [data-nv-dialog="<id>"] opens that <dialog> as a
  *                     modal; closedby="any" where the browser does not know it
+ *   6. Tabs           [role="tablist"] inside .nv-tabs: click, arrow keys, Home, End
  *
  * Load it with `defer`. To avoid a flash of the wrong theme, also put the
  * three-line snippet from the README in <head>: it must run before first paint.
@@ -175,6 +176,38 @@
         event.clientY < box.top || event.clientY > box.bottom;
       if (outside) target.close();
     }
+  });
+
+  /* Tabs: the ARIA tab pattern with automatic activation. One tab in the list
+     is focusable (roving tabindex); the arrows move and select, wrapping at the
+     ends; Home and End go to the first and the last. */
+  function selectTab(tab, focus) {
+    var list = tab.closest('[role="tablist"]');
+    var tabs = list.querySelectorAll('[role="tab"]');
+    Array.prototype.forEach.call(tabs, function (other) {
+      var on = other === tab;
+      other.setAttribute('aria-selected', on ? 'true' : 'false');
+      other.setAttribute('tabindex', on ? '0' : '-1');
+      var panel = document.getElementById(other.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+
+  document.addEventListener('click', function (event) {
+    var tab = event.target.closest && event.target.closest('.nv-tabs [role="tab"]');
+    if (tab) selectTab(tab, false);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    var tab = event.target.closest && event.target.closest('.nv-tabs [role="tab"]');
+    if (!tab) return;
+    var tabs = Array.prototype.slice.call(tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]'));
+    var i = tabs.indexOf(tab);
+    var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    selectTab(tabs[(next + tabs.length) % tabs.length], true);
   });
 
   window.navaUI = { setTheme: setTheme, theme: current, toast: toast, dismiss: leave };

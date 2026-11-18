@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Tabs (`nv-tabs`): the ARIA tab pattern in the look of the nav links; nava-ui.js selects on
+  click and moves with the arrow keys, Home and End, with one focusable tab at a time.
+
 - Dialog (`nv-dialog`): styles for the native `<dialog>` and its backdrop on the glass token,
   with header, close button, a body that scrolls and actions; the page behind does not scroll.
   No focus-trap code: `showModal()` gives focus, Escape and the inert page. nava-ui.js opens a

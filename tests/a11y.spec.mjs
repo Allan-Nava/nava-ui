@@ -91,3 +91,34 @@ test('a dialog opens as a modal, closes on Escape and outside, and gives the foc
   await dialog.getByRole('button', { name: 'Keep it' }).click();
   await expect(dialog).toBeHidden();
 });
+
+test('tabs select on click and move with the arrow keys, Home and End', async ({ page }) => {
+  await page.goto('/index.html');
+  const list = page.getByRole('tablist', { name: 'Deploy details' });
+  const tab = (name) => list.getByRole('tab', { name });
+  const panel = (n) => page.locator(`#doc-panel-${n}`);
+
+  await tab('Logs').click();
+  await expect(tab('Logs')).toHaveAttribute('aria-selected', 'true');
+  await expect(tab('Overview')).toHaveAttribute('aria-selected', 'false');
+  await expect(panel(2)).toBeVisible();
+  await expect(panel(1)).toBeHidden();
+
+  await page.keyboard.press('ArrowRight');
+  await expect(tab('Settings')).toBeFocused();
+  await expect(panel(3)).toBeVisible();
+
+  await page.keyboard.press('ArrowRight');
+  await expect(tab('Overview')).toBeFocused();
+  await expect(panel(1)).toBeVisible();
+
+  await page.keyboard.press('End');
+  await expect(tab('Settings')).toBeFocused();
+  await page.keyboard.press('Home');
+  await expect(tab('Overview')).toBeFocused();
+
+  // One tab in the tab order: Tab leaves the list and goes to the panel.
+  await expect(list.locator('[tabindex="0"]')).toHaveCount(1);
+  await page.keyboard.press('Tab');
+  await expect(panel(1)).toBeFocused();
+});

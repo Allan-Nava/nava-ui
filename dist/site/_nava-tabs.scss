@@ -1,0 +1,69 @@
+// GENERATED from nava-ui v0.5.0 (css/components.css, "Tabs") by scripts/export-site.mjs.
+// Do not edit. Every rem × 1.6 for a 10 px rem; reads the --nv-* tokens of the nv-aliases mixin.
+// Comments are in the source, css/components.css.
+
+.nv-tabs__list {
+  display: inline-flex;
+  max-width: 100%;
+  gap: 2px;
+  padding: var(--nv-space-1);
+  overflow-x: auto;
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  scrollbar-width: none;
+}
+
+.nv-tabs__list::-webkit-scrollbar {
+  display: none;
+}
+
+.nv-tabs__tab {
+  flex: none;
+  padding: 7px 13px;
+  font: inherit;
+  font-size: var(--nv-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--nv-fg-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: color var(--nv-dur) var(--nv-ease), background var(--nv-dur) var(--nv-ease);
+}
+
+.nv-tabs__tab:focus-visible {
+  outline: 2px solid var(--nv-accent);
+  outline-offset: 2px;
+}
+
+.nv-tabs__tab[aria-selected="true"] {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+}
+
+@media (hover: hover) {
+  .nv-tabs__tab[aria-selected="false"]:hover {
+    color: var(--nv-fg-strong);
+    background: var(--nv-hover-overlay);
+  }
+}
+
+.nv-tabs__panel {
+  padding-top: var(--nv-space-5);
+}
+
+.nv-tabs__panel:focus-visible {
+  outline: 2px solid var(--nv-accent);
+  outline-offset: 4px;
+  border-radius: var(--nv-radius-sm);
+}
+
+.nv-tabs__panel > :first-child {
+  margin-top: 0;
+}
+
+.nv-tabs__panel > :last-child {
+  margin-bottom: 0;
+}

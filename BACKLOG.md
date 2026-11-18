@@ -117,8 +117,10 @@ accessibility rules green.
   `nv-dialog`: the close button sits in a `<form method="dialog">`, the page behind stops
   scrolling, and nava-ui.js opens a dialog from `data-nv-dialog` and backs `closedby="any"` in
   browsers without it; a browser test covers focus, Escape and the click outside. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
-- [ ] **NV-20 — Tabs**: a tab list in the look of the nav links, with the ARIA tab pattern
-  and arrow-key movement in the optional script. <!-- nv: prio=med size=M labels=components,a11y -->
+- [x] **NV-20 — Tabs**: a tab list in the look of the nav links, with the ARIA tab pattern
+  and arrow-key movement in the optional script. Done as `nv-tabs`, with automatic activation:
+  the arrows move and select, wrapping, Home and End go to the ends, one tab is focusable at a
+  time; a browser test covers the keys and the panels. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
 - [x] **NV-21 — Badges and marked chips**: a small status label in neutral, accent, warning and
   danger, and a dot variant, with a text alternative so the state is not told by colour alone.
   Also the chip with a mark that changes shape, and its legend, built first in the site's
