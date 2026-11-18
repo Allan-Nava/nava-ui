@@ -16,7 +16,7 @@
 | **v0.4.0 — Components for applications** | shipped | `##########` 100% | 0 | 10 |
 | **v0.5.0 — Distribution** | later | `##########` 100% | 0 | 4 |
 | **v0.6.0 — Tokens from one file** | shipped | `##########` 100% | 0 | 2 |
-| **v0.8.0 — A page about a person** | now | `##########` 100% | 0 | 1 |
+| **v0.9.0 — A page about a person** | now | `##########` 100% | 0 | 1 |
 | **v0.7.0 — Documentation and examples** | later | `#######...` 67% | 2 | 4 |
 
 ## v0.1.0 — The site's look, extracted
@@ -69,7 +69,7 @@
 - [x] **NV-28** — One token source · med · M · tokens · `main`
 - [x] **NV-29** — Token exports · low · M · tokens, dist · `main`
 
-## v0.8.0 — A page about a person
+## v0.9.0 — A page about a person
 
 - [x] **NV-39** — Profile, timeline and award · high · M · components, site · `main`
 

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.9.0 — 2026-11-18
+
+Components for a page about a person, and the npm packages under the owner's scope.
+
 - Profile (`nv-profile`), timeline (`nv-timeline`) and award (`nv-award`) components, for a
   page about a person: a round photo with name, role and buttons; roles in order with a rail and
   the current one in accent; a recognition set apart with an accent hairline and wash. Each is

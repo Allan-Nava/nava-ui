@@ -189,7 +189,7 @@ are stable.
   `@theme inline` file and a v3 preset, both pointing at the `--nv-*` properties rather than
   copying values; checked by compiling a page with Tailwind 4.1 and 3.4. <!-- nv: prio=low size=M labels=tokens,dist ver=main -->
 
-## v0.8.0 — A page about a person <!-- ms: phase=now -->
+## v0.9.0 — A page about a person <!-- ms: phase=now -->
 
 The components the site's about page needs, asked for on 2026-11-18: recruiters read that page
 first, and it was five paragraphs of text.

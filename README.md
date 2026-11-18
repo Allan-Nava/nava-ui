@@ -58,8 +58,8 @@ by its path, such as `nava-ui/dist/nava-ui.min.css`.
 **From a CDN**, pinned to a release tag:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.css">
-<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.css">
+<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.js"></script>
 ```
 
 Each file also comes minified, same content: `nava-ui.min.css`, `nava-ui.components.min.css`
@@ -116,8 +116,8 @@ A complete page: nav, opening, a list of cards, footer.
   })();
   </script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.css">
-  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.css">
+  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.0/dist/nava-ui.js"></script>
 </head>
 <body>
   <a class="nv-skip-link" href="#main">Skip to content</a>
