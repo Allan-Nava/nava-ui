@@ -2,22 +2,23 @@
 
 ## Unreleased
 
+## 0.8.0 — 2026-11-18
+
+One source for the tokens and exports from it, page templates, and React wrappers.
+
 - `@nava-ui/react` in `packages/react`: typed React wrappers over the classes — `Button`,
   `Badge`, `Pill`, `Alert`, `EmptyState`, `Skeleton`, `Spinner`, `Bento`, `Tile`, `DataTable`,
   `Field`, `Input`, `Textarea`, `Select`, `Choice`, `Fieldset`, `Tabs` and `Dialog` — with render
   tests and a browser test of Tabs and Dialog. Same version as the kit; published with it.
-
 - Page templates in `examples/`: a landing, a listing with filters and an application screen
   (tabs, a data table, a form, a dialog), built only with the kit and linked from the
   documentation page; CI screenshots each one whole and runs every accessibility rule on it.
-
 - Tokens for other tools, from the same source: `dist/tokens.dark.json` and
   `dist/tokens.light.json` in the Design Tokens format (2025.10), and `dist/tailwind.css`
   (Tailwind v4, `@theme inline`) and `dist/tailwind.preset.cjs` (Tailwind v3), whose names
   point at the kit's custom properties so the classes follow the theme. Built by
   `scripts/export-tokens.mjs`, attached to the release; both Tailwind files were compiled with
   Tailwind 4.1 and 3.4 before shipping.
-
 - One token source: `src/tokens.css` states the light palette once, and `scripts/build-tokens.mjs`
   (run by `./scripts/build.sh`) generates `css/tokens.css` with it written twice, in the
   system-preference media query and on `[data-theme="light"]`. The build refuses a light token

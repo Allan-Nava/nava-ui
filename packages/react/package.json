@@ -1,6 +1,6 @@
 {
   "name": "@nava-ui/react",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "description": "Thin typed React wrappers over the nava-ui classes; the CSS stays the source of the look",
   "license": "Apache-2.0",
@@ -12,7 +12,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test test/*.test.mjs"

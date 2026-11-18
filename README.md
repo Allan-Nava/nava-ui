@@ -40,18 +40,18 @@ Pick one.
 **From a CDN**, pinned to a release tag:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.7.0/dist/nava-ui.css">
-<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.7.0/dist/nava-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.css">
+<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.js"></script>
 ```
 
 Each file also comes minified, same content: `nava-ui.min.css`, `nava-ui.components.min.css`
-and `nava-ui.min.js`, next to the readable ones. Sizes at v0.7.0:
+and `nava-ui.min.js`, next to the readable ones. Sizes at v0.8.0:
 
 | File | Size | Gzipped |
 |---|---|---|
-| `dist/nava-ui.css` | 72.9 KB | 16.3 KB |
+| `dist/nava-ui.css` | 73.5 KB | 16.5 KB |
 | `dist/nava-ui.min.css` | 45.4 KB | 8.7 KB |
-| `dist/nava-ui.components.css` | 68.3 KB | 15.2 KB |
+| `dist/nava-ui.components.css` | 68.9 KB | 15.4 KB |
 | `dist/nava-ui.components.min.css` | 42.1 KB | 8.0 KB |
 | `dist/nava-ui.js` | 8.3 KB | 2.9 KB |
 | `dist/nava-ui.min.js` | 4.3 KB | 1.7 KB |
@@ -98,8 +98,8 @@ A complete page: nav, opening, a list of cards, footer.
   })();
   </script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.7.0/dist/nava-ui.css">
-  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.7.0/dist/nava-ui.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.css">
+  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.8.0/dist/nava-ui.js"></script>
 </head>
 <body>
   <a class="nv-skip-link" href="#main">Skip to content</a>

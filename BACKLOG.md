@@ -172,7 +172,7 @@ are stable.
   `release-drift.yml` on the backlogsync reusable workflow. The npm job is wired and waits for
   NV-23. <!-- nv: prio=med size=M labels=ci,dist ver=main -->
 
-## v0.6.0 — Tokens from one file <!-- ms: phase=later -->
+## v0.6.0 — Tokens from one file <!-- ms: phase=shipped -->
 
 - [x] **NV-28 — One token source**: the light palette is written twice in `css/tokens.css`
   because CSS has no mixins. Keep the values in one file and generate `tokens.css` and the

@@ -15,7 +15,7 @@
 | **v0.3.0 — One source of truth with the site** | shipped | `##########` 100% | 0 | 5 |
 | **v0.4.0 — Components for applications** | shipped | `##########` 100% | 0 | 10 |
 | **v0.5.0 — Distribution** | later | `########..` 75% | 1 | 3 |
-| **v0.6.0 — Tokens from one file** | later | `##########` 100% | 0 | 2 |
+| **v0.6.0 — Tokens from one file** | shipped | `##########` 100% | 0 | 2 |
 | **v0.7.0 — Documentation and examples** | later | `#####.....` 50% | 3 | 3 |
 
 ## v0.1.0 — The site's look, extracted
