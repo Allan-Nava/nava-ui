@@ -20,8 +20,8 @@ css/tokens.css        values: colour (dark, light), spacing, radius, motion, typ
       └── css/components.css   every .nv- class
                 │  concatenated by scripts/build.sh
                 ▼
-dist/nava-ui.css               tokens + base + components
-dist/nava-ui.components.css    tokens + components (for pages with their own typography)
+dist/nava-ui.css               tokens + base + components, in @layer nv.tokens, nv.base, nv.components
+dist/nava-ui.components.css    tokens + components (for pages with their own typography), layered too
 dist/nava-ui.js                copy of js/nava-ui.js with a banner
 dist/*.min.css, nava-ui.min.js the three above, minified by esbuild, banner kept
 ```

@@ -779,7 +779,7 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
   } catch (e) {}
 })();
 &lt;/script&gt;</code></pre>
-    <p>To make the kit yours, override tokens after the stylesheet. Changing the accent takes six values per theme, because the accent is used both as text and as a background:</p>
+    <p>To make the kit yours, override tokens in your own CSS: the kit sits in cascade layers (<code>nv.tokens</code>, <code>nv.base</code>, <code>nv.components</code>), so any rule of yours outside a layer wins, before or after the stylesheet. Changing the accent takes six values per theme, because the accent is used both as text and as a background:</p>
 <pre tabindex="0"><code>:root {
   --nv-accent: #4c8dff;
   --nv-accent-hover: #74a7ff;

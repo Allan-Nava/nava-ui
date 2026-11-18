@@ -23,6 +23,7 @@ the same look.
 - [Tokens](#tokens)
 - [Components](#components)
 - [Theming](#theming)
+  - [Cascade layers](#cascade-layers)
 - [JavaScript](#javascript)
 - [Accessibility](#accessibility)
 - [Differences from the site](#differences-from-the-site)
@@ -281,7 +282,8 @@ Three rules, in this order:
 So without any JavaScript the kit follows the system. The script and the `<head>` snippet in the
 [quick start](#quick-start) only add a remembered choice.
 
-To change the look, override tokens after the stylesheet:
+To change the look, override tokens in your own CSS — before or after the stylesheet, it does
+not matter (see [cascade layers](#cascade-layers)):
 
 ```css
 :root {
@@ -306,6 +308,32 @@ selectors, so override both:
 ```
 
 To use a different font, set `--nv-font-sans` and load your font yourself.
+
+An override on `:root` alone now reaches the light theme too: the kit's light values are in a
+layer, and any rule of yours outside a layer wins over them. Give light its own values with the
+two selectors above, or the dark colour shows in both themes.
+
+### Cascade layers
+
+`dist/nava-ui.css` and `dist/nava-ui.components.css` put the kit in three layers of `nv`, in this
+order: `nv.tokens`, `nv.base`, `nv.components`. A rule of your page that is not in a layer wins
+over the kit whatever its specificity, so `.nv-button { border-radius: 4px }` works without
+`!important` and without matching the kit's selectors.
+
+The other side of it: an unlayered reset or element rule of your page also wins over the kit's
+components. `a { color: blue }` recolours every link-shaped component, `button { all: unset }`
+strips the buttons, `* { margin: 0 }` beats the kit's spacing. Put such rules in a layer that
+comes before the kit's:
+
+```css
+@layer reset, nv;          /* before the kit's stylesheet: reset is weaker than nv */
+@layer reset {
+  * { margin: 0; }
+}
+```
+
+Or load the kit into a layer of your own, with `@import url("nava-ui.css") layer(kit);`, and
+order it against yours. The sources in `css/` have no layers, for a build that sets its own.
 
 ## JavaScript
 

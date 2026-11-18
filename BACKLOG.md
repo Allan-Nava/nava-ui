@@ -160,9 +160,11 @@ are stable.
   a hand-written minifier would have to know where CSS whitespace matters (`calc()`, media
   queries, selectors) and JS would need a parser. Also `nava-ui.components.min.css`; the
   release attaches all six files. <!-- nv: prio=med size=S labels=dist ver=main -->
-- [ ] **NV-25 — Cascade layers**: wrap tokens, base and components in `@layer nv.tokens,
+- [x] **NV-25 — Cascade layers**: wrap tokens, base and components in `@layer nv.tokens,
   nv.base, nv.components`, so any rule of the host page wins without fighting specificity;
-  document the consequence for unlayered resets. <!-- nv: prio=med size=M labels=components,dist -->
+  document the consequence for unlayered resets. Done in the build: only `dist/` is layered;
+  `css/` stays plain and so does the export for allan-nava.github.io, whose own rules are
+  unlayered and would otherwise beat every kit component (decided by Allan on 2026-11-18). <!-- nv: prio=med size=M labels=components,dist ver=main -->
 - [x] **NV-26 — Release automation**: on a `v*` tag, check that the tag matches `VERSION`,
   create the GitHub release from the changelog section, and publish to npm; add the
   release-drift check so a bumped version without a tag is noticed. Done: `release.yml` with
