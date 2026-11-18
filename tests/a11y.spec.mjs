@@ -132,9 +132,10 @@ test('a table row is selected by its checkbox, and the table box takes the focus
   const row = page.getByRole('row', { name: /eu-south-1/ });
   const bg = () => row.evaluate((el) => getComputedStyle(el).backgroundColor);
   const before = await bg();
+  // The row's background has a short transition: wait for it to settle.
   await row.getByRole('checkbox', { name: 'Select eu-south-1' }).check();
-  expect(await bg()).not.toBe(before);
+  await expect.poll(bg).not.toBe(before);
   await row.getByRole('checkbox', { name: 'Select eu-south-1' }).uncheck();
   await page.mouse.move(0, 0);
-  expect(await bg()).toBe(before);
+  await expect.poll(bg).toBe(before);
 });
