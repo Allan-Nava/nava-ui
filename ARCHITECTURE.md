@@ -14,7 +14,7 @@ on it is screenshotted in CI.
 
 ## React wrappers
 
-`packages/react/` (`@nava-ui/react`) is a second package in the same repository, an npm
+`packages/react/` (`@allan_nava/nava-ui-react`) is a second package in the same repository, an npm
 workspace: TypeScript sources compiled by `tsc`, with no CSS of its own. Each component renders
 the kit's markup and nothing more, so the CSS stays the one place the look is decided.
 `Tabs` and `Dialog` reimplement in React what `js/nava-ui.js` does for plain HTML. Its render

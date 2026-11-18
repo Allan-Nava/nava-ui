@@ -56,7 +56,7 @@ if (existsSync(join(dir, 'package.json'))) {
   publish = pkg.private !== true;
   checked.push('package.json');
 }
-// @nava-ui/react (NV-34) moves with the kit: same version, so a wrapper never names a release
+// @allan_nava/nava-ui-react (NV-34) moves with the kit: same version, so a wrapper never names a release
 // whose classes it does not match.
 if (existsSync(join(dir, 'packages/react/package.json'))) {
   const pkg = JSON.parse(read('packages/react/package.json'));

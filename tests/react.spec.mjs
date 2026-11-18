@@ -3,7 +3,7 @@ import { build } from 'esbuild';
 import { fileURLToPath } from 'node:url';
 import { renameSync, writeFileSync } from 'node:fs';
 
-// @nava-ui/react's behaviour in a browser: the tab keys and the native dialog. The fixture is
+// @allan_nava/nava-ui-react's behaviour in a browser: the tab keys and the native dialog. The fixture is
 // bundled from the package's TypeScript sources, so the test needs no build of the package.
 // Every worker builds it; each writes a file of its own and renames it into place, so a page
 // never loads a bundle another worker is halfway through writing.

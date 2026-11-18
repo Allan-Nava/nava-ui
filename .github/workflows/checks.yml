@@ -38,7 +38,7 @@ jobs:
           ./scripts/build.sh
           # status, not diff: a new generated file is untracked, and diff would not see it
           test -z "$(git status --porcelain -- dist/ css/tokens.css)" || { git status --short -- dist/ css/tokens.css; exit 1; }
-      - name: "@nava-ui/react builds with tsc and renders the kit's markup"
+      - name: "@allan_nava/nava-ui-react builds with tsc and renders the kit's markup"
         run: npm test -w packages/react
       - name: The site's token file compiles with Sass
         run: npx sass --no-source-map --load-path=dist --silence-deprecation=import tests/site-tokens.scss > /dev/null

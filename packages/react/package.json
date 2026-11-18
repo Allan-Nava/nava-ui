@@ -1,5 +1,5 @@
 {
-  "name": "@nava-ui/react",
+  "name": "@allan_nava/nava-ui-react",
   "version": "0.8.0",
   "description": "Thin typed React wrappers over the nava-ui classes; the CSS stays the source of the look",
   "license": "Apache-2.0",

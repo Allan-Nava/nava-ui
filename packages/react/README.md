@@ -1,4 +1,4 @@
-# @nava-ui/react
+# @allan_nava/nava-ui-react
 
 Thin typed React wrappers over the [nava-ui](https://github.com/Allan-Nava/nava-ui) classes. The
 look stays in the kit's CSS: load `nava-ui/dist/nava-ui.css` (or `nava-ui.components.css`) once
@@ -7,7 +7,7 @@ props to its element and merges a `className`.
 
 ```tsx
 import 'nava-ui/dist/nava-ui.css';
-import { Button, Field, Input, Tabs, Dialog, DataTable, Badge } from '@nava-ui/react';
+import { Button, Field, Input, Tabs, Dialog, DataTable, Badge } from '@allan_nava/nava-ui-react';
 
 <Field label="URL" hint="A page or a stream" error={error}>
   <Input box type="url" />
@@ -34,11 +34,11 @@ import { Button, Field, Input, Tabs, Dialog, DataTable, Badge } from '@nava-ui/r
 need the script for them. The Tabs root has no `nv-tabs` class, so the script, if loaded, leaves
 it alone.
 
-React 18 or later. The version follows the kit's: `@nava-ui/react@X.Y.Z` matches the classes of
+React 18 or later. The version follows the kit's: `@allan_nava/nava-ui-react@X.Y.Z` matches the classes of
 nava-ui `vX.Y.Z`, and both are published together.
 
 ```bash
-npm install nava-ui @nava-ui/react
+npm install nava-ui @allan_nava/nava-ui-react
 ```
 
 ```bash

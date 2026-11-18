@@ -41,7 +41,7 @@ Pick one.
 
 ```bash
 npm install nava-ui
-npm install @nava-ui/react   # optional, React 18 or later
+npm install @allan_nava/nava-ui-react   # optional, React 18 or later
 ```
 
 ```js
@@ -254,11 +254,11 @@ spacing between blocks.
 
 ## React
 
-[`packages/react`](packages/react/) is `@nava-ui/react`: thin typed wrappers over the classes
+[`packages/react`](packages/react/) is `@allan_nava/nava-ui-react`: thin typed wrappers over the classes
 (`Button`, `Field`, `Tabs`, `Dialog`, `DataTable` and the rest), for React 18 or later. The look
 stays in the kit's CSS, which the app loads once; `Tabs` and `Dialog` carry the keyboard and the
 native dialog in React, so the app does not need `nava-ui.js` for them. It follows the kit's
-version and is published with it: `npm install @nava-ui/react`.
+version and is published with it: `npm install @allan_nava/nava-ui-react`.
 
 ## Components
 

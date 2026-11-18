@@ -10,7 +10,7 @@ name: release
 # The tooling comes from the commit the workflow runs on; the files checked
 # come from the tag, so an old tag can be released with today's checks.
 #
-# npm: the second job publishes nava-ui and @nava-ui/react (NV-23) through npm
+# npm: the second job publishes nava-ui and @allan_nava/nava-ui-react (NV-23) through npm
 # trusted publishing (OIDC), with provenance and no token; it skips a version
 # that is already on npm, so a re-run is safe.
 
@@ -90,55 +90,81 @@ jobs:
           echo "Release: $(gh release view "$TAG" --json url --jq .url)" >> "$GITHUB_STEP_SUMMARY"
 
   npm:
-    # Trusted publishing (OIDC): no npm token anywhere. Each package's page on npmjs.com names
-    # this repository and this workflow file as its trusted publisher, so DO NOT RENAME THIS
-    # FILE without changing that too. The first version of each package goes out with the
-    # NPM_TOKEN secret (npm cannot trust a publisher for a package that does not exist yet):
-    # see CLAUDE.md.
+    # The same publishing job as claimcheck and backlogsync, which publish this way: npm
+    # trusted publishing (OIDC), no token. Each package's page on npmjs.com names this
+    # repository and this workflow file as its trusted publisher. DO NOT RENAME THIS FILE: the
+    # publish would stop authenticating, with an error that does not mention the filename.
+    #
+    # BOOTSTRAP: npm forbids a trusted publisher for a package that does not exist, so the
+    # first version goes out either by hand (`npm publish --access public`) or with a granular
+    # token in the NPM_TOKEN secret, which this job uses when it is set. Delete the secret once
+    # both trusted publishers are configured. The job skips a version already on the registry,
+    # so a rerun, or a release after a publish by hand, is safe.
     needs: release
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
       id-token: write   # OIDC: this is what authenticates the publish
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref_name }}
-      # No `registry-url`: with it, setup-node writes an .npmrc holding a token placeholder,
-      # npm then counts a credential as configured and never does the OIDC exchange (the lesson
-      # of qrspi's first release). registry.npmjs.org is npm's default anyway.
-      - uses: actions/setup-node@v4
+      # No `registry-url`. With it setup-node writes an .npmrc holding
+      # `_authToken=${NODE_AUTH_TOKEN}`; npm then finds a credential configured for the
+      # registry, never performs the OIDC exchange, publishes with the placeholder, and npm
+      # answers 404. registry.npmjs.org is npm's default anyway.
+      - uses: actions/setup-node@v7
         with:
-          node-version: 22
-      # Trusted publishing needs npm >= 11.5.1, and Node 22 bundles npm 10. Pinned: a moving
-      # npm in the publishing path can break a release on its own.
+          node-version: 24
+      # Trusted publishing needs npm >= 11.5.1. Pinned on purpose: a moving npm in the
+      # publishing path can break a release on its own. Bump it deliberately.
       - name: Use an npm that speaks OIDC
         run: |
           npm install -g npm@11.19.0
           npm --version
-      - run: npm ci
-      - name: Publish nava-ui and @nava-ui/react, unless the version is already on npm
+      # --ignore-scripts: no dependency lifecycle script runs beside the publishing
+      # privilege. The React package's own build runs below, from its prepack.
+      - run: npm ci --no-audit --no-fund --ignore-scripts
+      - name: Publish nava-ui and @allan_nava/nava-ui-react, unless already on npm
         env:
           VERSION: ${{ needs.release.outputs.version }}
-          # Bootstrap only: npm cannot trust a publisher for a package that does not exist yet,
-          # so the very first publish uses a granular token in the NPM_TOKEN secret. Once both
-          # packages have their trusted publisher, delete the secret: from then on this job
-          # authenticates by OIDC alone.
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          # Nothing authenticates this publish but OIDC — unless the bootstrap token is set.
+          unset NODE_AUTH_TOKEN
           if [ -n "$NPM_TOKEN" ]; then
-            echo "::warning::Publishing with the NPM_TOKEN secret. Set the trusted publishers on npmjs.com, then delete the secret."
+            echo "::warning::Publishing with the NPM_TOKEN secret (bootstrap). Configure the trusted publishers on npmjs.com, then delete the secret."
             npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
           fi
           publish() {
             name="$(node -p "require('./$1/package.json').name")"
-            if npm view "$name@$VERSION" version >/dev/null 2>&1; then
-              echo "$name@$VERSION is already on npm"
-            else
-              (cd "$1" && npm publish --provenance --access public)
-              echo "Published $name@$VERSION" >> "$GITHUB_STEP_SUMMARY"
+            if [ "$(npm view "$name@$VERSION" version 2>/dev/null)" = "$VERSION" ]; then
+              echo "::notice::$name@$VERSION is already on the registry — skipping publish"
+              return 0
             fi
+            # Verbose on purpose: a refused OIDC exchange otherwise ends in a bare ENEEDAUTH;
+            # at verbose npm prints the exchange and why it failed. Provenance comes with
+            # trusted publishing; with the bootstrap token it is asked for explicitly.
+            (cd "$1" && npm publish --access public --provenance --loglevel verbose)
+            echo "Published $name@$VERSION" >> "$GITHUB_STEP_SUMMARY"
           }
           publish .
           publish packages/react
+      # The registry takes a moment to serve a freshly published version (over a minute
+      # has been seen): twenty tries at 15 seconds.
+      - name: Verify the published versions
+        env:
+          VERSION: ${{ needs.release.outputs.version }}
+        run: |
+          for name in nava-ui @allan_nava/nava-ui-react; do
+            ok=
+            for i in $(seq 1 20); do
+              if [ "$(npm view "$name@$VERSION" version 2>/dev/null)" = "$VERSION" ]; then
+                echo "$name@$VERSION is live after $i tries"; ok=1; break
+              fi
+              echo "$name: not visible yet, retrying…"; sleep 15
+            done
+            [ -n "$ok" ] || { echo "::error::$name@$VERSION did not appear on the registry"; exit 1; }
+          done

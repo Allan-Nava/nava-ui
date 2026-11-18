@@ -1,4 +1,4 @@
-// A page for the browser test of @nava-ui/react's Tabs and Dialog (tests/react.spec.mjs),
+// A page for the browser test of @allan_nava/nava-ui-react's Tabs and Dialog (tests/react.spec.mjs),
 // bundled by esbuild from the package's sources when the test starts.
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';

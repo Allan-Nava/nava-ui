@@ -154,7 +154,7 @@ are stable.
   `exports` map for the stylesheets and the script, and install instructions next to the CDN
   ones. The release workflow already has the npm job (NV-26): it runs once `package.json`
   drops `"private": true`, with an `NPM_TOKEN` secret. Done with trusted publishing (OIDC)
-  instead of a token, for `nava-ui` and `@nava-ui/react` together; both tarballs installed and
+  instead of a token, for `nava-ui` and `@allan_nava/nava-ui-react` together; both tarballs installed and
   every export resolved before shipping. The first publish of each is the owner's, by hand
   (CLAUDE.md, Releases). <!-- nv: prio=high size=M labels=dist ver=main -->
 - [x] **NV-24 — Minified build**: `dist/nava-ui.min.css` and `.min.js` with their sizes in the
@@ -212,6 +212,6 @@ are stable.
   transitions as a separate `nava-ui.motion.css`, off under `prefers-reduced-motion`. <!-- nv: prio=low size=M labels=components -->
 - [x] **NV-34 — React components**: thin typed wrappers over the classes, in a separate
   package. Only when a React project adopts the kit; the CSS stays the source of the look.
-  Done on request (2026-11-18) as `@nava-ui/react` in `packages/react`, an npm workspace:
+  Done on request (2026-11-18) as `@allan_nava/nava-ui-react` in `packages/react`, an npm workspace:
   18 components, render tests and a browser test of Tabs and Dialog; same version as the kit,
   unpublished until NV-23. <!-- nv: prio=low size=L labels=components,dist ver=main -->

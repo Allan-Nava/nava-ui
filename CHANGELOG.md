@@ -2,8 +2,12 @@
 
 ## Unreleased
 
+- The React package is `@allan_nava/nava-ui-react`, in the owner's npm scope, instead of
+  `@nava-ui/react`, which would have needed an npm organisation; it was never published under
+  the old name.
+
 - npm: `nava-ui` (with `dist/`, `css/`, `src/` and `fonts/`, and short `exports` paths such as
-  `nava-ui/js` and `nava-ui/tailwind-preset`) and `@nava-ui/react`, published by the release
+  `nava-ui/js` and `nava-ui/tailwind-preset`) and `@allan_nava/nava-ui-react`, published by the release
   workflow through npm trusted publishing, with provenance and no token.
 
 - Usage rules on the documentation page: under every component's example, what it is for, what
