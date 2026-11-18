@@ -132,7 +132,10 @@ scope (as `@allan_nava/claimcheck`), so no npm organisation is needed.
    - from the workflow: create a granular access token on npmjs.com with read and write on
      packages (all packages, since these do not exist yet), allowed to publish without 2FA,
      store it as the repository secret `NPM_TOKEN`
-     (`gh secret set NPM_TOKEN -R Allan-Nava/nava-ui`), then release as usual;
+     (`gh secret set NPM_TOKEN -R Allan-Nava/nava-ui`), then run `npm-bootstrap.yml`
+     (`gh workflow run npm-bootstrap.yml -f dry_run=false`; with the default `dry_run` it
+     uploads nothing). It publishes `main` at its current version. A release with the secret
+     set publishes with it too;
    - or by hand: `npm login`, then `npm publish --access public` at the root and in
      `packages/react` (its `prepack` builds it), then release as usual: the job skips the
      versions already on npm.

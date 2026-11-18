@@ -1,0 +1,96 @@
+name: npm bootstrap
+
+# The first publish of nava-ui and @allan_nava/nava-ui-react, run by hand from the Actions tab
+# (or `gh workflow run npm-bootstrap.yml -f dry_run=false`). npm forbids a trusted publisher for
+# a package that does not exist yet, so release.yml, which publishes by OIDC, cannot publish the
+# very first version: this workflow does it once, with a granular token in the NPM_TOKEN secret.
+#
+# After it has run:
+#   1. configure the trusted publisher of each package (CLAUDE.md, Releases): release.yml
+#      publishes every later version by OIDC;
+#   2. delete the secret (gh secret delete NPM_TOKEN -R Allan-Nava/nava-ui) and revoke the
+#      token on npmjs.com.
+#
+# It publishes what is on the branch it runs on, at the version in package.json, and skips a
+# package whose version is already on npm, so running it twice is harmless. dry_run (the
+# default) does every step but the upload, and needs no token.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Do everything but upload (no token needed)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write   # provenance
+    steps:
+      - uses: actions/checkout@v7
+      # No `registry-url`: the token goes in with `npm config` below, and only when it is used.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Use the same npm as the release
+        run: |
+          npm install -g npm@11.19.0
+          npm --version
+      - run: npm ci --no-audit --no-fund --ignore-scripts
+      - name: The files agree with their version
+        run: node scripts/release-check.mjs "v$(node -p "require('./package.json').version")"
+      - name: Publish
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          unset NODE_AUTH_TOKEN
+          flags="--access public --loglevel verbose"
+          if [ "$DRY_RUN" = "true" ]; then
+            flags="$flags --dry-run"
+            echo "Dry run: nothing is uploaded." >> "$GITHUB_STEP_SUMMARY"
+          else
+            if [ -z "$NPM_TOKEN" ]; then
+              echo "::error::Set the NPM_TOKEN secret first: gh secret set NPM_TOKEN -R Allan-Nava/nava-ui"
+              exit 1
+            fi
+            npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+            flags="$flags --provenance"
+          fi
+          for dir in . packages/react; do
+            name="$(node -p "require('./$dir/package.json').name")"
+            version="$(node -p "require('./$dir/package.json').version")"
+            if [ "$(npm view "$name@$version" version 2>/dev/null)" = "$version" ]; then
+              echo "::notice::$name@$version is already on npm — skipped"
+              continue
+            fi
+            # shellcheck disable=SC2086 # flags is a list of separate options
+            (cd "$dir" && npm publish $flags)
+            echo "- $name@$version" >> "$GITHUB_STEP_SUMMARY"
+          done
+      - name: Verify the published versions
+        if: ${{ !inputs.dry_run }}
+        run: |
+          for dir in . packages/react; do
+            name="$(node -p "require('./$dir/package.json').name")"
+            version="$(node -p "require('./$dir/package.json').version")"
+            ok=
+            for i in $(seq 1 20); do
+              if [ "$(npm view "$name@$version" version 2>/dev/null)" = "$version" ]; then
+                echo "$name@$version is live after $i tries"; ok=1; break
+              fi
+              echo "$name: not visible yet, retrying…"; sleep 15
+            done
+            [ -n "$ok" ] || { echo "::error::$name@$version did not appear on npm"; exit 1; }
+          done
