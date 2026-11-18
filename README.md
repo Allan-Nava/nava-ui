@@ -239,6 +239,9 @@ under "Show the HTML".
 | Group of choices | `nv-fieldset`, `nv-legend` | a `<fieldset>` with its `<legend>` |
 | Alert | `nv-alert`, `nv-alert--success`, `--warning`, `--danger`, `nv-alert__icon`, `__body`, `__title`, `__text`, `__close` | info by default; a different mark per tone in `__icon`; `role="alert"` only for what needs attention now |
 | Toast | `nv-toasts`, `nv-toast`, `nv-toast--success`, `--warning`, `--danger` | the parts of an alert on an opaque surface; `nv-toasts` is the live region, created by the script |
+| Empty state | `nv-empty`, `__icon`, `__title`, `__text`, with `nv-actions` | nothing to show: what is missing and one action |
+| Skeleton | `nv-skeleton`, `--line`, `--circle` | placeholders while loading; the region carries `aria-busy="true"`; no shimmer under reduced motion |
+| Spinner | `nv-spinner`, `nv-button[aria-busy="true"]` | a working button keeps its label and ignores clicks; still under reduced motion |
 | Validation | `aria-invalid="true"`, `is-valid`, `nv-error`, `nv-valid` | invalid is the ARIA attribute on the control, with the message linked by `aria-describedby`; valid is a class |
 | Pagination | `nv-pagination`, `__btn`, `__page` | hide a missing arrow with `aria-disabled="true"` |
 | Panel | `nv-panel`, `__title`, `__text` | a centred call to action |

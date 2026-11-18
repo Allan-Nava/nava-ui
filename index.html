@@ -75,6 +75,8 @@ main > section { margin-top: var(--nv-space-8); }
 main > section > h2 { color: var(--nv-fg-strong); }
 main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7); }
 .doc-table { overflow-x: auto; }
+.doc-skeleton-card { display: flex; gap: var(--nv-space-4); align-items: center; max-width: 28rem; padding: var(--nv-space-4); background: var(--nv-surface); border: 1px solid var(--nv-border); border-radius: var(--nv-radius-lg); }
+.doc-skeleton-card > div { flex: 1; }
 </style>
 </head>
 <body>
@@ -545,6 +547,40 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
           <p class="nv-alert__text">This one is written in the page, to show the markup the script produces.</p>
         </div>
         <button class="nv-alert__close" type="button" data-nv-dismiss aria-label="Dismiss">×</button>
+      </div>
+    </div>
+
+    <h3>Empty state</h3>
+    <p>What a region shows when it has nothing to show: an optional icon, a title, one line of text and at most one action. Say what is missing and what to do about it, not that something went wrong.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-empty">
+        <span class="nv-empty__icon" aria-hidden="true">&#8709;</span>
+        <h4 class="nv-empty__title">No videos in this list yet</h4>
+        <p class="nv-empty__text">Videos you save while browsing show up here, newest first.</p>
+        <div class="nv-actions"><a class="nv-button nv-button--primary" href="#">Browse videos</a></div>
+      </div>
+    </div>
+
+    <h3>Skeleton</h3>
+    <p>Placeholders while content loads, in the shape of what is coming: <code>nv-skeleton</code> sized inline, <code>--line</code> for a line of text, <code>--circle</code> for an avatar. The region carries <code>aria-busy="true"</code> and a "Loading…" for screen readers; the skeletons are <code>aria-hidden</code>. The shimmer stops under <code>prefers-reduced-motion</code>.</p>
+    <div class="doc-demo" data-demo>
+      <div class="doc-skeleton-card" aria-busy="true">
+        <span class="nv-sr-only">Loading…</span>
+        <span class="nv-skeleton nv-skeleton--circle" aria-hidden="true"></span>
+        <div aria-hidden="true">
+          <span class="nv-skeleton nv-skeleton--line" style="width: 40%"></span>
+          <span class="nv-skeleton nv-skeleton--line" style="width: 90%"></span>
+          <span class="nv-skeleton nv-skeleton--line" style="width: 75%"></span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Button spinner</h3>
+    <p>A button that is working keeps its label, gets <code>aria-busy="true"</code> and an <code>nv-spinner</code> before the text. It stays readable, unlike a disabled button, and ignores clicks until it is done. The spinner takes the colour of the text and stands still under <code>prefers-reduced-motion</code>.</p>
+    <div class="doc-demo" data-demo>
+      <div class="nv-actions">
+        <button class="nv-button nv-button--primary" type="button" aria-busy="true"><span class="nv-spinner" aria-hidden="true"></span>Saving</button>
+        <button class="nv-button" type="button" aria-busy="true"><span class="nv-spinner" aria-hidden="true"></span>Loading more</button>
       </div>
     </div>
 

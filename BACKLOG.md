@@ -105,8 +105,10 @@ accessibility rules green.
   danger) with an icon slot, and a toast region with `role="status"`; the stacking and the
   timeout in the optional script. Done with `navaUI.toast()`, a `data-nv-dismiss` button, and
   info and warning colours in both themes. <!-- nv: prio=med size=M labels=components,a11y ver=main -->
-- [ ] **NV-18 — Empty and loading states**: an empty-state block (title, text, one action),
-  a skeleton that respects `prefers-reduced-motion`, and a spinner for buttons. <!-- nv: prio=med size=S labels=components -->
+- [x] **NV-18 — Empty and loading states**: an empty-state block (title, text, one action),
+  a skeleton that respects `prefers-reduced-motion`, and a spinner for buttons. Done as
+  `nv-empty`, `nv-skeleton` (`--line`, `--circle`) and `nv-spinner`; a working button is
+  `aria-busy="true"`, which keeps it readable where `disabled` would halve its contrast. <!-- nv: prio=med size=S labels=components ver=main -->
 - [ ] **NV-19 — Dialog**: styles for the native `<dialog>` and its backdrop on the glass
   tokens, with header, body and actions; no focus-trap code, the element provides it. <!-- nv: prio=med size=M labels=components,a11y -->
 - [ ] **NV-20 — Tabs**: a tab list in the look of the nav links, with the ARIA tab pattern

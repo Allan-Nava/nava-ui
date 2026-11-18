@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Empty and loading states: `nv-empty` (icon, title, text, one action), `nv-skeleton` with
+  `--line` and `--circle` and a shimmer that stops under reduced motion, and `nv-spinner` for a
+  button marked `aria-busy="true"`, which stays readable and ignores clicks.
+
 ## 0.5.0 — 2026-11-15
 
 A banner for the opening of a page, first used on the site's videos page.
