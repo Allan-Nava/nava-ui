@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- `@nava-ui/react` in `packages/react`: typed React wrappers over the classes — `Button`,
+  `Badge`, `Pill`, `Alert`, `EmptyState`, `Skeleton`, `Spinner`, `Bento`, `Tile`, `DataTable`,
+  `Field`, `Input`, `Textarea`, `Select`, `Choice`, `Fieldset`, `Tabs` and `Dialog` — with render
+  tests and a browser test of Tabs and Dialog. Same version as the kit; published with it.
+
 - Page templates in `examples/`: a landing, a listing with filters and an application screen
   (tabs, a data table, a form, a dialog), built only with the kit and linked from the
   documentation page; CI screenshots each one whole and runs every accessibility rule on it.

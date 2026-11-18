@@ -12,6 +12,15 @@ made by esbuild (pinned to an exact version, so CI rebuilds the same bytes).
 The documentation page (`index.html`) is both the manual and the test fixture: every live example
 on it is screenshotted in CI.
 
+## React wrappers
+
+`packages/react/` (`@nava-ui/react`) is a second package in the same repository, an npm
+workspace: TypeScript sources compiled by `tsc`, with no CSS of its own. Each component renders
+the kit's markup and nothing more, so the CSS stays the one place the look is decided.
+`Tabs` and `Dialog` reimplement in React what `js/nava-ui.js` does for plain HTML. Its render
+tests (`node --test`, React's server renderer) check the classes and ARIA; a Playwright test
+bundles a fixture with esbuild and drives the Tabs keys and the Dialog in a browser.
+
 ## Layers
 
 ```

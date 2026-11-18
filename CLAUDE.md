@@ -32,6 +32,8 @@ dist/                 built by scripts/build.sh, committed (the CDN serves it fr
                       tokens.{dark,light}.json (Design Tokens) and tailwind.css /
                       tailwind.preset.cjs (Tailwind v4 / v3), by scripts/export-tokens.mjs
 fonts/                Inter Variable, Latin subset, with its licence
+packages/react/       @nava-ui/react (NV-34): typed wrappers over the classes, TypeScript,
+                      an npm workspace; same version as the kit, checked by release-check.mjs
 index.html            documentation page and test fixture
 examples/             three page templates built only with the kit (NV-30), screenshotted whole
 assets/               logo.svg (the mark), social-preview.html and the .png rendered from it
@@ -67,6 +69,9 @@ tests/__screenshots__/  baselines, generated on the CI runner
 - **The Playwright version is pinned twice**: `@playwright/test` in `package.json` and the
   container image tag in `.github/workflows/checks.yml`. Change them together, then regenerate
   the baselines.
+- **A component with a React wrapper changes in both.** `packages/react/` renders the kit's
+  markup: a changed class or ARIA attribute in `css/` or `index.html` changes there too, and
+  `npm test -w packages/react` checks the markup it renders.
 - **Accessibility is part of the component.** Focus visible, hover only under
   `@media (hover: hover)`, motion off under `prefers-reduced-motion`, state styled through ARIA
   attributes where one exists. Do not hide a link's only text with `display: none`.
@@ -105,8 +110,8 @@ say so and rely on CI.
 ## Releases
 
 1. Move the "Unreleased" entries of `CHANGELOG.md` under a `## X.Y.Z — YYYY-MM-DD` heading.
-2. Update `VERSION`, the `version` in `package.json`, and the version in the CDN URLs of
-   `README.md` and `index.html`.
+2. Update `VERSION`, the `version` in `package.json` and in `packages/react/package.json`, and
+   the version in the CDN URLs of `README.md` and `index.html`.
 3. `./scripts/build.sh`, then `node scripts/release-check.mjs vX.Y.Z`: it fails if any of the
    above disagrees with the tag.
 4. Commit, tag `vX.Y.Z`, push the commit and the tag.

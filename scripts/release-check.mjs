@@ -56,6 +56,13 @@ if (existsSync(join(dir, 'package.json'))) {
   publish = pkg.private !== true;
   checked.push('package.json');
 }
+// @nava-ui/react (NV-34) moves with the kit: same version, so a wrapper never names a release
+// whose classes it does not match.
+if (existsSync(join(dir, 'packages/react/package.json'))) {
+  const pkg = JSON.parse(read('packages/react/package.json'));
+  if (pkg.version !== version) problems.push(`packages/react/package.json says ${pkg.version}, the tag says ${version}`);
+  checked.push('packages/react/package.json');
+}
 
 // CDN URLs: every pinned URL must name this tag
 for (const file of ['README.md', 'index.html']) {

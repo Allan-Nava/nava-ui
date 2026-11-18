@@ -22,6 +22,7 @@ the same look.
 - [What is in the box](#what-is-in-the-box)
 - [Tokens](#tokens)
 - [Page templates](#page-templates)
+- [React](#react)
 - [Components](#components)
 - [Tokens for other tools](#tokens-for-other-tools)
 - [Theming](#theming)
@@ -232,6 +233,14 @@ product: a [landing](examples/landing.html), a [listing with filters](examples/l
 pieces sit together, and CI screenshots each one whole, in both themes and both widths, and runs
 every accessibility rule on it. The only code of their own is the listing's filter and the
 spacing between blocks.
+
+## React
+
+[`packages/react`](packages/react/) is `@nava-ui/react`: thin typed wrappers over the classes
+(`Button`, `Field`, `Tabs`, `Dialog`, `DataTable` and the rest), for React 18 or later. The look
+stays in the kit's CSS, which the app loads once; `Tabs` and `Dialog` carry the keyboard and the
+native dialog in React, so the app does not need `nava-ui.js` for them. It follows the kit's
+version and is published with it (NV-23); until then it is in this repository only.
 
 ## Components
 

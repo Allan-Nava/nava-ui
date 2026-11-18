@@ -205,5 +205,8 @@ are stable.
   and the accessibility duties left to the author, next to its example. <!-- nv: prio=med size=M labels=docs,a11y -->
 - [ ] **NV-33 — Opt-in motion module**: the site's scroll reveal, section rule and view
   transitions as a separate `nava-ui.motion.css`, off under `prefers-reduced-motion`. <!-- nv: prio=low size=M labels=components -->
-- [ ] **NV-34 — React components**: thin typed wrappers over the classes, in a separate
-  package. Only when a React project adopts the kit; the CSS stays the source of the look. <!-- nv: prio=low size=L labels=components,dist -->
+- [x] **NV-34 — React components**: thin typed wrappers over the classes, in a separate
+  package. Only when a React project adopts the kit; the CSS stays the source of the look.
+  Done on request (2026-11-18) as `@nava-ui/react` in `packages/react`, an npm workspace:
+  18 components, render tests and a browser test of Tabs and Dialog; same version as the kit,
+  unpublished until NV-23. <!-- nv: prio=low size=L labels=components,dist ver=main -->
