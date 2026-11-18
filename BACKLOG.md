@@ -189,6 +189,18 @@ are stable.
   `@theme inline` file and a v3 preset, both pointing at the `--nv-*` properties rather than
   copying values; checked by compiling a page with Tailwind 4.1 and 3.4. <!-- nv: prio=low size=M labels=tokens,dist ver=main -->
 
+## v0.8.0 — A page about a person <!-- ms: phase=now -->
+
+The components the site's about page needs, asked for on 2026-11-18: recruiters read that page
+first, and it was five paragraphs of text.
+
+- [x] **NV-39 — Profile, timeline and award**: `nv-profile` (round photo, name as the `<h1>`,
+  role, a row of buttons; stacked on phones), `nv-timeline` (an `<ol>` of roles with dates, a
+  rail and a dot per item, the current one in accent) and `nv-award` (a recognition set apart
+  with an accent hairline and wash), each with its example, usage rules and README row; the
+  award's muted text over its wash checked in `scripts/contrast.mjs`. Exported as
+  `dist/site/_nava-profile.scss`, `_nava-timeline.scss` and `_nava-award.scss` for the site. <!-- nv: prio=high size=M labels=components,site ver=main -->
+
 ## v0.7.0 — Documentation and examples <!-- ms: phase=later -->
 
 - [x] **NV-36 — Logo and social preview**: a mark in the family of the other projects (green

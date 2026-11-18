@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Profile (`nv-profile`), timeline (`nv-timeline`) and award (`nv-award`) components, for a
+  page about a person: a round photo with name, role and buttons; roles in order with a rail and
+  the current one in accent; a recognition set apart with an accent hairline and wash. Each is
+  exported for the site as a partial in `dist/site/`.
+
 - The React package is `@allan_nava/nava-ui-react`, in the owner's npm scope, instead of
   `@nava-ui/react`, which would have needed an npm organisation; it was never published under
   the old name.
