@@ -174,9 +174,12 @@ are stable.
 
 ## v0.6.0 — Tokens from one file <!-- ms: phase=later -->
 
-- [ ] **NV-28 — One token source**: the light palette is written twice in `css/tokens.css`
+- [x] **NV-28 — One token source**: the light palette is written twice in `css/tokens.css`
   because CSS has no mixins. Keep the values in one file and generate `tokens.css` and the
-  site dialect (NV-12) from it, with the build check covering both. <!-- nv: prio=med size=M labels=tokens -->
+  site dialect (NV-12) from it, with the build check covering both. Done with `src/tokens.css`
+  as the source, still plain CSS so its comments stay next to the values;
+  `scripts/build-tokens.mjs` writes `css/tokens.css`, from which the site dialect was already
+  generated. CI checks both against their sources. <!-- nv: prio=med size=M labels=tokens ver=main -->
 - [ ] **NV-29 — Token exports**: from the same source, a JSON file in the Design Tokens
   format and a Tailwind preset, for projects that do not write plain CSS. <!-- nv: prio=low size=M labels=tokens,dist -->
 

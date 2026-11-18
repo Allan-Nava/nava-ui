@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- One token source: `src/tokens.css` states the light palette once, and `scripts/build-tokens.mjs`
+  (run by `./scripts/build.sh`) generates `css/tokens.css` with it written twice, in the
+  system-preference media query and on `[data-theme="light"]`. The build refuses a light token
+  missing from the dark `:root`; CI and the release check that `css/tokens.css` matches its
+  source. The values did not change: the minified files came out byte for byte the same.
+
 ## 0.7.0 — 2026-11-18
 
 The kit in cascade layers, so a host page overrides it without fighting specificity, and minified

@@ -1,7 +1,13 @@
+/* GENERATED from src/tokens.css by scripts/build-tokens.mjs: edit the source, then run
+   ./scripts/build.sh. https://github.com/Allan-Nava/nava-ui */
+
 /*
  * nava-ui — design tokens
  *
  * The single source of truth for colour, spacing, radius, motion and type.
+ * The source is src/tokens.css; css/tokens.css is generated from it by
+ * scripts/build-tokens.mjs (part of scripts/build.sh), with the light palette
+ * written twice. Edit the source, never the generated file.
  * Every component reads these custom properties and nothing else, so
  * re-theming means overriding tokens, never editing components.
  *
@@ -141,9 +147,12 @@
   --nv-nav-height: 68px;     /* for scroll-margin-top under the floating nav */
 }
 
-/* Light palette. Declared three times on purpose: CSS has no mixins, and the
-   three selectors are what makes "system preference, unless the user chose"
-   work without JavaScript. */
+/* Light palette. src/tokens.css states it once; the build (scripts/build-tokens.mjs)
+   writes it twice in css/tokens.css: inside @media (prefers-color-scheme: light) on
+   :root:not([data-theme="dark"]), and as it is here, on :root[data-theme="light"].
+   CSS has no mixins, and those two selectors are what makes "system preference,
+   unless the user chose" work without JavaScript. Every token here must also be in
+   :root above. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     color-scheme: light;

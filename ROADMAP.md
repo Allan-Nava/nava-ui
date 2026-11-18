@@ -4,7 +4,7 @@
 
 > This page is **generated** from [BACKLOG.md](BACKLOG.md), the single source of truth for planned work. Regenerate it with `npx backlogsync roadmap` after editing the backlog — CI fails when the two disagree.
 
-**38 items · 30 shipped · 8 open · 7 milestones.**
+**38 items · 31 shipped · 7 open · 7 milestones.**
 
 ## At a glance
 
@@ -15,7 +15,7 @@
 | **v0.3.0 — One source of truth with the site** | shipped | `##########` 100% | 0 | 5 |
 | **v0.4.0 — Components for applications** | shipped | `##########` 100% | 0 | 10 |
 | **v0.5.0 — Distribution** | later | `########..` 75% | 1 | 3 |
-| **v0.6.0 — Tokens from one file** | later | `..........` 0% | 2 | 0 |
+| **v0.6.0 — Tokens from one file** | later | `#####.....` 50% | 1 | 1 |
 | **v0.7.0 — Documentation and examples** | later | `##........` 17% | 5 | 1 |
 
 ## v0.1.0 — The site's look, extracted
@@ -65,7 +65,7 @@
 
 ## v0.6.0 — Tokens from one file
 
-- [ ] **NV-28** — One token source · med · M · tokens
+- [x] **NV-28** — One token source · med · M · tokens · `main`
 - [ ] **NV-29** — Token exports · low · M · tokens, dist
 
 ## v0.7.0 — Documentation and examples

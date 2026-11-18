@@ -20,7 +20,9 @@ milestones.
 ## Layout
 
 ```
-css/tokens.css        custom properties: the only place where values are decided
+src/tokens.css        the token source: the only place where values are decided; the light
+                      palette once
+css/tokens.css        GENERATED from it by scripts/build-tokens.mjs, light palette twice
 css/base.css          element defaults (optional layer)
 css/components.css    every .nv- class
 js/nava-ui.js         optional: theme toggle, card spotlight
@@ -41,10 +43,12 @@ tests/__screenshots__/  baselines, generated on the CI runner
 
 ## Rules
 
-- **Never edit `dist/` by hand.** Edit `css/` or `js/`, then run `./scripts/build.sh` and commit
-  both. CI fails when they are out of sync.
-- **A colour goes in three places** in `css/tokens.css`: `:root`, the light media query, and
-  `:root[data-theme="light"]`. The two light blocks must be identical.
+- **Never edit `dist/` or `css/tokens.css` by hand.** Tokens are edited in `src/tokens.css`,
+  components in `css/` and `js/`; then run `./scripts/build.sh` and commit sources and output
+  together. CI fails when they are out of sync.
+- **A colour goes in two places** in `src/tokens.css`: `:root` (dark) and
+  `:root[data-theme="light"]`. `scripts/build-tokens.mjs` writes the light block a second time,
+  inside `@media (prefers-color-scheme: light)`, and fails on a light token missing from `:root`.
 - **Components use tokens only.** No literal colours; sizes from the spacing and type scales.
   The fixed pixel values that exist (control heights, the card thumbnail) come from the site.
 - **Prefix everything**: classes `nv-`, custom properties `--nv-`, data attributes `data-nv-`.

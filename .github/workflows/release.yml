@@ -65,7 +65,7 @@ jobs:
         run: |
           npm ci
           ./scripts/build.sh
-          git diff --exit-code -- dist/
+          git diff --exit-code -- dist/ css/tokens.css
 
       - name: Create or refresh the GitHub release
         working-directory: tagged

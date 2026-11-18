@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds dist/ from css/ and js/: it concatenates, then minifies with esbuild, the one dev
+# Builds css/tokens.css from src/tokens.css, then dist/ from css/ and js/: it concatenates, then minifies with esbuild, the one dev
 # dependency (pinned to an exact version, so CI builds the same bytes). Run `npm ci` first.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -8,6 +8,10 @@ version="$(cat VERSION)"
 banner="/*! nava-ui v${version} | Apache-2.0 | https://github.com/Allan-Nava/nava-ui */"
 
 mkdir -p dist
+
+# css/tokens.css is generated from src/tokens.css, with the light palette written twice
+# (NV-28): first, because everything below reads it.
+node scripts/build-tokens.mjs
 
 # Cascade layers (NV-25): each source goes in its own layer of `nv`, so any rule of the
 # host page that is not in a layer wins over the kit, whatever its specificity. The order

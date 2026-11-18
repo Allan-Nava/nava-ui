@@ -4,7 +4,8 @@ How nava-ui is put together, and why. For how to use it, read the [README](READM
 
 ## The idea in one paragraph
 
-Everything visual is decided once, in custom properties (`css/tokens.css`). Components
+Everything visual is decided once, in custom properties (`src/tokens.css`, from which the build
+writes `css/tokens.css`). Components
 (`css/components.css`) read those properties and nothing else, so a theme is a different set of
 values under the same names. The build is small: `dist/` is the source files concatenated, plus a minified copy of each
 made by esbuild (pinned to an exact version, so CI rebuilds the same bytes).
@@ -14,6 +15,9 @@ on it is screenshotted in CI.
 ## Layers
 
 ```
+src/tokens.css        the source: dark on :root, the light palette once
+      │  scripts/build-tokens.mjs writes the light palette twice (media query + data-theme)
+      ▼
 css/tokens.css        values: colour (dark, light), spacing, radius, motion, type, layout
       │  read by
       ├── css/base.css         element defaults: body, headings, links, prose, code, tables, focus
