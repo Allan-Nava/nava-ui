@@ -2,20 +2,22 @@
 
 ## Unreleased
 
+## 0.6.0 — 2026-11-18
+
+The components an application needs beyond forms and feedback: dialogs, tabs, data tables, and
+what a region shows while it is empty or loading.
+
 - Data table (`nv-table-wrap`, `nv-table`): a box that scrolls both ways and can be scrolled from
   the keyboard, a sticky header, `nv-table__num` for right-aligned tabular figures, row hover
   on `--nv-row-hover`, and a selected row that follows the checkbox in its first cell; the
   contrast script checks text over a hovered and a selected row.
-
 - Tabs (`nv-tabs`): the ARIA tab pattern in the look of the nav links; nava-ui.js selects on
   click and moves with the arrow keys, Home and End, with one focusable tab at a time.
-
 - Dialog (`nv-dialog`): styles for the native `<dialog>` and its backdrop on the glass token,
   with header, close button, a body that scrolls and actions; the page behind does not scroll.
   No focus-trap code: `showModal()` gives focus, Escape and the inert page. nava-ui.js opens a
   dialog from a button with `data-nv-dialog="<id>"` and adds `closedby="any"` to browsers that
   do not know it.
-
 - Empty and loading states: `nv-empty` (icon, title, text, one action), `nv-skeleton` with
   `--line` and `--circle` and a shimmer that stops under reduced motion, and `nv-spinner` for a
   button marked `aria-busy="true"`, which stays readable and ignores clicks.

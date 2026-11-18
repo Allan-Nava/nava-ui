@@ -88,7 +88,7 @@ kit, so the copy cannot age. To start once the kit is stable.
   from v0.4.0 next to the tokens, its `stack.scss` is gone; checks, deploy and Lighthouse
   green. <!-- nv: prio=med size=M labels=site,components ver=0.4.0 -->
 
-## v0.4.0 — Components for applications <!-- ms: phase=next -->
+## v0.4.0 — Components for applications <!-- ms: phase=shipped -->
 
 The kit has the shape of a portfolio: cards, an opening, a footer. An application needs forms,
 feedback and overlays. Each item ships with a live example, its screenshots and the
