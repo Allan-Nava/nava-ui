@@ -2602,8 +2602,10 @@ a.nv-bar__label:hover {
   border-bottom-color: var(--nv-border-strong);
 }
 
+/* A row header names the row: on one line, the box scrolls sideways instead. */
 .nv-table tbody th {
   font-weight: 600;
+  white-space: nowrap;
   color: var(--nv-fg-strong);
 }
 
