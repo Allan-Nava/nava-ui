@@ -2,13 +2,17 @@
 
 ## Unreleased
 
+## 0.7.0 — 2026-11-18
+
+The kit in cascade layers, so a host page overrides it without fighting specificity, and minified
+files next to the readable ones.
+
 - Cascade layers: `dist/nava-ui.css` and `dist/nava-ui.components.css` put the kit in
   `nv.tokens`, `nv.base` and `nv.components`, so any unlayered rule of the host page wins without
   fighting specificity. **Changed:** an unlayered reset of the page (`a { color }`,
   `button { all: unset }`) now also wins over the components, and a token override on `:root`
   alone now reaches the light theme; the README says how to order a reset before the kit. `css/`
   and the site export stay unlayered.
-
 - Minified files next to the readable ones: `dist/nava-ui.min.css`,
   `dist/nava-ui.components.min.css` and `dist/nava-ui.min.js`, with their sizes in the README and
   attached to the release. Built by esbuild, the one build dependency, pinned to an exact
