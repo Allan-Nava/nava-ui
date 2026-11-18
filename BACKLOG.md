@@ -50,7 +50,7 @@ Nothing changes in the kit without a check noticing.
   URL pointed at the first tag. Changelog entries moved under 0.2.0, `VERSION`, `package.json`
   and the URLs in README and `index.html` bumped, `dist/` rebuilt, tag `v0.2.0`. <!-- nv: prio=high size=S labels=dist ver=0.2.0 -->
 
-## v0.3.0 — One source of truth with the site <!-- ms: phase=next -->
+## v0.3.0 — One source of truth with the site <!-- ms: phase=shipped -->
 
 The kit and allan-nava.github.io share their tokens by copy. Make the site read them from the
 kit, so the copy cannot age. To start once the kit is stable.
