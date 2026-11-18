@@ -120,8 +120,26 @@ say so and rely on CI.
 Pushing the tag runs `.github/workflows/release.yml`: the same check on the tagged files,
 `dist/` rebuilt and compared, then the GitHub release with the changelog section as notes and
 the `dist/` files attached. Run it by hand with a `tag` input to create or refresh the release
-of an existing tag. Its npm job runs only once `package.json` is not private (NV-23) and needs
-the `NPM_TOKEN` secret.
+of an existing tag. Its npm job then publishes `nava-ui` and `@nava-ui/react` (NV-23) through
+**npm trusted publishing**: OIDC, with provenance, no token in the repository. It skips a
+version already on npm.
+
+One-time setup, by the owner, because npm cannot trust a publisher for a package that does
+not exist yet:
+
+1. On npmjs.com, create the organisation `nava-ui` (free, public packages), which owns the
+   `@nava-ui` scope.
+2. `npm login`, then publish the first version of each package by hand from `main`:
+   `npm publish --access public` at the root, and `npm publish --access public` in
+   `packages/react` (its `prepack` builds it).
+3. For each package, npmjs.com → the package → Settings → Trusted Publisher → GitHub Actions:
+   organisation or user `Allan-Nava` (this case exactly: npm compares it with GitHub's claim
+   literally), repository `nava-ui`, workflow `release.yml`, no environment. Or
+   `npm trust github <name> --repo Allan-Nava/nava-ui --file release.yml --allow-publish`.
+
+From then on every tag publishes both. `release.yml` is part of that configuration: renaming it
+breaks publishing, with an error that does not mention the filename. Do not add `registry-url`
+to its `setup-node`: the `.npmrc` it writes makes npm skip the OIDC exchange.
 
 The CDN URL contains the tag, so a release is not visible to users until the tag is pushed.
 `release-drift.yml` fails when `VERSION` has had no matching tag for two hours, on push and

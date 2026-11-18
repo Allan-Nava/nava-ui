@@ -37,6 +37,24 @@ the same look.
 
 Pick one.
 
+**From npm**, with the React wrappers if you want them:
+
+```bash
+npm install nava-ui
+npm install @nava-ui/react   # optional, React 18 or later
+```
+
+```js
+import 'nava-ui';                        // dist/nava-ui.css: tokens, base, components
+import 'nava-ui/components.css';         // or: tokens and components only
+import 'nava-ui/js';                     // optional: theme toggle, dismiss, toasts, dialogs, tabs
+```
+
+The package carries `dist/`, the sources in `css/` and `src/`, and the font in `fonts/`, which
+`dist/nava-ui.css` loads from `../fonts/`. Short paths: `nava-ui/tailwind.css`,
+`nava-ui/tailwind-preset`, `nava-ui/tokens.dark.json`, `nava-ui/tokens.light.json`; any file
+by its path, such as `nava-ui/dist/nava-ui.min.css`.
+
 **From a CDN**, pinned to a release tag:
 
 ```html
@@ -240,7 +258,7 @@ spacing between blocks.
 (`Button`, `Field`, `Tabs`, `Dialog`, `DataTable` and the rest), for React 18 or later. The look
 stays in the kit's CSS, which the app loads once; `Tabs` and `Dialog` carry the keyboard and the
 native dialog in React, so the app does not need `nava-ui.js` for them. It follows the kit's
-version and is published with it (NV-23); until then it is in this repository only.
+version and is published with it: `npm install @nava-ui/react`.
 
 ## Components
 

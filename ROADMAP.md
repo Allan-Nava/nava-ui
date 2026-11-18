@@ -4,7 +4,7 @@
 
 > This page is **generated** from [BACKLOG.md](BACKLOG.md), the single source of truth for planned work. Regenerate it with `npx backlogsync roadmap` after editing the backlog — CI fails when the two disagree.
 
-**38 items · 35 shipped · 3 open · 7 milestones.**
+**38 items · 36 shipped · 2 open · 7 milestones.**
 
 ## At a glance
 
@@ -14,7 +14,7 @@
 | **v0.2.0 — Quality gate** | shipped | `##########` 100% | 0 | 6 |
 | **v0.3.0 — One source of truth with the site** | shipped | `##########` 100% | 0 | 5 |
 | **v0.4.0 — Components for applications** | shipped | `##########` 100% | 0 | 10 |
-| **v0.5.0 — Distribution** | later | `########..` 75% | 1 | 3 |
+| **v0.5.0 — Distribution** | later | `##########` 100% | 0 | 4 |
 | **v0.6.0 — Tokens from one file** | shipped | `##########` 100% | 0 | 2 |
 | **v0.7.0 — Documentation and examples** | later | `#######...` 67% | 2 | 4 |
 
@@ -58,7 +58,7 @@
 
 ## v0.5.0 — Distribution
 
-- [ ] **NV-23** — npm package · high · M · dist
+- [x] **NV-23** — npm package · high · M · dist · `main`
 - [x] **NV-24** — Minified build · med · S · dist · `main`
 - [x] **NV-25** — Cascade layers · med · M · components, dist · `main`
 - [x] **NV-26** — Release automation · med · M · ci, dist · `main`

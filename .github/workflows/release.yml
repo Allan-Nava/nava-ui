@@ -10,9 +10,9 @@ name: release
 # The tooling comes from the commit the workflow runs on; the files checked
 # come from the tag, so an old tag can be released with today's checks.
 #
-# npm: the second job runs only when package.json is not private, which is
-# NV-23's switch. It needs the NPM_TOKEN secret, an automation token of the
-# npm account that owns the package.
+# npm: the second job publishes nava-ui and @nava-ui/react (NV-23) through npm
+# trusted publishing (OIDC), with provenance and no token; it skips a version
+# that is already on npm, so a re-run is safe.
 
 on:
   push:
@@ -90,28 +90,45 @@ jobs:
           echo "Release: $(gh release view "$TAG" --json url --jq .url)" >> "$GITHUB_STEP_SUMMARY"
 
   npm:
+    # Trusted publishing (OIDC): no npm token anywhere. Each package's page on npmjs.com names
+    # this repository and this workflow file as its trusted publisher, so DO NOT RENAME THIS
+    # FILE without changing that too. The first version of each package is published by hand
+    # (npm cannot trust a publisher for a package that does not exist yet): see CLAUDE.md.
     needs: release
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
+      id-token: write   # OIDC: this is what authenticates the publish
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.tag || github.ref_name }}
+      # No `registry-url`: with it, setup-node writes an .npmrc holding a token placeholder,
+      # npm then counts a credential as configured and never does the OIDC exchange (the lesson
+      # of qrspi's first release). registry.npmjs.org is npm's default anyway.
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
-      - name: Publish, unless this version is already on npm
+      # Trusted publishing needs npm >= 11.5.1, and Node 22 bundles npm 10. Pinned: a moving
+      # npm in the publishing path can break a release on its own.
+      - name: Use an npm that speaks OIDC
+        run: |
+          npm install -g npm@11.19.0
+          npm --version
+      - run: npm ci
+      - name: Publish nava-ui and @nava-ui/react, unless the version is already on npm
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           VERSION: ${{ needs.release.outputs.version }}
         run: |
-          NAME="$(node -p "require('./package.json').name")"
-          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
-            echo "$NAME@$VERSION is already on npm"
-            exit 0
-          fi
-          npm publish --provenance --access public
+          publish() {
+            name="$(node -p "require('./$1/package.json').name")"
+            if npm view "$name@$VERSION" version >/dev/null 2>&1; then
+              echo "$name@$VERSION is already on npm"
+            else
+              (cd "$1" && npm publish --provenance --access public)
+              echo "Published $name@$VERSION" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          }
+          publish .
+          publish packages/react

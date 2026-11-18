@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- npm: `nava-ui` (with `dist/`, `css/`, `src/` and `fonts/`, and short `exports` paths such as
+  `nava-ui/js` and `nava-ui/tailwind-preset`) and `@nava-ui/react`, published by the release
+  workflow through npm trusted publishing, with provenance and no token.
+
 - Usage rules on the documentation page: under every component's example, what it is for, what
   it is not for, and the accessibility left to the author (labels, ARIA state, markup order).
 

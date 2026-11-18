@@ -1,9 +1,24 @@
 {
   "name": "@nava-ui/react",
   "version": "0.8.0",
-  "private": true,
   "description": "Thin typed React wrappers over the nava-ui classes; the CSS stays the source of the look",
   "license": "Apache-2.0",
+  "author": "Allan Nava",
+  "homepage": "https://allan-nava.github.io/nava-ui/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allan-Nava/nava-ui.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/Allan-Nava/nava-ui/issues"
+  },
+  "keywords": [
+    "react",
+    "nava-ui",
+    "components",
+    "ui-kit"
+  ],
   "type": "module",
   "sideEffects": false,
   "exports": {
@@ -17,7 +32,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test test/*.test.mjs"
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18"

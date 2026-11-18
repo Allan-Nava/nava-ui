@@ -1,9 +1,51 @@
 {
   "name": "nava-ui",
   "version": "0.8.0",
-  "private": true,
   "description": "A small, dark-first UI kit in plain CSS",
   "license": "Apache-2.0",
+  "author": "Allan Nava",
+  "homepage": "https://allan-nava.github.io/nava-ui/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allan-Nava/nava-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Allan-Nava/nava-ui/issues"
+  },
+  "keywords": [
+    "css",
+    "ui-kit",
+    "design-tokens",
+    "dark-mode",
+    "components",
+    "tailwind"
+  ],
+  "style": "dist/nava-ui.css",
+  "exports": {
+    ".": {
+      "style": "./dist/nava-ui.css",
+      "default": "./dist/nava-ui.css"
+    },
+    "./components.css": "./dist/nava-ui.components.css",
+    "./js": "./dist/nava-ui.js",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./tailwind-preset": "./dist/tailwind.preset.cjs",
+    "./tokens.dark.json": "./dist/tokens.dark.json",
+    "./tokens.light.json": "./dist/tokens.light.json",
+    "./dist/*": "./dist/*",
+    "./css/*": "./css/*",
+    "./src/*": "./src/*",
+    "./fonts/*": "./fonts/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "!dist/site",
+    "!dist/tokens.site.scss",
+    "css",
+    "src",
+    "fonts"
+  ],
   "type": "module",
   "scripts": {
     "build": "./scripts/build.sh",

@@ -35,7 +35,11 @@ need the script for them. The Tabs root has no `nv-tabs` class, so the script, i
 it alone.
 
 React 18 or later. The version follows the kit's: `@nava-ui/react@X.Y.Z` matches the classes of
-nava-ui `vX.Y.Z`. Not published yet: it goes to npm with the kit (NV-23).
+nava-ui `vX.Y.Z`, and both are published together.
+
+```bash
+npm install nava-ui @nava-ui/react
+```
 
 ```bash
 npm test -w packages/react      # tsc, then the render tests (node --test)

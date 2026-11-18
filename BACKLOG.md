@@ -150,10 +150,13 @@ accessibility rules green.
 Today the kit installs from a CDN URL or by copying files. Worth doing once the components
 are stable.
 
-- [ ] **NV-23 — npm package**: publish `nava-ui` with `dist/`, `css/` and `fonts/`, an
+- [x] **NV-23 — npm package**: publish `nava-ui` with `dist/`, `css/` and `fonts/`, an
   `exports` map for the stylesheets and the script, and install instructions next to the CDN
   ones. The release workflow already has the npm job (NV-26): it runs once `package.json`
-  drops `"private": true`, with an `NPM_TOKEN` secret. <!-- nv: prio=high size=M labels=dist -->
+  drops `"private": true`, with an `NPM_TOKEN` secret. Done with trusted publishing (OIDC)
+  instead of a token, for `nava-ui` and `@nava-ui/react` together; both tarballs installed and
+  every export resolved before shipping. The first publish of each is the owner's, by hand
+  (CLAUDE.md, Releases). <!-- nv: prio=high size=M labels=dist ver=main -->
 - [x] **NV-24 — Minified build**: `dist/nava-ui.min.css` and `.min.js` with their sizes in the
   README; decide between a zero-dependency minifier script and a dev dependency, keeping the
   build reproducible in CI. Done with esbuild as a dev dependency pinned to an exact version:
