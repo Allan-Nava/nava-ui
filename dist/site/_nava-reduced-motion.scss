@@ -14,7 +14,8 @@
 
   .nv-checkbox::before,
   .nv-radio::before,
-  .nv-switch::before {
+  .nv-switch::before,
+  .nv-code__copy {
     transition-duration: 0.001ms;
   }
 }

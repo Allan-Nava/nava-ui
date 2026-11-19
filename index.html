@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 .doc-source { margin-bottom: var(--nv-space-6); }
-.doc-source pre { margin-top: var(--nv-space-2); }
+.doc-source > pre, .doc-source > .nv-code { margin-top: var(--nv-space-2); margin-bottom: 0; }
 .doc-swatches {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -109,7 +109,7 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
   </div>
 </header>
 
-<main class="nv-wrap nv-wrap--large" id="main">
+<main class="nv-wrap nv-wrap--large" id="main" data-nv-copy>
 
   <div class="nv-lede" id="top">
     <p class="nv-lede__kicker">nava-ui · v0.8.0</p>
@@ -1011,6 +1011,18 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       <div><dt>Use it for</dt><dd>Long-form text: posts and documentation.</dd></div>
       <div><dt>Not for</dt><dd>Interface text.</dd></div>
       <div><dt>Your part</dt><dd>Headings in order, alt text on images, and <code>tabindex="0"</code> on a code block that scrolls sideways.</dd></div>
+    </dl>
+
+    <h3>Code block with a copy button</h3>
+    <p>With <code>nava-ui.js</code>, a <code>&lt;pre data-nv-copy&gt;</code>, or every <code>&lt;pre&gt;</code> inside an element with <code>data-nv-copy</code>, gets a <b>Copy</b> button in its top corner. It shows when the pointer is on the block or the keyboard reaches it, and always on touch screens; it says <b>Copied</b> for a moment, and a hidden status says it to screen readers. The script adds it only where the browser can copy, so there is never a button that does nothing. Every code block on this page has one. For a block added later, call <code>navaUI.copyButton(pre)</code>.</p>
+    <div class="doc-demo" data-demo>
+<pre data-nv-copy tabindex="0"><code>npm install @allan_nava/nava-ui</code></pre>
+    </div>
+
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Code a reader will paste somewhere else: a command, a snippet, a configuration.</dd></div>
+      <div><dt>Not for</dt><dd>Inline code, or output to read rather than run.</dd></div>
+      <div><dt>Your part</dt><dd><code>tabindex="0"</code> on a block that scrolls sideways; only the code inside the <code>&lt;pre&gt;</code>, no prompt sign, since the button copies all of it.</dd></div>
     </dl>
 
   </section>

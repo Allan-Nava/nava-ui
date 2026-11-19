@@ -2745,6 +2745,78 @@ a.nv-bar__label:hover {
 }
 
 /* ---------------------------------------------------------------------------
+   Code block with a copy button — nava-ui.js wraps each <pre> inside an
+   element with [data-nv-copy] (or a <pre data-nv-copy>) in .nv-code and adds
+   the button, only where the Clipboard API exists, so no button appears that
+   would copy nothing. The markup it writes:
+     .nv-code            the wrapper: it takes the block's margin, the <pre> none
+     .nv-code__copy      the button, top right: shown on hover of the block and
+                         on keyboard focus, always shown where there is no hover
+     .nv-code__copy.is-done   for a moment after a copy
+   The button sits outside the <pre>, so it stays put when the code scrolls
+   sideways.
+   ------------------------------------------------------------------------ */
+
+.nv-code {
+  position: relative;
+  margin: 0 0 var(--nv-space-5);
+}
+
+.nv-code > pre {
+  margin: 0;
+}
+
+.nv-code__copy {
+  position: absolute;
+  top: var(--nv-space-2);
+  right: var(--nv-space-2);
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: var(--nv-text-xs);
+  letter-spacing: 0.03em;
+  color: var(--nv-fg-muted);
+  background: var(--nv-surface);
+  border: 1px solid var(--nv-border);
+  border-radius: var(--nv-radius-pill);
+  cursor: pointer;
+  transition: opacity var(--nv-dur) var(--nv-ease), color var(--nv-dur) var(--nv-ease),
+    border-color var(--nv-dur) var(--nv-ease);
+}
+
+.nv-code__copy:focus-visible {
+  color: var(--nv-fg-strong);
+  border-color: var(--nv-border-strong);
+}
+
+.nv-code__copy.is-done {
+  color: var(--nv-on-accent);
+  background: var(--nv-accent);
+  border-color: var(--nv-accent);
+}
+
+@media (hover: hover) {
+  .nv-code__copy {
+    opacity: 0;
+  }
+
+  .nv-code:hover .nv-code__copy,
+  .nv-code__copy:focus-visible,
+  .nv-code__copy.is-done {
+    opacity: 1;
+  }
+
+  .nv-code__copy:hover {
+    color: var(--nv-fg-strong);
+    border-color: var(--nv-border-strong);
+  }
+
+  .nv-code__copy.is-done:hover {
+    color: var(--nv-on-accent);
+    border-color: var(--nv-accent);
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Reduced motion: no lift, no press
    ------------------------------------------------------------------------ */
 
@@ -2760,7 +2832,8 @@ a.nv-bar__label:hover {
 
   .nv-checkbox::before,
   .nv-radio::before,
-  .nv-switch::before {
+  .nv-switch::before,
+  .nv-code__copy {
     transition-duration: 0.001ms;
   }
 }

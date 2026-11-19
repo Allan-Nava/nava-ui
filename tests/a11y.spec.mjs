@@ -140,6 +140,26 @@ test('a table row is selected by its checkbox, and the table box takes the focus
   await expect.poll(bg).toBe(before);
 });
 
+test('a code block gets a copy button that copies its code and says so', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/index.html');
+  // Every code block of the page has one, the printed sources included.
+  const blocks = await page.locator('main pre').count();
+  await expect(page.locator('main .nv-code > pre')).toHaveCount(blocks);
+  await expect(page.locator('main .nv-code__copy')).toHaveCount(blocks);
+
+  const block = page.locator('.nv-code', { has: page.locator('pre[data-nv-copy]') });
+  const button = block.getByRole('button', { name: 'Copy' });
+  await button.focus();
+  await expect(button).toHaveCSS('opacity', '1');
+  await button.press('Enter');
+  await expect(button).toHaveText('Copied');
+  await expect(block.getByRole('status')).toHaveText('Copied to the clipboard');
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('npm install @allan_nava/nava-ui');
+  await expect(button).toHaveText('Copy', { timeout: 3000 });
+  await expect(block.getByRole('status')).toHaveText('');
+});
+
 // The page templates are whole pages, so here every rule is on, the structure ones included.
 for (const name of ['landing', 'listing', 'app']) {
   test(`example page ${name}: no accessibility violations`, async ({ page }) => {

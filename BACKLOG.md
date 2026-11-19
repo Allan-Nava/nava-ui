@@ -214,8 +214,10 @@ first, and it was five paragraphs of text.
   documentation and covered by screenshots. They show how the pieces sit together. Done in
   `examples/`: full-page screenshots in both themes and widths, every axe rule (structure
   included) and a test of the listing's filter. <!-- nv: prio=med size=L labels=docs,components ver=main -->
-- [ ] **NV-31 — Copy button on code**: a button on every code block of the documentation
-  page, visible on hover and on focus, as on the site. <!-- nv: prio=low size=S labels=docs -->
+- [x] **NV-31 — Copy button on code**: a button on every code block of the documentation
+  page, visible on hover and on focus, as on the site. Done as a kit feature, so other pages
+  can use it: `data-nv-copy` and nava-ui.js write an `nv-code` wrapper and its button, with a
+  hidden status for screen readers; the page puts it on `<main>`. <!-- nv: prio=low size=S labels=docs,components ver=main -->
 - [x] **NV-32 — Usage rules per component**: for each component when to use it, when not to,
   and the accessibility duties left to the author, next to its example. Done: a "Use it for /
   Not for / Your part" list under each of the 27 examples, and a rule in CLAUDE.md that a new

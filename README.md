@@ -309,6 +309,7 @@ accessibility that stays with you: the label, the ARIA state, the order of the m
 | Pagination | `nv-pagination`, `__btn`, `__page` | hide a missing arrow with `aria-disabled="true"` |
 | Panel | `nv-panel`, `__title`, `__text` | a centred call to action |
 | Footer | `nv-footer`, `__cols`, `__title`, `__name`, `__text`, `__list`, `__link`, `__bottom` | three columns, two on tablets, one on phones |
+| Code block | `nv-code`, `__copy`, `is-done`; `data-nv-copy` on a `<pre>` or a container | written by nava-ui.js: a copy button on each code block, shown on hover and focus, always on touch screens |
 | Utilities | `nv-skip-link`, `nv-sr-only` | skip link; text for screen readers only |
 
 Naming is `nv-block`, `nv-block__part`, `nv-block--variant`, and `is-state` for states set by
@@ -424,6 +425,7 @@ order it against yours. The sources in `css/` have no layers, for a build that s
 | Toasts | `navaUI.toast(message, options)` | adds a toast to the live region (an empty `nv-toasts` element the script adds to the page when it loads) and removes it after `timeout` ms; the timer stops while the pointer or the focus is on it |
 | Dialogs | `data-nv-dialog="<id>"` on a button | opens that `<dialog>` with `showModal()`; where the browser does not know `closedby="any"`, closes such a dialog on a click outside it |
 | Tabs | the ARIA tab markup inside `.nv-tabs` | a click selects a tab and shows its panel; the arrow keys move and select (wrapping), Home and End go to the ends; one tab is focusable at a time |
+| Copy code | `data-nv-copy` on a `<pre>`, or on a container of code blocks | wraps each `<pre>` in `nv-code` and adds a copy button, only where the Clipboard API exists; "Copied" for a moment, announced through a hidden status; if the copy is refused, selects the code. `navaUI.copyButton(pre)` does the same for a block added later |
 
 From your own code:
 
@@ -432,6 +434,7 @@ navaUI.theme();            // "dark" or "light": the theme in effect now
 navaUI.setTheme('light');  // set and remember
 navaUI.toast('Saved.');    // an info toast, gone after 5 seconds
 navaUI.toast('Could not save.', { tone: 'danger', title: 'Error', timeout: 0 }); // stays until dismissed
+navaUI.copyButton(pre);    // a copy button on a <pre> added after the page loaded
 document.addEventListener('nv:theme', function (event) {
   console.log(event.detail.theme);
 });

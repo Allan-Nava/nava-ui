@@ -82,7 +82,7 @@ Consequences:
 
 ## JavaScript
 
-`js/nava-ui.js` is one IIFE with no dependencies, and optional. It does four things:
+`js/nava-ui.js` is one IIFE with no dependencies, and optional. It does seven things:
 
 - **Theme toggle.** Sets `data-theme` on `<html>`, stores the choice in `localStorage` under
   `nv-theme`, fires `nv:theme`, keeps the button's `aria-label` current.
@@ -95,6 +95,14 @@ Consequences:
   script loads and kept, because a region added together with its first message is often not
   announced. A danger
   toast gets `role="alert"`. The timer stops while the pointer or the focus is on the toast.
+- **Dialogs.** A delegated click on `[data-nv-dialog="<id>"]` calls `showModal()`; the browser
+  does focus, Escape and the inert page. Where `closedby="any"` is unknown, a click on the
+  dialog element outside its box closes it.
+- **Tabs.** Delegated click and keydown listeners on `.nv-tabs [role="tab"]`: the ARIA tab
+  pattern with automatic activation and a roving `tabindex`.
+- **Copy code.** Each `<pre>` under `[data-nv-copy]` is moved into an `nv-code` wrapper with a
+  button and a hidden `role="status"` next to it, so the button does not scroll with the code.
+  Only where `navigator.clipboard` exists; a refused copy selects the code instead.
 
 The part that must run before first paint (reading the stored theme) is not in this file: it is
 a few lines pasted in `<head>`, because a deferred script would let the wrong theme flash.

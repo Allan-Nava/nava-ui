@@ -9,6 +9,8 @@
  *   5. Dialogs        a button with [data-nv-dialog="<id>"] opens that <dialog> as a
  *                     modal; closedby="any" where the browser does not know it
  *   6. Tabs           [role="tablist"] inside .nv-tabs: click, arrow keys, Home, End
+ *   7. Copy code      a <pre data-nv-copy>, or every <pre> inside an element with
+ *                     [data-nv-copy]: a button that copies the code
  *
  * Load it with `defer`. To avoid a flash of the wrong theme, also put the
  * three-line snippet from the README in <head>: it must run before first paint.
@@ -210,5 +212,63 @@
     selectTab(tabs[(next + tabs.length) % tabs.length], true);
   });
 
-  window.navaUI = { setTheme: setTheme, theme: current, toast: toast, dismiss: leave };
+  /* Copy code: each <pre> gets a wrapper (.nv-code) and a button after it, so
+     the button stays put when the code scrolls sideways. Added here and not in
+     the markup: without the Clipboard API (or without JS) there is no button
+     that would copy nothing. The button's text says what happened; a hidden
+     status next to it says it to screen readers. */
+  var COPY = 'Copy';
+
+  var canCopy = !!navigator.clipboard && window.isSecureContext !== false;
+
+  function copyButton(pre) {
+    if (!canCopy || !pre.parentNode || (pre.parentNode.classList && pre.parentNode.classList.contains('nv-code'))) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'nv-code';
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(pre);
+
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'nv-code__copy';
+    button.textContent = COPY;
+
+    var status = document.createElement('span');
+    status.className = 'nv-sr-only';
+    status.setAttribute('role', 'status');
+
+    var timer = null;
+    function show(text, done, said) {
+      clearTimeout(timer);
+      button.textContent = text;
+      button.classList.toggle('is-done', done);
+      status.textContent = said;
+      timer = setTimeout(function () {
+        button.textContent = COPY;
+        button.classList.remove('is-done');
+        status.textContent = '';
+      }, 1600);
+    }
+
+    button.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.textContent.replace(/\n$/, '')).then(function () {
+        show('Copied', true, 'Copied to the clipboard');
+      }, function () {
+        /* Denied: select the code, so Ctrl+C (or Cmd+C) copies it. */
+        var range = document.createRange();
+        range.selectNodeContents(pre);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        show('Press Ctrl+C', false, 'Could not copy: the code is selected, press Ctrl+C');
+      });
+    });
+
+    wrap.appendChild(button);
+    wrap.appendChild(status);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('pre[data-nv-copy], [data-nv-copy] pre'), copyButton);
+
+  window.navaUI = { setTheme: setTheme, theme: current, toast: toast, dismiss: leave, copyButton: copyButton };
 })();

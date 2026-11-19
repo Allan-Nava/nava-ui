@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Copy button on code blocks (NV-31): `data-nv-copy` on a `<pre>`, or on a container of code
+  blocks, and nava-ui.js wraps each block in `nv-code` with a `nv-code__copy` button. It shows on
+  hover and on keyboard focus (always on touch screens), says "Copied" for a moment, announces
+  it through a hidden status, and selects the code when the browser refuses the copy. Added
+  only where the Clipboard API exists. `navaUI.copyButton(pre)` for a block added later. Every
+  code block of the documentation page has one.
+
 ## 0.9.1 — 2026-11-18
 
 The npm package under the name npm accepts.
