@@ -1,0 +1,99 @@
+/* ---------------------------------------------------------------------------
+   nava-ui motion module (NV-33) — optional, a separate stylesheet:
+   dist/nava-ui.motion.css, loaded after the kit. The kit itself only has
+   hover and press feedback; this file adds the site's movement:
+
+     1. Scroll reveal    .nv-card, .nv-tile and anything with .nv-reveal fade
+                         and rise into place as they enter the viewport
+     2. Section rule     the line under .nv-section-head draws itself from the
+                         left as the heading enters
+     3. View transitions between pages of the same site (cross-document): the
+                         page cross-fades, the .nv-nav stays put and the
+                         current nav link slides to its new place
+
+   Everything is progressive enhancement:
+   - all of it sits inside prefers-reduced-motion: no-preference, so with
+     reduced motion this file does nothing;
+   - the scroll effects sit inside @supports (animation-timeline: view()):
+     where the browser does not know scroll-driven animations, the element is
+     simply in place, never left invisible waiting for an animation;
+   - no JavaScript. A browser without cross-document view transitions
+     navigates as usual.
+
+   The reveal moves the `translate` property, not `transform`, so it composes
+   with the hover lift of the cards instead of replacing it.
+   ------------------------------------------------------------------------ */
+
+@keyframes nv-reveal {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+@keyframes nv-rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. Scroll reveal --------------------------------------------------------- */
+  @supports (animation-timeline: view()) {
+    .nv-card,
+    .nv-tile,
+    .nv-reveal {
+      animation: nv-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+
+    /* 2. Section rule -------------------------------------------------------- */
+    .nv-section-head {
+      position: relative;
+      border-bottom-color: transparent;
+    }
+
+    .nv-section-head::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      height: 1px;
+      background: var(--nv-border);
+      transform-origin: left;
+      animation: nv-rule-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+  }
+
+  /* 3. View transitions -------------------------------------------------------- */
+  /* Both pages must opt in: load this file on every page of the site. */
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--nv-dur-slow);
+    animation-timing-function: var(--nv-ease-out);
+  }
+
+  .nv-nav {
+    view-transition-name: nv-nav;
+  }
+
+  /* One current link per page, so the name stays unique. */
+  .nv-nav__link[aria-current="page"] {
+    view-transition-name: nv-nav-current;
+  }
+}

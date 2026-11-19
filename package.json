@@ -27,6 +27,7 @@
       "default": "./dist/nava-ui.css"
     },
     "./components.css": "./dist/nava-ui.components.css",
+    "./motion.css": "./dist/nava-ui.motion.css",
     "./js": "./dist/nava-ui.js",
     "./tailwind.css": "./dist/tailwind.css",
     "./tailwind-preset": "./dist/tailwind.preset.cjs",

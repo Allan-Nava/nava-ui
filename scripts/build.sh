@@ -35,6 +35,15 @@ layer() { printf '\n@layer %s {\n' "$1"; cat "$2"; printf '}\n'; }
   layer nv.components css/components.css
 } > dist/nava-ui.components.css
 
+# The motion module (NV-33): optional, its own file, loaded after the kit. Its layer comes
+# after the components; the order statement repeats the kit's, so the order holds whichever
+# file the browser reads first.
+{
+  echo "$banner"
+  echo "@layer nv.tokens, nv.base, nv.components, nv.motion;"
+  layer nv.motion css/motion.css
+} > dist/nava-ui.motion.css
+
 {
   echo "$banner"
   cat js/nava-ui.js
@@ -44,7 +53,7 @@ layer() { printf '\n@layer %s {\n' "$1"; cat "$2"; printf '}\n'; }
 # CDN and npm serve both; the readable files stay the ones the docs point at.
 ESBUILD=node_modules/.bin/esbuild
 [ -x "$ESBUILD" ] || { echo "build: esbuild is missing — run npm ci" >&2; exit 1; }
-for f in nava-ui.css nava-ui.components.css nava-ui.js; do
+for f in nava-ui.css nava-ui.components.css nava-ui.motion.css nava-ui.js; do
   "$ESBUILD" "dist/$f" --minify --legal-comments=inline --log-level=warning \
     --outfile="dist/${f%.*}.min.${f##*.}"
 done

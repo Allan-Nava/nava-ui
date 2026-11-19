@@ -63,9 +63,11 @@ test('nothing overflows the viewport sideways', async ({ page }) => {
 });
 
 // The page templates (NV-30): each one whole, in both themes and both widths, and never
-// wider than the screen.
+// wider than the screen. They load the motion module (NV-33), so they are shot with reduced
+// motion: a scroll reveal would leave the cards below the fold half faded.
 for (const name of ['landing', 'listing', 'app']) {
   test(`example page: ${name}`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/examples/${name}.html`);
     await page.evaluate(() => document.fonts.ready);
     const overflow = await page.evaluate(

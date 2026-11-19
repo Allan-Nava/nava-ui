@@ -35,8 +35,9 @@ css/tokens.css        values: colour (dark, light), spacing, radius, motion, typ
                 ▼
 dist/nava-ui.css               tokens + base + components, in @layer nv.tokens, nv.base, nv.components
 dist/nava-ui.components.css    tokens + components (for pages with their own typography), layered too
+dist/nava-ui.motion.css        css/motion.css alone, in @layer nv.motion: optional, after the kit
 dist/nava-ui.js                copy of js/nava-ui.js with a banner
-dist/*.min.css, nava-ui.min.js the three above, minified by esbuild, banner kept
+dist/*.min.css, nava-ui.min.js the four above, minified by esbuild, banner kept
 dist/tokens.{dark,light}.json  the tokens in the Design Tokens format, per theme
 dist/tailwind.css, tailwind.preset.cjs  Tailwind v4 and v3 names pointing at the --nv-* properties
                                (both by scripts/export-tokens.mjs, from css/tokens.css)
@@ -44,6 +45,13 @@ dist/tailwind.css, tailwind.preset.cjs  Tailwind v4 and v3 names pointing at the
 
 The dependency goes one way: base and components depend on tokens, never on each other, and
 tokens depend on nothing. That is what makes `nava-ui.components.css` possible.
+
+`css/motion.css` is not in either bundle: it is movement some pages do not want, so it is a file
+of its own that a page adds. It only reads tokens and the kit's class names, everything in it is
+inside `prefers-reduced-motion: no-preference`, and its scroll effects are inside
+`@supports (animation-timeline: view())`, so no element ever waits invisible for an animation
+that does not run. Its order statement repeats the kit's with `nv.motion` last, so the layers
+keep their order whichever file the browser reads first.
 
 `dist/` is committed, because the CDN serves it straight from the git tag. CI rebuilds it and
 fails if the result differs from what is committed.

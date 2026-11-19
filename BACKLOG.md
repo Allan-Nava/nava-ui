@@ -222,8 +222,12 @@ first, and it was five paragraphs of text.
   and the accessibility duties left to the author, next to its example. Done: a "Use it for /
   Not for / Your part" list under each of the 27 examples, and a rule in CLAUDE.md that a new
   component brings its own. <!-- nv: prio=med size=M labels=docs,a11y ver=main -->
-- [ ] **NV-33 — Opt-in motion module**: the site's scroll reveal, section rule and view
-  transitions as a separate `nava-ui.motion.css`, off under `prefers-reduced-motion`. <!-- nv: prio=low size=M labels=components -->
+- [x] **NV-33 — Opt-in motion module**: the site's scroll reveal, section rule and view
+  transitions as a separate `nava-ui.motion.css`, off under `prefers-reduced-motion`. Done:
+  `css/motion.css`, built alone in `@layer nv.motion`, scroll effects behind
+  `@supports (animation-timeline: view())`, the reveal on `translate` so the hover lift
+  survives; loaded by the page templates and tested there with and without reduced
+  motion. <!-- nv: prio=low size=M labels=components ver=main -->
 - [x] **NV-34 — React components**: thin typed wrappers over the classes, in a separate
   package. Only when a React project adopts the kit; the CSS stays the source of the look.
   Done on request (2026-11-18) as `@allan_nava/nava-ui-react` in `packages/react`, an npm workspace:

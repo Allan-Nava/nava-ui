@@ -184,6 +184,8 @@ test('a code block gets a copy button that copies its code and says so', async (
 // The page templates are whole pages, so here every rule is on, the structure ones included.
 for (const name of ['landing', 'listing', 'app']) {
   test(`example page ${name}: no accessibility violations`, async ({ page }) => {
+    // Reduced motion: a card half way through its scroll reveal would fail the contrast rule.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/examples/${name}.html`);
     await page.evaluate(() => document.fonts.ready);
     const results = await new AxeBuilder({ page }).analyze();
@@ -207,4 +209,32 @@ test('the listing example filters by kind and by search, and says when nothing m
   await expect(page.getByRole('heading', { name: 'No integration matches' })).toBeVisible();
   await page.getByRole('button', { name: 'Clear the filters' }).click();
   await expect(cards).toHaveCount(8);
+});
+
+// The motion module (NV-33), on the landing example that loads it.
+test('the motion module reveals cards and names the view transitions, and stays off with reduced motion', async ({ page }) => {
+  const style = (locator, prop) => locator.evaluate((el, p) => getComputedStyle(el)[p], prop);
+  const pseudo = (locator, prop) => locator.evaluate((el, p) => getComputedStyle(el, '::after')[p], prop);
+  const tile = page.locator('.nv-tile').last();
+  const head = page.locator('.nv-section-head').first();
+  const nav = page.locator('.nv-nav');
+  const current = page.locator('.nv-nav__link[aria-current="page"]');
+
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/examples/landing.html');
+  expect(await style(tile, 'animationName')).toBe('nv-reveal');
+  expect(await pseudo(head, 'animationName')).toBe('nv-rule-draw');
+  expect(await style(nav, 'viewTransitionName')).toBe('nv-nav');
+  expect(await style(current, 'viewTransitionName')).toBe('nv-nav-current');
+  // Scrolled into view, the reveal ends with the card in place and opaque.
+  await tile.scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await expect.poll(() => style(tile, 'opacity')).toBe('1');
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.reload();
+  expect(await style(tile, 'animationName')).toBe('none');
+  expect(await style(tile, 'opacity')).toBe('1');
+  expect(await pseudo(head, 'content')).toBe('none');
+  expect(await style(nav, 'viewTransitionName')).toBe('none');
 });

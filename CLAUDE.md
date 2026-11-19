@@ -25,6 +25,7 @@ src/tokens.css        the token source: the only place where values are decided;
 css/tokens.css        GENERATED from it by scripts/build-tokens.mjs, light palette twice
 css/base.css          element defaults (optional layer)
 css/components.css    every .nv- class
+css/motion.css        the optional motion module (NV-33): built alone into dist/nava-ui.motion.css
 js/nava-ui.js         optional: theme toggle, card spotlight
 dist/                 built by scripts/build.sh, committed (the CDN serves it from the tag);
                       tokens.site.scss is the tokens in the site's dialect (scripts/export-site.mjs),

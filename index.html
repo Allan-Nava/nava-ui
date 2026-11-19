@@ -99,6 +99,7 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       <li><a class="nv-nav__link" href="#start">Start</a></li>
       <li><a class="nv-nav__link" href="#tokens">Tokens</a></li>
       <li><a class="nv-nav__link" href="#components">Components</a></li>
+      <li><a class="nv-nav__link" href="#motion">Motion</a></li>
       <li><a class="nv-nav__link" href="#theming">Theming</a></li>
       <li><a class="nv-nav__link" href="https://github.com/Allan-Nava/nava-ui">GitHub</a></li>
     </ul>
@@ -134,7 +135,8 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
         <tr><td><code>dist/nava-ui.css</code></td><td>tokens, base and components</td><td>nava-ui styles the whole page</td></tr>
         <tr><td><code>dist/nava-ui.components.css</code></td><td>tokens and components</td><td>the page already has its own typography</td></tr>
         <tr><td><code>css/tokens.css</code></td><td>the custom properties only</td><td>you write your own components on these values</td></tr>
-        <tr><td><code>dist/nava-ui.js</code></td><td>theme toggle, card spotlight</td><td>optional: the CSS works without it</td></tr>
+        <tr><td><code>dist/nava-ui.motion.css</code></td><td>scroll reveal, section rule, view transitions</td><td>optional, after the kit: <a href="#motion">motion</a></td></tr>
+        <tr><td><code>dist/nava-ui.js</code></td><td>theme toggle, card spotlight, toasts, dialogs, tabs, copy code</td><td>optional: the CSS works without it</td></tr>
       </tbody>
     </table>
     </div>
@@ -1035,6 +1037,23 @@ main > section > h3 { color: var(--nv-fg-strong); margin-top: var(--nv-space-7);
       <li><a href="examples/listing.html">Listing with filters</a>: search, filter chips, a card grid, the empty state and pagination; the filter is a few lines of the page's own script.</li>
       <li><a href="examples/app.html">Application screen</a>: an alert, tabs, a data table with badges, a settings form, a dialog and toasts.</li>
     </ul>
+  </section>
+
+  <section id="motion">
+    <h2>Motion</h2>
+    <p>The kit moves only on hover and press. The site's movement is a separate stylesheet, loaded after the kit, with no script:</p>
+<pre tabindex="0"><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.9.1/dist/nava-ui.motion.css"&gt;</code></pre>
+    <ul>
+      <li><b>Scroll reveal</b>: <code>nv-card</code>, <code>nv-tile</code> and anything with <code>nv-reveal</code> fade and rise into place as they enter the viewport. The hover lift of the cards keeps working.</li>
+      <li><b>Section rule</b>: the line under an <code>nv-section-head</code> draws itself from the left.</li>
+      <li><b>View transitions</b>: between pages of the same site that all load the file, the page cross-fades, the <code>nv-nav</code> stays put and the current link slides to its new place.</li>
+    </ul>
+    <p>With <code>prefers-reduced-motion: reduce</code> the file does nothing, and where the browser does not know scroll-driven animations the elements are simply in place. This page does not load it, so its examples hold still; the <a href="examples/landing.html">page templates</a> do: scroll the landing, then move between the three pages with the nav.</p>
+    <dl class="doc-usage">
+      <div><dt>Use it for</dt><dd>Pages read top to bottom, and a site whose pages share a nav.</dd></div>
+      <div><dt>Not for</dt><dd>An application screen people work in all day, or a long list where every row would animate.</dd></div>
+      <div><dt>Your part</dt><dd>Load it on every page of the site, or the view transitions do not run; nothing in it is ever the only way to see content.</dd></div>
+    </dl>
   </section>
 
   <section id="theming">

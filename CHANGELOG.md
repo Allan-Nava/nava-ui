@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Motion module (NV-33): `dist/nava-ui.motion.css` (and `.min.css`, `@allan_nava/nava-ui/motion.css`),
+  optional and loaded after the kit, with the site's movement: a scroll reveal for `nv-card`,
+  `nv-tile` and `nv-reveal`, the `nv-section-head` rule drawn as it enters, and cross-document
+  view transitions with the nav held in place. All of it off under `prefers-reduced-motion`,
+  the scroll effects only where `animation-timeline: view()` exists, no JavaScript. In its own
+  layer, `nv.motion`, after the components; attached to the GitHub release. The page templates
+  load it.
 - Copy button on code blocks (NV-31): `data-nv-copy` on a `<pre>`, or on a container of code
   blocks, and nava-ui.js wraps each block in `nv-code` with a `nv-code__copy` button. It shows on
   hover and on keyboard focus (always on touch screens), says "Copied" for a moment, announces
