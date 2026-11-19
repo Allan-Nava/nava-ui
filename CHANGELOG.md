@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.10.0 — 2026-11-19
+
+A copy button on code blocks, and the site's motion as an optional module.
+
 - Motion module (NV-33): `dist/nava-ui.motion.css` (and `.min.css`, `@allan_nava/nava-ui/motion.css`),
   optional and loaded after the kit, with the site's movement: a scroll reveal for `nv-card`,
   `nv-tile` and `nv-reveal`, the `nv-section-head` rule drawn as it enters, and cross-document
