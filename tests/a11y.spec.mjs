@@ -140,8 +140,21 @@ test('a table row is selected by its checkbox, and the table box takes the focus
   await expect.poll(bg).toBe(before);
 });
 
-test('a code block gets a copy button that copies its code and says so', async ({ page, context }) => {
-  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+// The clipboard is a stand-in: a headless browser may leave writeText waiting on a permission
+// prompt nobody answers. The stand-in records the text, or refuses when told to.
+const FAKE_CLIPBOARD = () => {
+  window.__copied = [];
+  window.__refuse = false;
+  Object.defineProperty(navigator, 'clipboard', {
+    configurable: true,
+    value: {
+      writeText: (text) => (window.__refuse ? Promise.reject(new Error('denied')) : (window.__copied.push(text), Promise.resolve())),
+    },
+  });
+};
+
+test('a code block gets a copy button that copies its code and says so', async ({ page }) => {
+  await page.addInitScript(FAKE_CLIPBOARD);
   await page.goto('/index.html');
   // Every code block of the page has one, the printed sources included.
   const blocks = await page.locator('main pre').count();
@@ -149,15 +162,23 @@ test('a code block gets a copy button that copies its code and says so', async (
   await expect(page.locator('main .nv-code__copy')).toHaveCount(blocks);
 
   const block = page.locator('.nv-code', { has: page.locator('pre[data-nv-copy]') });
-  const button = block.getByRole('button', { name: 'Copy' });
+  const button = block.locator('.nv-code__copy');
+  const status = block.getByRole('status');
   await button.focus();
   await expect(button).toHaveCSS('opacity', '1');
   await button.press('Enter');
   await expect(button).toHaveText('Copied');
-  await expect(block.getByRole('status')).toHaveText('Copied to the clipboard');
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('npm install @allan_nava/nava-ui');
+  await expect(status).toHaveText('Copied to the clipboard');
+  expect(await page.evaluate(() => window.__copied)).toEqual(['npm install @allan_nava/nava-ui']);
   await expect(button).toHaveText('Copy', { timeout: 3000 });
-  await expect(block.getByRole('status')).toHaveText('');
+  await expect(status).toHaveText('');
+
+  // Refused: the code is selected instead, so the keyboard can copy it.
+  await page.evaluate(() => { window.__refuse = true; });
+  await button.press('Enter');
+  await expect(button).toHaveText('Press Ctrl+C');
+  await expect(status).toHaveText(/Could not copy/);
+  expect(await page.evaluate(() => String(window.getSelection()))).toBe('npm install @allan_nava/nava-ui');
 });
 
 // The page templates are whole pages, so here every rule is on, the structure ones included.
