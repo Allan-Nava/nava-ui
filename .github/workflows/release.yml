@@ -144,6 +144,14 @@ jobs:
               echo "::notice::$name@$VERSION is already on the registry — skipping publish"
               return 0
             fi
+            # npm cannot trust a publisher for a package that does not exist yet, so the first
+            # version of a new package goes out by hand (or with the NPM_TOKEN secret). Without
+            # this check the OIDC exchange is refused with a 404 and npm reports a bare
+            # ENEEDAUTH, which says nothing about the cause.
+            if [ -z "$NPM_TOKEN" ] && ! npm view "$name" name >/dev/null 2>&1; then
+              echo "::error::$name is not on npm yet, so trusted publishing cannot work for it. Publish its first version by hand, then add the trusted publisher: see 'One-time setup' in CLAUDE.md."
+              return 1
+            fi
             # Verbose on purpose: a refused OIDC exchange otherwise ends in a bare ENEEDAUTH;
             # at verbose npm prints the exchange and why it failed. Provenance comes with
             # trusted publishing; with the bootstrap token it is asked for explicitly.
