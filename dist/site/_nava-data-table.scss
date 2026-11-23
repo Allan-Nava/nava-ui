@@ -10,6 +10,12 @@
   border-radius: var(--nv-radius-lg);
 }
 
+@media (max-width: 640px) {
+  .nv-table-wrap > .nv-table {
+    min-width: 54.4rem;
+  }
+}
+
 .nv-table-wrap:focus-visible {
   outline: 2px solid var(--nv-accent);
   outline-offset: 2px;

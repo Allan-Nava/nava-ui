@@ -152,6 +152,15 @@ kbd {
   border-radius: var(--nv-radius-sm);
 }
 
+/* A long path or identifier inside a sentence wraps instead of widening the page on a phone
+   (NV-42). Not in tables, where the box scrolls and a name stays whole. */
+p code,
+li code,
+dd code,
+blockquote code {
+  overflow-wrap: anywhere;
+}
+
 code {
   padding: 0.2em 0.45em;
   color: var(--nv-accent-text);

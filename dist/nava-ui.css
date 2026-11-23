@@ -403,6 +403,15 @@ kbd {
   border-radius: var(--nv-radius-sm);
 }
 
+/* A long path or identifier inside a sentence wraps instead of widening the page on a phone
+   (NV-42). Not in tables, where the box scrolls and a name stays whole. */
+p code,
+li code,
+dd code,
+blockquote code {
+  overflow-wrap: anywhere;
+}
+
 code {
   padding: 0.2em 0.45em;
   color: var(--nv-accent-text);
@@ -2862,6 +2871,14 @@ a.nv-bar__label:hover {
   border-radius: var(--nv-radius-lg);
 }
 
+/* On a phone a table keeps a readable width and scrolls sideways in its box, instead of
+   squeezing its last column to a word per line (NV-41). 34rem fits three or four columns. */
+@media (max-width: 640px) {
+  .nv-table-wrap > .nv-table {
+    min-width: 34rem;
+  }
+}
+
 .nv-table-wrap:focus-visible {
   outline: 2px solid var(--nv-accent);
   outline-offset: 2px;
@@ -3218,6 +3235,14 @@ a.nv-bar__label:hover {
   padding-top: var(--nv-space-4);
   font-size: var(--nv-text-xs);
   border-top: 1px solid var(--nv-border);
+}
+
+/* A footer with only its bottom line (no columns): the footer's own border is enough. Without
+   this the line under that border, after a gap, drew two rules one above the other (NV-40). */
+.nv-footer__bottom:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .nv-footer__bottom p {

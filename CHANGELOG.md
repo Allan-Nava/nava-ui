@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+Three fixes found by building a documentation site with the kit (streamprobe-operator).
+
+- A footer with only `nv-footer__bottom` drew two rules one above the other, with a gap: the
+  bottom line now drops its own border and spacing when it is the footer's first child, so a
+  one-line footer has the footer's single border (NV-40). New example in the documentation page.
+- `nv-table` inside `nv-table-wrap` keeps a minimum width of 34rem on screens up to 640px and
+  scrolls in its box, instead of squeezing its last column to a word per line (NV-41).
+- Inline `code` in paragraphs, list items, definitions and quotes wraps anywhere, so a long
+  path or identifier no longer widens the page on a phone; in tables it stays whole (NV-42).
+
 ## 0.10.0 — 2026-11-19
 
 A copy button on code blocks, and the site's motion as an optional module.

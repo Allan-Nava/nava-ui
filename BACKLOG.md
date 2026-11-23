@@ -201,6 +201,21 @@ first, and it was five paragraphs of text.
   award's muted text over its wash checked in `scripts/contrast.mjs`. Exported as
   `dist/site/_nava-profile.scss`, `_nava-timeline.scss` and `_nava-award.scss` for the site. <!-- nv: prio=high size=M labels=components,site ver=main -->
 
+## v0.11.0 — Lessons from a docs site <!-- ms: phase=now -->
+
+Found on 2026-11-23 building the GitHub Pages site of streamprobe-operator with the kit: three
+places where the kit's own markup, used as documented, broke on a real page.
+
+- [x] **NV-40 — One-line footer**: `nv-footer__bottom` alone in a footer drew the footer's
+  border and then its own after a gap, two rules one above the other. Done: when it is the
+  footer's first child it drops its border and spacing; an example "Footer, one line" with its
+  usage rules. <!-- nv: prio=high size=S labels=components ver=main -->
+- [x] **NV-41 — Tables on a phone**: inside `nv-table-wrap` the table shrank to the screen and its
+  last column wrapped a word per line. Done: a 34rem minimum up to 640px, so the box scrolls. <!-- nv: prio=med size=S labels=components,a11y ver=main -->
+- [x] **NV-42 — Long inline code**: a path in a sentence widened the page on a phone. Done:
+  `overflow-wrap: anywhere` on inline code in prose (paragraphs, lists, definitions, quotes),
+  not in tables. <!-- nv: prio=med size=S labels=components ver=main -->
+
 ## v0.7.0 — Documentation and examples <!-- ms: phase=later -->
 
 - [x] **NV-36 — Logo and social preview**: a mark in the family of the other projects (green

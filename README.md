@@ -303,14 +303,14 @@ accessibility that stays with you: the label, the ARIA state, the order of the m
 | Toast | `nv-toasts`, `nv-toast`, `nv-toast--success`, `--warning`, `--danger` | the parts of an alert on an opaque surface; `nv-toasts` is the live region, created by the script |
 | Dialog | `nv-dialog`, `__header`, `__title`, `__close`, `__body`, `__actions`; `data-nv-dialog="<id>"` opens one | the native `<dialog>` with `showModal()`: focus, Escape and the inert page come from the browser; `closedby="any"` closes on a click outside |
 | Tabs | `nv-tabs`, `__list`, `__tab`, `__panel` with the ARIA tab roles | the look of the nav links; click, arrow keys, Home and End from nava-ui.js |
-| Data table | `nv-table-wrap`, `nv-table`, `nv-table__num`, `is-selected` | scrolls in its box (give it `tabindex="0"`, `role="region"`, `aria-label`), sticky header, tabular figures; a row with a checked checkbox is selected |
+| Data table | `nv-table-wrap`, `nv-table`, `nv-table__num`, `is-selected` | scrolls in its box (give it `tabindex="0"`, `role="region"`, `aria-label`), sticky header, tabular figures; a row with a checked checkbox is selected; on phones the table keeps a 34rem minimum and scrolls sideways |
 | Empty state | `nv-empty`, `__icon`, `__title`, `__text`, with `nv-actions` | nothing to show: what is missing and one action |
 | Skeleton | `nv-skeleton`, `--line`, `--circle` | placeholders while loading; the region carries `aria-busy="true"`; no shimmer under reduced motion |
 | Spinner | `nv-spinner`, `nv-button[aria-busy="true"]` | a working button keeps its label and ignores clicks; still under reduced motion |
 | Validation | `aria-invalid="true"`, `is-valid`, `nv-error`, `nv-valid` | invalid is the ARIA attribute on the control, with the message linked by `aria-describedby`; valid is a class |
 | Pagination | `nv-pagination`, `__btn`, `__page` | hide a missing arrow with `aria-disabled="true"` |
 | Panel | `nv-panel`, `__title`, `__text` | a centred call to action |
-| Footer | `nv-footer`, `__cols`, `__title`, `__name`, `__text`, `__list`, `__link`, `__bottom` | three columns, two on tablets, one on phones |
+| Footer | `nv-footer`, `__cols`, `__title`, `__name`, `__text`, `__list`, `__link`, `__bottom` | three columns, two on tablets, one on phones; `__bottom` alone is a one-line footer |
 | Code block | `nv-code`, `__copy`, `is-done`; `data-nv-copy` on a `<pre>` or a container | written by nava-ui.js: a copy button on each code block, shown on hover and focus, always on touch screens |
 | Utilities | `nv-skip-link`, `nv-sr-only` | skip link; text for screen readers only |
 
