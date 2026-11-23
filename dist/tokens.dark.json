@@ -1,5 +1,5 @@
 {
-  "$description": "nava-ui v0.10.0, dark theme. Generated from src/tokens.css by scripts/export-tokens.mjs.",
+  "$description": "nava-ui v0.11.0, dark theme. Generated from src/tokens.css by scripts/export-tokens.mjs.",
   "color": {
     "bg": {
       "$type": "color",

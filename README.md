@@ -60,8 +60,8 @@ owner's npm scope: npm refuses the bare name `nava-ui` as too close to `naive-ui
 **From a CDN**, pinned to a release tag:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.10.0/dist/nava-ui.css">
-<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.10.0/dist/nava-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.11.0/dist/nava-ui.css">
+<script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.11.0/dist/nava-ui.js"></script>
 ```
 
 Each file also comes minified, same content: `nava-ui.min.css`, `nava-ui.components.min.css`
@@ -118,8 +118,8 @@ A complete page: nav, opening, a list of cards, footer.
   })();
   </script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.10.0/dist/nava-ui.css">
-  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.10.0/dist/nava-ui.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.11.0/dist/nava-ui.css">
+  <script defer src="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.11.0/dist/nava-ui.js"></script>
 </head>
 <body>
   <a class="nv-skip-link" href="#main">Skip to content</a>
@@ -452,8 +452,8 @@ The kit itself moves only on hover and press. `dist/nava-ui.motion.css` (NV-33) 
 movement as an optional module, loaded after the kit; it needs no JavaScript:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.10.0/dist/nava-ui.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.10.0/dist/nava-ui.motion.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.11.0/dist/nava-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Allan-Nava/nava-ui@v0.11.0/dist/nava-ui.motion.css">
 ```
 
 Or `import '@allan_nava/nava-ui/motion.css'`.

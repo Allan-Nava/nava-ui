@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.11.0 — 2026-11-23
+
 Three fixes found by building a documentation site with the kit (streamprobe-operator).
 
 - A footer with only `nv-footer__bottom` drew two rules one above the other, with a gap: the
