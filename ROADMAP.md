@@ -14,11 +14,11 @@
 | **v0.2.0 — Quality gate** | shipped | `##########` 100% | 0 | 6 |
 | **v0.3.0 — One source of truth with the site** | shipped | `##########` 100% | 0 | 5 |
 | **v0.4.0 — Components for applications** | shipped | `##########` 100% | 0 | 10 |
-| **v0.5.0 — Distribution** | later | `##########` 100% | 0 | 4 |
+| **v0.5.0 — Distribution** | shipped | `##########` 100% | 0 | 4 |
 | **v0.6.0 — Tokens from one file** | shipped | `##########` 100% | 0 | 2 |
-| **v0.9.0 — A page about a person** | now | `##########` 100% | 0 | 1 |
-| **v0.11.0 — Lessons from a docs site** | now | `##########` 100% | 0 | 3 |
-| **v0.7.0 — Documentation and examples** | later | `##########` 100% | 0 | 6 |
+| **v0.9.0 — A page about a person** | shipped | `##########` 100% | 0 | 1 |
+| **v0.11.0 — Lessons from a docs site** | shipped | `##########` 100% | 0 | 3 |
+| **v0.7.0 — Documentation and examples** | shipped | `##########` 100% | 0 | 6 |
 
 ## v0.1.0 — The site's look, extracted
 

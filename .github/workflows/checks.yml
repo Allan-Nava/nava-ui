@@ -28,7 +28,7 @@ jobs:
       # Starts checking as soon as ROADMAP.md exists (generate it with `npx backlogsync roadmap`).
       - name: Backlog is valid and ROADMAP.md is up to date
         if: ${{ hashFiles('ROADMAP.md') != '' }}
-        uses: Allan-Nava/backlogsync@backlogsync--v0.1.1
+        uses: Allan-Nava/backlogsync@backlogsync--v0.2.0
         with:
           command: check
       # Before the build: it minifies with esbuild, a dev dependency.

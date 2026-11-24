@@ -145,7 +145,7 @@ accessibility rules green.
   the ridges drift on scroll where scroll-driven animation exists; the site imports
   `_nava-banner.scss` instead of keeping its own copy. <!-- nv: prio=med size=M labels=components,site ver=main -->
 
-## v0.5.0 — Distribution <!-- ms: phase=later -->
+## v0.5.0 — Distribution <!-- ms: phase=shipped -->
 
 Today the kit installs from a CDN URL or by copying files. Worth doing once the components
 are stable.
@@ -189,7 +189,7 @@ are stable.
   `@theme inline` file and a v3 preset, both pointing at the `--nv-*` properties rather than
   copying values; checked by compiling a page with Tailwind 4.1 and 3.4. <!-- nv: prio=low size=M labels=tokens,dist ver=main -->
 
-## v0.9.0 — A page about a person <!-- ms: phase=now -->
+## v0.9.0 — A page about a person <!-- ms: phase=shipped -->
 
 The components the site's about page needs, asked for on 2026-11-18: recruiters read that page
 first, and it was five paragraphs of text.
@@ -201,7 +201,7 @@ first, and it was five paragraphs of text.
   award's muted text over its wash checked in `scripts/contrast.mjs`. Exported as
   `dist/site/_nava-profile.scss`, `_nava-timeline.scss` and `_nava-award.scss` for the site. <!-- nv: prio=high size=M labels=components,site ver=main -->
 
-## v0.11.0 — Lessons from a docs site <!-- ms: phase=now -->
+## v0.11.0 — Lessons from a docs site <!-- ms: phase=shipped -->
 
 Found on 2026-11-23 building the GitHub Pages site of streamprobe-operator with the kit: three
 places where the kit's own markup, used as documented, broke on a real page.
@@ -216,7 +216,7 @@ places where the kit's own markup, used as documented, broke on a real page.
   `overflow-wrap: anywhere` on inline code in prose (paragraphs, lists, definitions, quotes),
   not in tables. <!-- nv: prio=med size=S labels=components ver=main -->
 
-## v0.7.0 — Documentation and examples <!-- ms: phase=later -->
+## v0.7.0 — Documentation and examples <!-- ms: phase=shipped -->
 
 - [x] **NV-36 — Logo and social preview**: a mark in the family of the other projects (green
   on near-black, rounded square), used as the favicon and in the nav of the documentation
